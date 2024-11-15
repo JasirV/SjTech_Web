@@ -9,7 +9,7 @@ const Sidebar = ({ isActiveSidebar, setIsActiveSidebar }) => {
             <div className="logo mb-30">
                 <img src="/images/logo/SJ Tech Logo-01.png" alt="logo" />
             </div>
-            <p className="text-justify">The foundation of any road is the subgrade, which provides a stable base for the road layers above. Proper compaction of the subgrade is crucial to prevent settling and ensure long-term road stability.</p>
+            <p className="text-justify">Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction industry. Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors.</p>
             <ul className="info py-4 mt-65 bor-top bor-bottom">
                 {/* <li><i className="primary-color"><FaLocationDot /></i> <Link to="#0">example@example.com</Link></li> */}
                 <li className="py-4"><i className="primary-color"><FaPhoneVolume /></i> <Link href="tel:+912659302003">+0097433536236</Link></li>

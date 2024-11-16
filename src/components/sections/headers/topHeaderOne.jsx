@@ -7,7 +7,7 @@ const TopHeaderOne = () => {
             <div className="container">
                 <div className="header-top-wrp">
                     <div className="logo">
-                        <Link href="/" className="logo"> <img src={'/images/logo/SJ Tech Logo-01.png'} alt="logo" /></Link>
+                        <Link href="/" className="logo"> <img src={'/images/logo/SJ_Tech_Logo-01w2.png'} alt="logo" /></Link>
                     </div>
                     <ul className="info">
                         <li><i className="primary-color "><FaPaperPlane /></i> <a href="mailto:info@gmail.com">info@sjtechqa.com</a></li>

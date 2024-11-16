@@ -17,10 +17,10 @@ const HeaderTwo = () => {
                 <div className="container">
                     <div className="header-wrapper">
                         <div className="logo-menu light_logo">
-                            <Link to={"/"} className="logo"> <img src={'/images/logo/SJ Tech Logo-01.png'} alt="logo" /></Link>
+                            <Link to={"/"} className="logo"> <img src={'/images/logo/SJ_Tech_Logo-01w2.png'} alt="logo" /></Link>
                         </div>
                         <div className="logo-menu black_logo">
-                            <Link to={"/"} className="logo"> <img src={'/images/logo/SJ Tech Logo-01.png'} alt="logo" /></Link>
+                            <Link to={"/"} className="logo"> <img src={'/images/logo/SJ_Tech_Logo-01w2.png'} alt="logo" /></Link>
                         </div>
                         <div className={`header-bar d-xl-none ${isMobileMenuOpen ? "active" : ""}`} onClick={()=> setIsMobileMenuOpen(!isMobileMenuOpen)}>
                             <span></span>

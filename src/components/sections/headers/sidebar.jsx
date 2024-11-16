@@ -7,7 +7,7 @@ const Sidebar = ({ isActiveSidebar, setIsActiveSidebar }) => {
         <div id="targetElement" className={`side_bar slideInRight ${isActiveSidebar ? "" : "side_bar_hidden"}`}>
             <div className="side_bar_overlay"></div>
             <div className="logo mb-30">
-                <img src="/images/logo/SJ Tech Logo-01.png" alt="logo" />
+                <img src="/images/logo/SJ_Tech_Logo-01w2.png" alt="logo" />
             </div>
             <p className="text-justify">Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction industry. Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors.</p>
             <ul className="info py-4 mt-65 bor-top bor-bottom">

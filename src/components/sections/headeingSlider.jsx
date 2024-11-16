@@ -7,7 +7,7 @@ const HeadeingSlider = ({ bg_color, dir }) => {
         <ul className="marqee-list d-flex">
           <li className="marquee-item">
             <span className="stroke-text">Leader in</span> Refractory{" "}
-            <span className="stroke-text">Construction &</span>
+            <span className="stroke-text">Contracting &</span>
             Trading <span className="stroke-text">Services</span>, Experts in{" "}
             <span className="stroke-text">Stainless Steel</span> Fabrication &{" "}
             <span className="stroke-text">Installation</span>, Specialists in{" "}

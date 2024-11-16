@@ -27,7 +27,7 @@ const HeaderOne = () => {
                     <div className="container">
                         <div className="header-wrapper">
                             <div className="logo d-block d-xl-none pb-0">
-                                <img src="/images/logo/SJ Tech Logo-01.png" alt="logo" />
+                                <img src="/images/logo/SJ_Tech_Logo-01w2.png" alt="logo" />
                             </div>
                             <div
                                 className={`header-bar d-xl-none ${isMobileMenuOpen ? "active" : ""}`}

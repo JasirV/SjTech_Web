@@ -16,7 +16,7 @@ const FooterOne = () => {
                     className="footer_one_top position-relative d-flex flex-wrap align-items-center justify-content-between pt-65 pb-65">
                     <div className="logo">
                         <a href="#0">
-                            <img src="/images/logo/SJ_Tech_Logo-01w2.png" alt="logo" />
+                            <img src="/images/logo/whiteLogo.png" alt="logo" />
                         </a>
                     </div>
                     <div className="social-icon mt-sm-0">

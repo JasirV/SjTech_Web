@@ -9,7 +9,7 @@ const VideoArea = ({ bg_img }) => {
         <>
             <section className={`video-area bg-image section-padding ${bg_img}`}>
                 <div className="container">
-                    <SlideDown delay={2}> <h2 className="pt-65">Building Strong Foundations with Innovative Construction Solutions</h2></SlideDown>
+                    <SlideDown delay={2}> <h2 className="pt-65">Building Futures, Strengthening Partnerships – Your Trusted Trading & Contracting Partner</h2></SlideDown>
                 </div>
             </section>
         </>

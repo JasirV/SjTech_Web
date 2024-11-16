@@ -64,6 +64,29 @@
 				height: 85px;
 				transform: rotate(90deg);
 			}
+			.image {
+		position: relative;
+
+		.slider-info {
+			background-color: var(--primary-color);
+			width: 100px;
+			background-image: url(../../assets/images/shape/banner-one.png);
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 100%;
+			z-index: 1;
+			.banner-dot {
+				position: absolute;
+				bottom: 5%;
+				color:#6e6d73;
+				left: -24px;
+				width: 85px;
+				height: 85px;
+				transform: rotate(90deg);
+			}
+			
+			
 	// 		.swiper-pagination-bullet {
     // border: 1px solid "#6e6d73"; /* Set border color of non-active dots to red */
     // background-color: transparent; /* Make sure background is transparent if needed */
@@ -89,6 +112,40 @@
 				}
 			}
 		}
+	}
+			
+	// 		.swiper-pagination-bullet {
+    // border: 1px solid "#6e6d73"; /* Set border color of non-active dots to red */
+    // background-color: transparent; /* Make sure background is transparent if needed */
+    // opacity: 1;
+	// 	}
+			.banner-pegi {
+				position: absolute;
+				color: #6e6d73;
+				top: 5%;
+				left: -24px;
+				width: 85px;
+				height: 85px;
+				transform: rotate(90deg);
+
+				.swiper-pagination-current {
+					color: white;
+					font-weight: 600;
+				}
+
+				.swiper-pagination-total {
+					color: '#312D81';
+					font-weight: 600;
+				}
+			}
+		}
+	}
+
+	@media (max-width: 768px){
+				
+	.slider-info{
+		background-color: transparent;
+	}
 	}
 
 	.shape1 {

@@ -13,7 +13,7 @@ const ExperienceFour = ({className}) => {
                     </div>
                     <div className="col-lg-6">
                         <SlideRight className="image ps-0 ps-xl-4">
-                            <img src="/images/experience/ap.jpg" alt="image" />
+                            <img src="https://www.indigoqatar.com/wp-content/uploads/2022/05/civil-scaled.jpg" alt="image" />
                         </SlideRight>
                     </div>
                 </div>

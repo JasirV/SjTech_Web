@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa6'
-import { serviceThreeData } from '../../../utils/fackData/serviceThreeData'
+// import { serviceThreeData } from '../../../utils/fackData/serviceThreeData'
+import { productAllData } from '../../../utils/fackData/productallData'
 import SlideUp from '../../../utils/animations/slideUp'
 
 const ServiceThree = () => {
@@ -10,7 +11,7 @@ const ServiceThree = () => {
             <div className="container">
                 <div className="row g-4">
                     {
-                        serviceThreeData.map(({id, service_name, src}) => <Card key={id} id={id} src={src} service_name={service_name}/>)
+                        productAllData.map(({id, service_name, src}) => <Card key={id} id={id} src={src} service_name={service_name}/>)
                     }
                 </div>
             </div>

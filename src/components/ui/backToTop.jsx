@@ -25,7 +25,7 @@ const BackToTop = () => {
         scrollUp.addEventListener("click", () => {
             document.documentElement.scrollTop = 0;
         });
-        scrollUp.style.background = `conic-gradient(#ee332b ${scrollValue}%, #d9d9d9 ${scrollValue}%)`;
+        scrollUp.style.background = `conic-gradient(#312D81 ${scrollValue}%, #d9d9d9 ${scrollValue}%)`;
     };
 
     return (

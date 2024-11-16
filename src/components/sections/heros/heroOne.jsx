@@ -5,9 +5,11 @@ import { Pagination, EffectFade, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
+import ServiceOne from '../services/serviceOne';
 
 const HeroOne = () => {
     return (
+        <>
         <section className="banner">
             <div className="shape1 d-none d-md-block float-bob-y">
                 <img src={'/images/shape/shapel2.png'} alt="shape" />
@@ -41,7 +43,7 @@ const HeroOne = () => {
 
                     </Swiper>
                 </div>
-                <div className="image">
+                {/* <div className="image">
                     <Swiper
                         slidesPerView={1}
                         loop={true}
@@ -66,9 +68,11 @@ const HeroOne = () => {
                         <div className="dot banner-dot"></div>
                         <div className="banner-pegi"></div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </section>
+                <ServiceOne/>
+        </>
     )
 }
 

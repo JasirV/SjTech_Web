@@ -31,7 +31,7 @@ export const teamData = [
     },
     {
         id:6,
-        name:"Abu",
+        name:"Dirshad Babu",
         position:"Senior Engineer",
         src:"https://i.pinimg.com/736x/07/33/ba/0733ba760b29378474dea0fdbcb97107.jpg"
     },

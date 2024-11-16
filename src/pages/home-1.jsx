@@ -15,11 +15,11 @@ import PartnerTwo from '../components/sections/partners/partnerTwo'
 const HomeOne = () => {
   return (
     <main>
+        <ServiceOne/>
         <HeroOne/>
         <PartnerOne/>
         <HeadeingSlider bg_color={"secondary-bg"} dir={"to-left"}/>
         <AboutOne/>
-        <ServiceOne/>
         <ProjectsOne data={projectsOneData}/>
         <ExperienceOne/>
         <ProductsSlider bg_color={"secondary-bg"} is_bg_img={true} title_sytle={"text-white"}/>

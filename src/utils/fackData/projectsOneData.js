@@ -24,16 +24,4 @@ export const projectsOneData = [
     value_description: "We are committed to excellence, ensuring that every product and service meets or exceeds industry standards through high-quality workmanship. Our attention to detail and proactive approach to improvement reflect this commitment.",
     imageSrc: 'https://media.istockphoto.com/id/1364946137/photo/businessman-holding-and-showing-the-best-quality-assurance-with-golden-five-stars-for.jpg?s=612x612&w=0&k=20&c=ewqI36IOI0FE9fQGEjhVrdR_4sAg77ICJJ2gZgZxH-0='
 },
-{
-    id: 5,
-    value_name: "Innovation",
-    value_description: "We continually seek new and improved ways to serve our clients, leveraging advanced technology and forward-thinking practices to deliver innovative solutions in the construction industry.",
-    imageSrc: 'https://mvjce.edu.in/wp-content/uploads/2023/02/Why-is-Innovation-Important-in-Engineering-Education.webp',
-},
-{
-    id: 6,
-    value_name: "Sustainability",
-    value_description: "We are dedicated to responsible business practices that minimize environmental impact and contribute to the well-being of communities, aiming for long-term sustainability in all we do.",
-    imageSrc: 'https://t4.ftcdn.net/jpg/05/55/33/01/360_F_555330189_cKKtlJA502lcdqXveULFTcL5Rgg5F0JA.jpg',
-}
 ];

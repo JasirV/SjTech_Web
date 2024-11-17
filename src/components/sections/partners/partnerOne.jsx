@@ -12,7 +12,10 @@ const PartnerOne = () => {
 
                 <div className="content-section">
                     <div className="content-item">
-                        <div className="shape1 floating-shape" style={{ backgroundImage: `url('/images/shape/start2.png')` }}></div>
+                        {/* <div className="shape1 floating-shape" style={{ backgroundImage: `url('/images/shape/start2.png')` }}></div> */}
+                        <div className="shape1">
+                <img src={'/images/shape/start1.png'} alt="" />
+            </div>
                         <div className="icon">
                             <FaBuilding size={40} color="#312D81" />
                         </div>

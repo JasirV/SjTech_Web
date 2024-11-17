@@ -26,6 +26,7 @@
 	padding-top: 250px;
 	position: relative;
 
+	
 	.container {
 		max-width: 1200px;
 		margin: 0 auto;
@@ -66,6 +67,13 @@
 		flex-direction: column; /* Stacks content vertically */
 		align-items: center; /* Align content to the center */
 		justify-content: space-between; /* Adds space between elements */
+		.shape1 {
+			position: absolute;
+			left: -10%;
+			bottom: 0;
+			z-index: -1;
+			animation: rotate 30s infinite linear;
+		}
 	}
 	
 	/* Ensure long text fits inside the box */
@@ -1609,8 +1617,8 @@
 
 // Testimonial area start here ***
 .testimonial {
-	overflow: hidden;
-
+	overflow: hidden; 
+	margin-top: -90px;
 	.testimonial-wrp {
 		padding: 60px 30px;
 	}

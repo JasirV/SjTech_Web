@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import { FaBuilding, FaHandshake } from 'react-icons/fa';
 
 const PartnerOne = () => {
+    const [showMoreTrading, setShowMoreTrading] = useState(false);
+    const [showMoreContracting, setShowMoreContracting] = useState(false);
+
     return (
         <section className="trust section-padding">
             <div className="container">
@@ -13,15 +17,14 @@ const PartnerOne = () => {
                             <FaBuilding size={40} color="#312D81" />
                         </div>
                         <h5>Trading</h5>
-                        <p>
-                            As a forward-thinking trading enterprise, SJ Tech has formed strategic 
-                            partnerships with leading manufacturers to meet the specialized needs of civil 
-                            contractors. Our collaborations are backed by our principals, ensuring that we 
-                            provide comprehensive technical support. We are committed to supplying 
-                            high-quality products at competitive prices, achieved through our prudent 
-                            pricing strategy. Our trading operations are primarily geared towards 
-                            supporting contractors in the Steel, Stainless Aluminum, and Glass sectors.
-                        </p>
+                        <span style={{ width: '85%' }}>
+                            {showMoreTrading
+                                ? `As a forward-thinking trading enterprise, SJ Tech has formed strategic partnerships with leading manufacturers to meet the specialized needs of civil contractors. Our collaborations are backed by our principals, ensuring comprehensive technical support and high-quality products at competitive prices.`
+                                : `As a forward-thinking trading enterprise, SJ Tech has formed strategic partnerships with leading manufacturers to meet the specialized needs of civil contractors.`}
+                        </span>
+                        <button onClick={() => setShowMoreTrading(!showMoreTrading)} className="show-more-btn">
+                            {showMoreTrading ? 'Show Less' : 'Show More'}
+                        </button>
                     </div>
 
                     <div className="content-item">
@@ -30,16 +33,14 @@ const PartnerOne = () => {
                             <FaHandshake size={40} color="#312D81" />
                         </div>
                         <h5>Contracting</h5>
-                        <p>
-                            At SJ Tech, we are committed to insulating the construction industry from 
-                            supply chain challenges by fostering strong relationships with suppliers and 
-                            continuously improving our operational capabilities. Our goal is to be the 
-                            preferred partner for civil contractors, providing them with the resources they 
-                            need to succeed in their projects. With a focus on quality, innovation, and 
-                            customer satisfaction, SJ Tech Trading Contracting W.L.L. is poised to make a 
-                            significant impact in Qatar's civil construction landscape. We invite you to 
-                            partner with us as we build a future of excellence together.
-                        </p>
+                        <span style={{ width: '80%' }}>
+                            {showMoreContracting
+                                ? `At SJ Tech, we are committed to insulating the construction industry from supply chain challenges by fostering strong relationships with suppliers and improving operational capabilities. We aim to be the preferred partner for civil contractors, offering resources to succeed in their projects with quality and innovation.`
+                                : `At SJ Tech, we are committed to insulating the construction industry from supply chain challenges by fostering strong relationships with suppliers.`}
+                        </span>
+                        <button onClick={() => setShowMoreContracting(!showMoreContracting)} className="show-more-btn">
+                            {showMoreContracting ? 'Show Less' : 'Show More'}
+                        </button>
                     </div>
                 </div>
             </div>

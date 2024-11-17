@@ -22,8 +22,8 @@ const HomeOne = () => {
         {/* <ServiceOne/> */}
         {/* <ProjectsOne data={projectsOneData}/> */}
         <ExperienceOne/>
-        <ProductsSlider bg_color={"secondary-bg"} is_bg_img={true} title_sytle={"text-white"}/>
-        {/* <TestimonialOne/> */}
+        {/* <ProductsSlider bg_color={"secondary-bg"} is_bg_img={true} title_sytle={"text-white"}/> */}
+        <TestimonialOne/>
         {/* <BlogOne/> */}
         {/* <PartnerTwo/> */}
     </main>

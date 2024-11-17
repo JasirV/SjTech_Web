@@ -182,5 +182,12 @@ footer {
 			}
 		}
 	}
+
+	// Hide the about section on screens smaller than 600px
+	@media (max-width: 600px) {
+		.about-titles {
+			display: none;
+		}
+	}
 }
 // Footer area end here ***

@@ -29,8 +29,8 @@ const FooterOne = () => {
                 <div className="bor-top position-relative">
                     <div className="row g-4">
                         <SlideUp className="col-md-6">
-                            <div className="item">
-                                <div className="title">
+                            <div className="item about-titles">
+                                <div className="title ">
                                     <h4>About Company</h4>
                                 </div>
                                 <p>SJ Tech Trading Contracting W.L.L. delivers top solutions in Steel, Aluminum, Glass, and Refractory Construction</p>

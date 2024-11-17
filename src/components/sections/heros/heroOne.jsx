@@ -10,7 +10,7 @@ import ServiceOne from '../services/serviceOne';
 const HeroOne = () => {
     return (
         <>
-        <section className="banner">
+        <section className="banner"  style={{backgroundColor:"#7199CD"}}>
             <div className="shape1 d-none d-md-block float-bob-y">
                 <img src={'/images/shape/shapel2.png'} alt="shape" />
             </div>
@@ -32,13 +32,13 @@ const HeroOne = () => {
                         modules={[Pagination, EffectFade, Autoplay]}
                     >
                         <SwiperSlide>
-                            {({ isActive }) => <Card isActive={isActive} title1={"PROVIDING POWER"} title2={"SO YOU CAN GO HIGHER"} description={"Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction industry. Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors.."} />}
+                            {({ isActive }) => <Card isActive={isActive} title1={"PROVIDING POWER"} title2={"SO YOU CAN GO HIGHER"} description={"Industry Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction . Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors.."} />}
                         </SwiperSlide>
                         <SwiperSlide>
-                            {({ isActive }) => <Card isActive={isActive} title1={"PROVIDING POWER"} title2={"SO YOU CAN GO HIGHER"} description={"Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction industry. Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors.."} />}
+                            {({ isActive }) => <Card isActive={isActive} title1={"PROVIDING POWER"} title2={"SO YOU CAN GO HIGHER"} description={"Industry Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction . Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors.."} />}
                         </SwiperSlide>
                         <SwiperSlide>
-                            {({ isActive }) => <Card isActive={isActive} title1={"PROVIDING POWER"} title2={"SO YOU CAN GO HIGHER"} description={"Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction industry. Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors.."} />}
+                            {({ isActive }) => <Card isActive={isActive} title1={"PROVIDING POWER"} title2={"SO YOU CAN GO HIGHER"} description={"Industry Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction . Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors.."} />}
                         </SwiperSlide>
 
                     </Swiper>
@@ -86,12 +86,12 @@ const Card = ({ title1, title2, description, isActive }) => {
             animate={{ opacity: isActive ? 1 : 0 }}
         >
             <div className="col-lg-8">
-                <motion.h2
+                <motion.h2 style={{color:'white'}}
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: isActive ? 0 : 50, opacity: isActive ? 1 : 0 }}
                     transition={{ duration: 0.3, delay: 0.3 }}
                 >{title1}</motion.h2>
-                <motion.h1
+                <motion.h1 style={{color:'white'}}
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: isActive ? 0 : 50, opacity: isActive ? 1 : 0 }}
                     transition={{ duration: 0.3, delay: 0.5 }}
@@ -99,7 +99,7 @@ const Card = ({ title1, title2, description, isActive }) => {
             </div>
             <div className="col-lg-4">
                 <div className="content">
-                    <motion.p
+                    <motion.p style={{color:'white'}}
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: isActive ? 0 : 50, opacity: isActive ? 1 : 0 }}
                         transition={{ duration: 0.3, delay: 0.3 }}

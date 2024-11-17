@@ -35,11 +35,11 @@ const AboutOne = () => {
                         <div className="col-lg-6">
                             <div className="right-item">
                                 <SectionTitle>
-                                    <SectionTitle.Name>ABOUT SJ TECH</SectionTitle.Name>
-                                    <SectionTitle.Title>We take you to the next level industry solutions</SectionTitle.Title>
-                                    <SectionTitle.Description>
+                                    {/* <SectionTitle.Name>ABOUT SJ TECH</SectionTitle.Name>
+                                    <SectionTitle.Title>We take you to the next level industry solutions</SectionTitle.Title> */}
+                                    {/* <SectionTitle.Description>
                                         Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction industry. Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors.
-                                    </SectionTitle.Description>
+                                    </SectionTitle.Description> */}
                                 </SectionTitle>
                                 <div className="content pb-65 bor-bottom">
                                     <div className="row g-4">
@@ -47,7 +47,7 @@ const AboutOne = () => {
                                         <Card heading="Vision" icoun={<FaEye size={30} style={{ color: '#312D81' }} />}  numberEnd="" description="Our vision is to transform SJ Tech into the premier destination for all construction-related needs, particularly in the Steel and Glass sectors. We aspire to be recognized not just as a supplier, but as a trusted partner who anticipates and fulfills the evolving needs of our clients. By consistently delivering exceptional products and services, we aim to earn our customers' loyalty and establish ourselves as their first choice for every project requirement." />
                                     </div>
                                 </div>
-                                <SlideUp className="about_info pt-65">
+                                {/* <SlideUp className="about_info pt-65">
                                     <div className="info">
                                         <i className="ring-animation"><FaPhoneVolume /></i>
                                         <div className="about_info_con">
@@ -57,19 +57,12 @@ const AboutOne = () => {
                                     </div>
                                     <span className="d-none d-sm-inline">Or</span>
                                     <Link to="/contact" className="btn-one"><span>Contact Us</span> <i><FaArrowRight /></i></Link>
-                                </SlideUp>
+                                </SlideUp> */}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <ModalVideo
-                channel="youtube"
-                youtube={{ mute: 0, autoplay: 0 }}
-                isOpen={isOpen}
-                videoId="TfU0qjuZkJ4"
-                onClose={() => setOpen(false)}
-            />
         </section>
     );
 };

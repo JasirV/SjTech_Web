@@ -46,14 +46,14 @@ const FooterCommonLink = () => {
                                 <li><Link to="#0">Home</Link></li>
                                 <li><Link to="#0">About Us</Link></li>
                                 <li><Link to="#0">Services</Link></li>
-                                <li><Link to="#0">Our Projects</Link></li>
+                                <li><Link to="#0">Products</Link></li>
                             </ul>
                         </div>
                         <div className="col-6">
                             <ul>
-                                <li><Link to="#0">Career</Link></li>
+                                {/* <li><Link to="#0">Career</Link></li>
                                 <li><Link to="#0">Our Team</Link></li>
-                                <li><Link to="#0">Latest News</Link></li>
+                                <li><Link to="#0">Latest News</Link></li> */}
                                 <li><Link to="#0">Contact Us</Link></li>
                             </ul>
                         </div>

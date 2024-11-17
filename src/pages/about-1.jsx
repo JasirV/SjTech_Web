@@ -13,8 +13,8 @@ const AboutOne = () => {
         <PageBanner breadcrumbTitle={"About Us"}/>
         <AboutFour/>
         <Choose/>
-        <ExperienceFour className={""}/>
-        <TeamOne/>
+        {/* <ExperienceFour className={""}/> */}
+        {/* <TeamOne/> */}
         {/* <TestimonialTwo/> */}
         {/* <PartnerTwo className={""}/> */}
     </main>

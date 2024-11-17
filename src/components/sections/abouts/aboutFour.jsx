@@ -34,7 +34,7 @@ const AboutFour = () => {
               </div>
               <div className="video-btn-wrp d-none d-sm-block"></div>
               <div className="stroke-text d-none d-sm-block">
-                <h2>since 2024</h2>
+                {/* <h2>since 2024</h2> */}
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ const AboutFour = () => {
               </div>
 
               {/* Contact Info Section */}
-              <SlideUp className="about_info d-flex align-items-center pt-65">
+              {/* <SlideUp className="about_info d-flex align-items-center pt-65">
                 <Link to="/contact" className="btn-one">
                   <span>Contact Us</span>{" "}
                   <i>
@@ -115,7 +115,7 @@ const AboutFour = () => {
                     <Link to="tel:+912659302003">+0097433536239</Link>
                   </div>
                 </div>
-              </SlideUp>
+              </SlideUp> */}
             </div>
           </div>
         </div>

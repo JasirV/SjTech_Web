@@ -27,9 +27,9 @@ const AboutOne = () => {
                         <div className="col-lg-6">
                             <div className="left-item">
                                 <BounceLeft className="image">
-                                    <img src={'/images/about/03.jpg'} alt="image" />
+                                    <img src={'/images/about/04.jpeg'} alt="image" />
                                 </BounceLeft>
-                                <h2 className="d-none d-xl-block">Since 2024</h2>
+                                {/* <h2 className="d-none d-xl-block">Since 2024</h2> */}
                             </div>
                         </div>
                         <div className="col-lg-6">

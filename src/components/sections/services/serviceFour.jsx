@@ -34,7 +34,8 @@ const ServiceFour = () => {
                         </div>
                     </div>
                 </div>
-                <ServicesTrading />
+                {/* <ServicesTrading /> */}
+                
             </div>
         </section>
     )

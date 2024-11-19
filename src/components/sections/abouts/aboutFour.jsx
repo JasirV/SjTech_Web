@@ -42,17 +42,13 @@ const AboutFour = () => {
             <div className="right-item">
               <SectionTitle className="mb-5">
                 <SectionTitle.Name>
-                  Trading CONSTRUCTION COMPANY
+                  Indroduction
                 </SectionTitle.Name>
-                <SectionTitle.Title>
-                  We Are Here to Increase Your Knowledge with Experience
-                </SectionTitle.Title>
+                {/* <SectionTitle.Title>
+                  About US
+                </SectionTitle.Title> */}
                 <SectionTitle.Description>
-                  SJ Tech Trading Contracting W.L.L. excels in providing
-                  high-quality construction services across a range of
-                  industrial applications. With our advanced technology and
-                  commitment to continuous development, we ensure our solutions
-                  evolve with changing user needs.
+                Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction industry. Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors
                 </SectionTitle.Description>
               </SectionTitle>
 

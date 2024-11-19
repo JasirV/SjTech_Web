@@ -12,16 +12,13 @@ const ServiceFour = () => {
                         <div className="col-xl-6">
                             <SectionTitle className={"m-0"}>
                                 <SectionTitle.Name>OUR EXPERTISE</SectionTitle.Name>
-                                <SectionTitle.Title>Specialized Construction Services</SectionTitle.Title>
+                                <SectionTitle.Title>Trading</SectionTitle.Title>
                             </SectionTitle>
                         </div>
                         <div className="col-xl-6">
                             <div className="content">
                                 <SectionTitle.Description>
-                                    At SJ Tech Trading Contracting W.L.L., we provide cutting-edge solutions 
-                                    for Steel, Aluminum, Glass, and Refractory Construction. Our dedication 
-                                    to high standards ensures each project’s success, from fabrication to final 
-                                    installation, tailored precisely to industry demands.
+                                Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction industry. Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors
                                 </SectionTitle.Description>
                                 <SlideUp>
                                     <ul>

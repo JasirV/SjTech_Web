@@ -3,6 +3,8 @@ import PageBanner from '../components/sections/pageBanner'
 import ServiceFour from '../components/sections/services/serviceFour'
 import ExperienceFour from '../components/sections/experiences/experienceFour'
 import TestimonialOne from '../components/sections/testimoniales/testimonialOne'
+import CarouselPage from '../components/sections/pageCarousel'
+import TradingSection from '../components/sections/services/tradingSection'
 
 const ServiceTwo = () => {
     const slides = [
@@ -15,6 +17,7 @@ const ServiceTwo = () => {
             {/* <PageBanner breadcrumbTitle={"Our Services"} /> */}
             <CarouselPage slides={slides} />
             <ServiceFour/>
+            <TradingSection/>
             {/* <ExperienceFour className={"page bg-image"}/> */}
             {/* <TestimonialOne/> */}
         </main>

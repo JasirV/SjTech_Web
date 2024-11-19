@@ -22,8 +22,7 @@ const CarouselPage = ({slides}) => {
 
 
     return (
-        <section className="carousel-page">
-            <div className="container">
+        <div className='casouselpagagound'>
                 <Swiper
                     ref={swiperRef}
                     slidesPerView={1}
@@ -51,8 +50,7 @@ const CarouselPage = ({slides}) => {
 
                 {/* Pagination */}
                 <div className="carousel-pagination"></div>
-            </div>
-        </section>
+                </div>
     );
 };
 

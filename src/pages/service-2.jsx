@@ -5,9 +5,15 @@ import ExperienceFour from '../components/sections/experiences/experienceFour'
 import TestimonialOne from '../components/sections/testimoniales/testimonialOne'
 
 const ServiceTwo = () => {
+    const slides = [
+        { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', heading: 'Our Service' },
+        { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg' },
+        { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', },
+    ];
     return (
         <main>
-            <PageBanner breadcrumbTitle={"Our Services"} />
+            {/* <PageBanner breadcrumbTitle={"Our Services"} /> */}
+            <CarouselPage slides={slides} />
             <ServiceFour/>
             {/* <ExperienceFour className={"page bg-image"}/> */}
             {/* <TestimonialOne/> */}

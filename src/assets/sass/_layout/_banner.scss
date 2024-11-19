@@ -482,70 +482,59 @@
 // Page banner area end here ***
 
 //carousel-container area start here 
-.carousel-page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    .container {
-        position: relative;
-        width: 100%;
-        max-width: 1200px;
+
+/* Carousel container area */
+
+
+
+/* Carousel container area */
+.casouselpagagound {
+    // background-color: red; /* For testing, remove if not needed */
+    height: 336px; /* Default height for larger screens */
+    overflow: hidden; /* Ensure content doesn't overflow the container */
+
+    @media (max-width: 768px) {
+        height: 200px; /* Adjust height for smaller screens, you can tweak this value */
     }
 
-    .slide-content {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        opacity: 0;
-        transition: opacity 0.8s ease;
-
-        &.active {
-            opacity: 1;
-        }
-
-        .slide-image {
-            width: 100%;
-            border-radius: 10px;
-			object-fit: cover;
-        }
-
-        .slide-heading {
-            position: absolute;
-            bottom: 10%;
-            color: white;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-            margin: 0;
-            text-align: center;
-        }
-    }
-
-    .carousel-pagination {
-        margin-top: 1rem;
-        font-size: 1rem;
-        display: flex;
-        justify-content: center;
-
-        .swiper-pagination-bullet {
-            background-color: var(--heading-color);
-            opacity: 0.5;
-
-            &.swiper-pagination-bullet-active {
-                opacity: 1;
-                background-color:var(--primary-color);
-            }
-        }
+    @media (max-width: 480px) {
+        height: 150px; /* Further adjust for very small screens, like phones in portrait mode */
     }
 }
-@media (max-width: 768px) {
-    .carousel-page {
-        .slide-content {
-            .slide-heading {
-                font-size: 1.5rem;
-                bottom: 5%;
-            }
+
+
+.slide-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; // Ensure it spans the full width
+    height: 100%; // Ensure the slide content spans the full height of the carousel
+    opacity: 0;
+    transition: opacity 0.8s ease;
+
+    &.active {
+        opacity: 1; // Show the active slide
+    }
+
+    .slide-image {
+        width: 100%; // Make the image take up the full width
+        height: 100%; // Make the image take up the full height
+        object-fit: cover; // Ensure the image covers the entire area without distortion
+    }
+	.slide-heading {
+        position: absolute;
+        color: white;
+        font-size: 3rem;
+        text-align: center;
+        z-index: 1;
+        margin: 0;
+        // text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); // Optional: Add text shadow for better readability
+
+        @media (max-width: 768px) {
+            font-size: 2rem; // Adjust font size for smaller screens
         }
     }
 }

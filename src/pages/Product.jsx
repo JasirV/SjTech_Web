@@ -6,7 +6,7 @@ import CarouselPage from '../components/sections/pageCarousel';
 const Product = () => {
   const slides = [
     { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', heading: 'Product' },
-    { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg' },
+    { image: 'https://proest.com/wp-content/uploads/2022/11/Building-Construction-Process-From-Start-To-Finish.jpg' },
     { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', },
 ];
 

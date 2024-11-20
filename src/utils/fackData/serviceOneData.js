@@ -11,12 +11,12 @@ export const serviceOneData = [
     },
     {
         id: 3,
-        service_name: "Aluminum & Glass Installations",
+        service_name: "Aluminium and Glass Fabrication & Installation",
         src: '/images/service/3.png'
     },
     {
         id: 4,
-        service_name: "Custom Handrails  & Glass Balustrades",
+        service_name: "SS Handrails & Glass Balustrade",
         src: '/images/service/4.png'
     },
     {

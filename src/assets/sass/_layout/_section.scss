@@ -549,46 +549,51 @@
 	}
 
 	.item {
-		position: relative;
-		overflow: hidden;
+    position: relative;
+    overflow: hidden;
 
-		.location_icon {
-			width: 70px;
-			height: 70px;
-			line-height: 70px;
-			font-size: 30px;
-			color: var(--primary-color);
-			background-color: var(--white);
-			border-radius: 50%;
-			position: absolute;
-			top: 40px;
-			right: -100px;
-			text-align: center;
-			transition: var(--transition);
-		}
+    .location_icon {
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      font-size: 30px;
+      color: var(--primary-color);
+      background-color: var(--white);
+      border-radius: 50%;
+      position: absolute;
+      top: 40px;
+      right: -100px;
+      text-align: center;
+      transition: var(--transition);
+    }
 
-		.content {
-			padding: 30px;
-			background-color: var(--secondary-color);
-			transition: var(--transition);
+    .content {
+      padding: 30px;
+      background-color: var(--secondary-color);
+      transition: var(--transition);
+	  width: 290px;
+	  height: 150px;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
 
-			h3 {
-				a {
-					color: var(--white);
-				}
-			}
-		}
+      h3 {
+        a {
+          color: var(--white);
+        }
+      }
+    }
 
-		&:hover {
-			.location_icon {
-				right: 40px;
-			}
+    &:hover {
+      .location_icon {
+        right: 40px;
+      }
 
-			.content {
-				background-color: var(--primary-color);
-			}
-		}
-	}
+      .content {
+        background-color: var(--primary-color);
+      }
+    }
+  }
 
 	.swiper-slide.swiper-slide-active {
 		.location_icon {

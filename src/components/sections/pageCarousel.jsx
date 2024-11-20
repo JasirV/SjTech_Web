@@ -49,7 +49,7 @@ const CarouselPage = ({slides}) => {
                 </Swiper>
 
                 {/* Pagination */}
-                <div className="carousel-pagination"></div>
+                {/* <div className="carousel-pagination"></div> */}
                 </div>
     );
 };

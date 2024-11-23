@@ -61,6 +61,6 @@ const SlideContent = ({ image, heading, isActive }) => {
         <div className={`slide-content ${isActive ? 'active' : ''}`}>
             <img src={image} alt={heading} className="slide-image" />
             <h1 className="slide-heading">{heading}</h1>
-        </div>
+        </div>  
     );
 };

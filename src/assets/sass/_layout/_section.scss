@@ -3666,104 +3666,102 @@
 
 
 //trading Setion
-.trading-section {
-	padding: 60px 0;
-	// background-color: red; /* Default background color for larger screens (PC) */
+// .trading-section {
+// 	padding: 60px 0; // Default padding
+	
+// 	.trading-content {
+// 	  max-width: 1200px;
+// 	  margin: 0 auto;
+// 	  padding: 20px;
+// 	  text-align: center;
+	
+// 	  .services {
+// 		display: flex;
+// 		flex-wrap: wrap; // Enable wrapping for items
+// 		justify-content: space-between; // Space items evenly
+// 		gap: 20px; // Space between items
+	
+// 		.service-item {
+// 		  background-color: white;
+// 		  padding: 40px 20px;
+// 		  border-radius: 8px;
+// 		  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+// 		  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+// 		  text-align: center;
+// 		  box-sizing: border-box;
+// 		  width: calc(33.33% - 20px); // Ensure proper spacing for 3 items per row on larger screens
+	
+// 		  &:hover {
+// 			transform: translateY(-10px);
+// 			box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+// 		  }
+	
+// 		  .service-icon {
+// 			font-size: 3rem;
+// 			color: var(--primary-color, #007bff); // Use default primary color if not defined
+// 			margin-bottom: 15px;
+// 		  }
+	
+// 		  .service-title {
+// 			font-size: 1.5rem;
+// 			color: var(--primary-color, #007bff); // Use default primary color if not defined
+// 			margin-bottom: 10px;
+// 		  }
+	
+// 		  p {
+// 			color: #555;
+// 			font-size: 1rem;
+// 			line-height: 1.5;
+// 		  }
+// 		}
+// 	  }
+// 	}
+	
+// 	// Desktop Screens (1200px and above)
+// 	@media (min-width: 1200px) {
+// 	  .services .service-item {
+// 		width: calc(33.33% - 20px); // 3 items per row
+// 	  }
+// 	}
+	
+// 	// Tablet Screens (1024px and smaller)
+// 	@media (max-width: 1024px) {
+// 	  .services {
+// 		justify-content: center; // Center items for tablets
+// 	  }
+	
+// 	  .service-item {
+// 		width: calc(50% - 20px); // 2 items per row
+// 	  }
+// 	}
+	
+// 	// Mobile Screens (768px and smaller)
+// 	@media (max-width: 768px) {
+// 	  padding: 10px; // Reduced padding for smaller screens
+	
+// 	  .services {
+// 		flex-direction: column; // Stack items vertically
+// 		align-items: center; // Center items
+// 	  }
+	
+// 	  .service-item {
+// 		width: 100%; // Full width for mobile
+// 	  }
+	
+// 	  .service-icon {
+// 		font-size: 2.5rem; // Adjust icon size for mobile
+// 	  }
+	
+// 	  .service-title {
+// 		font-size: 1.2rem; // Adjust title size for mobile
+// 	  }
+	
+// 	  p {
+// 		font-size: 0.9rem; // Adjust text size for mobile
+// 	  }
+// 	}
+//   }
   
-	.trading-content {
-	  max-width: 1200px;
-	  margin: 0 auto;
-	  padding: 20px;
-	  text-align: center;
-  
-	  .services {
-		display: flex;
-		flex-wrap: wrap; /* Allow wrapping to create new rows on smaller screens */
-		justify-content: space-between; /* Space out items evenly */
-		gap: 20px;
-  
-		.service-item {
-		  background-color: white;
-		  padding: 40px 20px;
-		  border-radius: 8px;
-		  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-		  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
-		  text-align: center;
-		  box-sizing: border-box;
-  
-		  &:hover {
-			transform: translateY(-10px);
-			box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-		  }
-  
-		  .service-icon {
-			font-size: 3rem;
-			color: var(--primary-color);
-			margin-bottom: 15px;
-		  }
-  
-		  .service-title {
-			font-size: 1.5rem;
-			color: var(--primary-color);
-			margin-bottom: 10px;
-		  }
-  
-		  p {
-			color: #555;
-			font-size: 1rem;
-			line-height: 1.5;
-		  }
-		}
-	  }
-	}
-  
-	// Default Styles for Larger Screens (PC)
-	.services {
-	  .service-item {
-		width: 30%; /* 6 items per row on larger screens (PC) */
-	  }
-	}
-  
-	// Responsiveness for medium screens (Tablets, etc.)
-	@media (max-width: 1024px) {
-	  .services {
-		justify-content: center; /* Center items for tablets and smaller screens */
-	  }
-  
-	  .service-item {
-		width: 48%; /* 2 items per row on medium screens (Tablets) */
-	  }
-	}
-  
-	// Responsiveness for small screens (Mobile)
-	@media (max-width: 768px) {
-	  .trading-section {
-		padding: 10px;
-		background-color: blue; /* Background turns blue for mobile screens */
-	  }
-  
-	  .services {
-		flex-direction: column; /* Stack items vertically on small screens */
-		justify-content: center; /* Center items for small screens */
-	  }
-  
-	  .service-item {
-		width: 100%; /* 1 item per row on small screens (Mobile) */
-	  }
-  
-	  .service-icon {
-		font-size: 2.5rem; /* Adjust icon size on smaller screens */
-	  }
-  
-	  .service-title {
-		font-size: 1.2rem; /* Adjust service title size on smaller screens */
-	  }
-  
-	  p {
-		font-size: 0.9rem; /* Adjust text size on smaller screens */
-	  }
-	}
-  }
   
   
 

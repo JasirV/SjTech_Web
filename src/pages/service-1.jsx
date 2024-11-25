@@ -18,7 +18,7 @@ const ServiceOne = () => {
             <CarouselPage slides={slides} />
             <ServiceThree />
             <HeadeingSlider bg_color={"primary-bg"} dir="to-left" />
-            <VideoArea />
+            {/* <VideoArea /> */}
             <HeadeingSlider bg_color={"primary-bg"} dir="to-right" />
             {/* <TestimonialOne /> */}
         </main>

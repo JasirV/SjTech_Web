@@ -21,7 +21,7 @@ const HomeOne = () => {
         <AboutOne/>
         {/* <ServiceOne/> */}
         {/* <ProjectsOne data={projectsOneData}/> */}
-        <ExperienceOne/>
+        {/* <ExperienceOne/> */}
         {/* <ProductsSlider bg_color={"secondary-bg"} is_bg_img={true} title_sytle={"text-white"}/> */}
         <TestimonialOne/>
         {/* <BlogOne/> */}

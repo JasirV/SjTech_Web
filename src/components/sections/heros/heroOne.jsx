@@ -10,15 +10,7 @@ import ServiceOne from '../services/serviceOne';
 const HeroOne = () => {
     return (
         <>
-        <section 
-  className="banner"  
-  style={{
-    backgroundImage: "url('/images/shape/qatar2.jpg')",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
+        <section className="banner homefirst" >
 
             <div className="shape1 d-none d-md-block float-bob-y">
                 <img src={'/images/shape/shapel2.png'} alt="shape" />
@@ -79,8 +71,8 @@ const HeroOne = () => {
                     </div>
                 </div> */}
             </div>
-        </section>
                 <ServiceOne/>
+        </section>
         </>
     )
 }

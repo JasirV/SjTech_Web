@@ -19,6 +19,33 @@
 
 // Section header area end here ***
 
+//homefirst area start here***
+// .homefirst {
+// 	height: auto; // Default height for larger screens
+// 	// backgroundImage: "url('/images/shape/qatar2.jpg')",
+//     background: linear-gradient(to right, #f7e8c3, #81b3e8); // Gradient background
+//     background-repeat: "no-repeat";
+//     background-size: "cover";
+// 	@media screen and (max-width: 768px) {
+// 		display: flex;
+// 		align-items: center;
+// 	  height: 100vh;
+// 	  justify-content: center;
+// 	  background: linear-gradient(to right, #f7e8c3, #81b3e8);
+// 	// Full viewport height for phone sizes
+// 	}
+//   }
+
+.homefirst{
+	background:url(https://assets.anantara.com/image/upload/q_auto,f_auto/media/minor/anantara/images/brandpage/destinations/middle-east/qatar.jpg);
+	background-repeat: no-repeat; // Ensure no repeat
+	background-size: cover; // Scale the image to cover the entire container
+	background-position: center;
+	// background-size: "cover";
+}
+
+//homefirst area end here
+
 // Trust area start here ***
 .trust {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/trust/bg1.jpg);
@@ -54,8 +81,11 @@
 	.content-item {
 		position: relative;
 		background-color: #ffffff;
-		padding: 20px; /* Adjust padding for better content fit */
-		border-radius: 50%;
+		padding-left: 5px; /* Adjust padding for better content fit */
+		padding-right: 5px; /* Adjust padding for better content fit */
+		padding-bottom: 15px; /* Adjust padding for better content fit */
+		padding-top: 15px; /* Adjust padding for better content fit */
+		border-radius: 20px; 
 		width: 100%;
 		height: 400px;
 		max-width: 400px; /* Ensures a consistent size for all cards */
@@ -477,7 +507,7 @@
 // Choose area start here ***
 .choose {
 	overflow: hidden;
-	background-image: url(/images/choose/bg.jpg);
+	// background-image: url(/images/choose/bg.jpg);
 	position: relative;
 
 	.shape {
@@ -489,13 +519,9 @@
 
 	.section-header {
 		position: relative;
-		h2 {
-			color: var(--white);
-		}
 	}
 
 	p {
-		color: var(--white);
 		position: relative;
 	}
 
@@ -506,7 +532,6 @@
 		padding: 30px 10px;
 
 		h4 {
-			color: var(--white);
 			font-weight: 600;
 			margin-top: 30px;
 		}
@@ -519,7 +544,9 @@
 .service {
 	overflow: hidden;
 	position: relative;
-	padding-top: 190px;
+	// padding-top: -190px;
+	// background-color: red;
+	margin-top: -10px;
 
 	.service-bg {
 		width: 100%;
@@ -527,7 +554,7 @@
 		position: absolute;
 		top: 0;
 		z-index: -1;
-		background:url(https://assets.anantara.com/image/upload/q_auto,f_auto/media/minor/anantara/images/brandpage/destinations/middle-east/qatar.jpg);
+		// background:url(https://assets.anantara.com/image/upload/q_auto,f_auto/media/minor/anantara/images/brandpage/destinations/middle-east/qatar.jpg);
 	}
 
 	.shape1 {

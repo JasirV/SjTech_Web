@@ -1,5 +1,9 @@
 import React from 'react'
 import SectionTitle from './services/sectionTitle'
+import { GiTeamIdea } from "react-icons/gi";
+import { FaHandshakeAngle } from 'react-icons/fa6';
+import { TiSpanner } from "react-icons/ti";
+import { TbHomeEco } from "react-icons/tb";
 
 const Choose = () => {
     return (
@@ -21,16 +25,16 @@ const Choose = () => {
                 </div>
                 <div className="row g-4">
                     <div className="col-xl-3 col-lg-6 col-md-6">
-                        <Card src={"/images/icon/choose1.png"} title={"Expert Teams"} />
+                        <Card src={<GiTeamIdea size={35} />} title={"Expert Teams"} />
                     </div>
                     <div className="col-xl-3 col-lg-6 col-md-6">
-                        <Card src={"/images/icon/choose2.png"} title={"Commit to Clients"} />
+                        <Card src={<FaHandshakeAngle size={35}/>} title={"Commit to Clients"} />
                     </div>
                     <div className="col-xl-3 col-lg-6 col-md-6">
-                        <Card src={"/images/icon/choose3.png"} title={"Maintenance & Renovation"} />
+                        <Card src={<TiSpanner size={35} />} title={"Maintenance & Renovation"} />
                     </div>
                     <div className="col-xl-3 col-lg-6 col-md-6">
-                        <Card src={"/images/icon/choose4.png"} title={"Eco Power Technologies"} />
+                        <Card src={<TbHomeEco size={35}/>} title={"Eco Power Technologies"} />
                     </div>
                 </div>
             </div>
@@ -43,7 +47,8 @@ export default Choose
 const Card = ({ src, title }) => {
     return (
         <div className="item">
-            <img src={src} alt="icon" />
+            {/* <img src={src} alt="" /> */}
+            {src}
             <h4>{title}</h4>
         </div>
     )

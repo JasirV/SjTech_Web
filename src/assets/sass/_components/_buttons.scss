@@ -323,3 +323,48 @@
 	color: var(--primary-color);
   }
 // Back to top button area end here ***
+
+
+/* WhatsApp Button Styles */
+#whatsapp-button {
+	position: fixed;
+	bottom: 100px; /* Adjust position */
+	right: 30px;
+	height: 50px;
+	width: 50px;
+	display: grid;
+	place-items: center;
+	z-index: 999;
+	border-radius: 50%;
+	background-color: #25D366; /* WhatsApp green */
+	cursor: pointer;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	animation: whatsapp-jump 2s infinite ease-in-out; /* Animation effect */
+}
+
+#whatsapp-button:hover {
+	transform: scale(1.1);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#whatsapp-icon {
+	display: block;
+	height: calc(100% - 8px);
+	width: calc(100% - 8px);
+	background-color: #25D366;
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	color: white; /* Matching button background */
+	font-size: 1.8rem;
+}
+
+/* Jump Animation Keyframes */
+@keyframes whatsapp-jump {
+	0%, 100% {
+		transform: translateY(0); /* Normal position */
+	}
+	50% {
+		transform: translateY(-10px); /* Jump up */
+	}
+}

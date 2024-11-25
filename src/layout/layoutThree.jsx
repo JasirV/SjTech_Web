@@ -5,6 +5,7 @@ import FooterTwo from '../components/sections/footers/footerTwo'
 import BackToTop from '../components/ui/backToTop'
 import Preloader from '../components/ui/preloader'
 import useLoading from '../hooks/useLoading'
+import WhatsAppChat from '../components/ui/whatsappIcoun'
 
 const LayoutThree = () => {
     const [loading] = useLoading()
@@ -14,6 +15,7 @@ const LayoutThree = () => {
             <HeaderThree />
             <Outlet />
             <FooterTwo />
+            <WhatsAppChat/>
             <BackToTop />
             <ScrollRestoration />
         </>

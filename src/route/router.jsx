@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
     },
     {
         path: "/about",
-        element: <LayoutTwo />,
+        element: <LayoutThree />,
         children: [
             {
                 path: "/about", 

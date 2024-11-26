@@ -13,7 +13,7 @@ const ServiceOne = () => {
             </div>
             <div className="container-fluid p-0">
                 <SectionTitle className={"text-center"}>
-                    <h6 style={{color:'white'}}>OUR AWESOME SERVICES</h6>
+                    <SectionTitle.name style={{color:'white'}}>OUR AWESOME SERVICES</SectionTitle.name>
                     {/* <SectionTitle.Title>provides the best service <br /> for sustainable progress</SectionTitle.Title> */}
                 </SectionTitle>
                 <ServiceFocus/>

@@ -44,7 +44,7 @@ const HeaderOne = () => {
                                 <i id="openButton" className="fa-solid fa-bars" onClick={() => setIsActiveSidebar(true)}>
                                     <FaBars />
                                 </i>
-                                <Link to="contact.html" className="btn-one">
+                                <Link to="contact" className="btn-one">
                                     <span>Get Consultation</span> <i><FaArrowRight /></i>
                                 </Link>
                             </div>

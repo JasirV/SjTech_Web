@@ -41,6 +41,7 @@
 	background-repeat: no-repeat; // Ensure no repeat
 	background-size: cover; // Scale the image to cover the entire container
 	background-position: center;
+	
 	// background-size: "cover";
 }
 
@@ -48,10 +49,12 @@
 
 // Trust area start here ***
 .trust {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/trust/bg1.jpg);
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://img.freepik.com/free-photo/shanghai-skyline-sunny-day-china_1127-2916.jpg?t=st=1732617355~exp=1732620955~hmac=fb4fab46144f307484beeac346f31b7d62de6bfa02ce9a0db96482f45f2d7008&w=1380);
 	margin-top: -200px;
 	padding-top: 250px;
 	position: relative;
+	background-repeat: no-repeat;
+	background-size: cover;
 
 	
 	.container {

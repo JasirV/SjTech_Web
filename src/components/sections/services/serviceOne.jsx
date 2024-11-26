@@ -1,6 +1,7 @@
 import React from 'react'
 import SectionTitle from './sectionTitle';
 import ServicesSwiper from './servicesSwiper';
+import ServiceFocus from './serviceFouces';
 
 const ServiceOne = () => {
     return (
@@ -12,10 +13,11 @@ const ServiceOne = () => {
             </div>
             <div className="container-fluid p-0">
                 <SectionTitle className={"text-center"}>
-                    <SectionTitle.Name>OUR AWESOME SERVICES</SectionTitle.Name>
-                    <SectionTitle.Title>provides the best service <br /> for sustainable progress</SectionTitle.Title>
+                    <h6 style={{color:'white'}}>OUR AWESOME SERVICES</h6>
+                    {/* <SectionTitle.Title>provides the best service <br /> for sustainable progress</SectionTitle.Title> */}
                 </SectionTitle>
-                <ServicesSwiper/>
+                <ServiceFocus/>
+                {/* <ServicesSwiper/> */}
             </div>
         </section >
     )

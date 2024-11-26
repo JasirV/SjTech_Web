@@ -351,7 +351,9 @@
 			}
 		}
 	}
+	
 }
+
 
 .about-two {
 	overflow: hidden;
@@ -552,7 +554,7 @@
 
 	.service-bg {
 		width: 100%;
-		height: 70vh;
+		// height: 70vh;
 		position: absolute;
 		top: 0;
 		z-index: -1;
@@ -632,6 +634,61 @@
 			background-color: var(--primary-color);
 		}
 	}
+	.service-focus {
+		// background-color: #f9f9f9;
+		// padding: 2rem 0;
+	  
+		.container {
+		  max-width: 1200px;
+		  margin: 0 auto;
+		  padding: 0 1rem;
+		}
+	  
+	
+	  
+		.card-grid {
+		  display: grid;
+		  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		  gap: 1.5rem;
+		}
+	  
+		.card {
+		  z-index: 100;
+		//   position: relative;
+		  background-color: #fff;
+		  border-radius: 0.5rem;
+		  border: none;
+		  overflow: hidden;
+		  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		  transition: transform 0.3s ease, box-shadow 0.3s ease;
+	  
+		  &:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+		  }
+	  
+		  .card-image {
+			height: 150px;
+			background-size: cover;
+			background-position: center;
+		  }
+	  
+		  .card-content {
+			padding: 1rem;
+			background-color: var(--primary-color);
+			text-align: center;
+	  
+			.card-title {
+			  font-size: 1.25rem;
+			  font-weight: 600;
+			  color: white;
+			}
+		  }:hover{
+			background-color: black;
+		  }
+		}
+	  }
+	  
 }
 
 .service-two {
@@ -3769,3 +3826,8 @@
 
   
   //end  trading section 
+
+  // service-focus 
+
+
+  

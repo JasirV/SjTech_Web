@@ -1,52 +1,85 @@
-import { useState } from 'react';
-import { FaBuilding, FaHandshake } from 'react-icons/fa';
+import { FaTools, FaCogs, FaBolt, FaShieldAlt, FaBuilding, FaFireAlt, FaArrowsAltV } from 'react-icons/fa';
 
 const PartnerOne = () => {
-    const [showMoreTrading, setShowMoreTrading] = useState(false);
-    const [showMoreContracting, setShowMoreContracting] = useState(false);
+    const products = [
+        { name: 'SS & Glass Handrails', icon: <FaTools /> },
+        { name: 'Aluminum Curtain Wall', icon: <FaBuilding /> },
+        { name: 'Stainless Steel Cladded Doors', icon: <FaShieldAlt /> },
+        { name: 'Stainless Steel Handrails', icon: <FaTools /> },
+        { name: 'Aluminum Doors & Window', icon: <FaBuilding /> },
+        { name: 'Fire Rated Steel Doors', icon: <FaFireAlt /> },
+        { name: 'Mashrabiya', icon: <FaFireAlt /> },
+        { name: 'Signage Board', icon: <FaFireAlt /> },
+        { name: 'Steel Powder Coated Handrail', icon: <FaTools /> },
+        { name: 'ACP-Cladding', icon: <FaCogs /> },
+        { name: 'Steel Works', icon: <FaTools /> },
+        { name: 'Glass Balustrade', icon: <FaTools /> },
+        { name: 'Glass Partitions', icon: <FaTools /> },
+        { name: 'Aluminum Louver', icon: <FaTools /> },
+        { name: 'Steel Fence', icon: <FaTools /> },
+        { name: 'Skylight & Canopy', icon: <FaArrowsAltV /> },
+        { name: 'Glass Spyder System', icon: <FaTools /> },
+        { name: 'Automatic Sliding Doors', icon: <FaArrowsAltV /> },
+        { name: 'Tray and Trunking', icon: <FaTools /> },
+        { name: 'LED Screen', icon: <FaTools /> },
+        { name: 'Aluminum Handles & Hinges', icon: <FaTools /> },
+        { name: 'Silicones', icon: <FaCogs /> },
+        { name: 'Fasteners', icon: <FaBolt /> },
+        { name: 'U Channels', icon: <FaTools /> },
+        { name: 'Ironmongeries', icon: <FaTools /> },
+        { name: 'Tubes and Pipes', icon: <FaTools /> },
+        { name: 'SS Fittings', icon: <FaTools /> },
+        { name: 'Consumables', icon: <FaShieldAlt /> },
+        { name: 'Aluminum & Stainless Steel Sheet', icon: <FaCogs /> },
+        { name: 'Glass Accessories', icon: <FaTools /> },
+        { name: 'Bolts', icon: <FaBolt /> }
+    ];
+
+    // Function to divide the items into 4 parts (each part containing 5 items)
+    const divideItemsIntoParts = (items, parts = 4) => {
+        const chunkSize = Math.ceil(items.length / parts);
+        const chunks = [];
+        for (let i = 0; i < items.length; i += chunkSize) {
+            chunks.push(items.slice(i, i + chunkSize));
+        }
+        return chunks;
+    };
+
+    // Divide the products into 4 parts
+    const dividedProducts = divideItemsIntoParts(products);
 
     return (
         <section className="trust section-padding">
-            <div className="container">
-                <h4 className="mb-65 text-center title">Our Core Areas of Expertise</h4>
+            {/* <div className="container"> */}
+                <h4 className="mb-65 text-center title">Our Products</h4>
+                {/* <h4 className="mb-65 text-center title">Our Core Areas of Expertise</h4> */}
 
                 <div className="content-section">
-                    <div className="content-item">
-                        {/* <div className="shape1 floating-shape" style={{ backgroundImage: `url('/images/shape/start2.png')` }}></div> */}
-                        <div className="shape1">
-                <img src={'/images/shape/start1.png'} alt="" />
-            </div>
-                        <div className="icon">
-                            <FaBuilding size={40} color="#312D81" />
-                        </div>
-                        <h5>Trading</h5>
-                        <span style={{ width: '85%' }}>
-                            {showMoreTrading
-                                ? `As a forward-thinking trading enterprise, SJ Tech has formed strategic partnerships with leading manufacturers to meet the specialized needs of civil contractors. Our collaborations are backed by our principals, ensuring comprehensive technical support and high-quality products at competitive prices.`
-                                : `As a forward-thinking trading enterprise, SJ Tech has formed strategic partnerships with leading manufacturers to meet the specialized needs of civil contractors.`}
-                        </span>
-                        <button onClick={() => setShowMoreTrading(!showMoreTrading)} className="show-more-btn">
-                            {showMoreTrading ? 'Show Less' : 'Show More'}
-                        </button>
-                    </div>
+                    {dividedProducts.map((part, index) => (
+                        <div key={index} className="content-item">
+                            {/* Display products for each part */}
+                            <div className="product-items">
+                                {part.map((item, itemIndex) => (
+                                    <div key={itemIndex} className="product-item">
+                                        <div className="icon">{item.icon}</div>
+                                        {item.name.length<28?
+                                        <p>{item.name}</p>
+                                        :
+                                        <p>{item.name.slice(0,25)}...</p>
+                                    }
+                                    </div>
+                                ))}
+                            </div>
 
-                    <div className="content-item">
-                        <div className="shape1 floating-shape" style={{ backgroundImage: `url('/images/shape/start2.png')` }}></div>
-                        <div className="icon">
-                            <FaHandshake size={40} color="#312D81" />
+                            {/* Divider between sections */}
+                            {index < dividedProducts.length - 1 && (
+                                <div className="divider">
+                                </div>
+                            )}
                         </div>
-                        <h5>Contracting</h5>
-                        <span style={{ width: '80%' }}>
-                            {showMoreContracting
-                                ? `At SJ Tech, we are committed to insulating the construction industry from supply chain challenges by fostering strong relationships with suppliers and improving operational capabilities. We aim to be the preferred partner for civil contractors, offering resources to succeed in their projects with quality and innovation.`
-                                : `At SJ Tech, we are committed to insulating the construction industry from supply chain challenges by fostering strong relationships with suppliers.`}
-                        </span>
-                        <button onClick={() => setShowMoreContracting(!showMoreContracting)} className="show-more-btn">
-                            {showMoreContracting ? 'Show Less' : 'Show More'}
-                        </button>
-                    </div>
+                    ))}
                 </div>
-            </div>
+            {/* </div> */}
         </section>
     );
 };

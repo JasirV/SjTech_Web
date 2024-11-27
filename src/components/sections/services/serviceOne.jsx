@@ -13,8 +13,9 @@ const ServiceOne = () => {
             </div>
             <div className="container-fluid p-0">
                 <SectionTitle className={"text-center"}>
-                    <SectionTitle.name style={{color:'white'}}>OUR AWESOME SERVICES</SectionTitle.name>
+                    {/* <SectionTitle.Name style={{color:'white'}}>OUR AWESOME SERVICES</SectionTitle.Name> */}
                     {/* <SectionTitle.Title>provides the best service <br /> for sustainable progress</SectionTitle.Title> */}
+                    <SectionTitle.Title>Our Core Areas of Expertise</SectionTitle.Title>
                 </SectionTitle>
                 <ServiceFocus/>
                 {/* <ServicesSwiper/> */}

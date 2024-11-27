@@ -62,27 +62,29 @@ const TradingSection = () => {
           }
 
           /* Mobile Screens (768px and smaller) */
-          @media (max-width: 768px) {
-            .trading-section {
-              padding: 20px;
-            }
-            .services {
-              flex-direction: column;
-              align-items: center;
-            }
-            .service-item {
-              width: 100%; /* Full width */
-            }
-            .service-icon {
-              font-size: 2.5rem; /* Adjusted for mobile */
-            }
-            .service-title {
-              font-size: 1.2rem; /* Adjusted for mobile */
-            }
-            .service-description {
-              font-size: 0.9rem; /* Adjusted for mobile */
-            }
-          }
+         @media (max-width: 768px) {
+    .trading-section {
+        // background-color: red;
+        padding: 20px;
+        margin-top: -9rem; /* Added margin-top */
+    }
+    .services {
+        flex-direction: column;
+        align-items: center;
+    }
+    .service-item {
+        width: 100%; /* Full width */
+    }
+    .service-icon {
+        font-size: 2.5rem; /* Adjusted for mobile */
+    }
+    .service-title {
+        font-size: 1.2rem; /* Adjusted for mobile */
+    }
+    .service-description {
+        font-size: 0.9rem; /* Adjusted for mobile */
+    }
+}
         `}
       </style>
 

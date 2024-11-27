@@ -1,32 +1,56 @@
 import React from 'react';
+import { FaCogs, FaIndustry } from 'react-icons/fa';
 
-const services = [
-  { name: 'Steel', image: 'https://endura-steel.com/wp-content/uploads/2023/06/steel-facts.jpg' },
-//   { name: 'Mild Steel', image: '/images/mild-steel.jpg' },
-  { name: 'Aluminium', image: 'https://i0.wp.com/www.rapidmetals.co.uk/wp-content/uploads/2021/09/shutterstock_1425520967.jpg?resize=750%2C563&ssl=1' },
-//   { name: 'Mashrabiya', image: '/images/mashrabiya.jpg' },
-  { name: 'Glass Work', image: 'https://spacesmakeover.com/wp-content/uploads/2021/10/Office-Doors.jpg' },
-  { name: 'Civil Sectors', image: 'https://anjaneyauniversity.ac.in/blog/wp-content/uploads/2024/09/image-2-1210x700.webp' },
-];
 
 const ServiceFocus = () => {
   return (
     <div className="service-focus">
-      <div className="container">
-        <div className="card-grid">
-          {services.map((service, index) => (
-            <div className="card" key={index}>
-              <div
-                className="card-image"
-                style={{ backgroundImage: `url(${service.image})` }}
-              ></div>
-              <div className="card-content">
-                <h3 className="card-title">{service.name}</h3>
-              </div>
+      {/* <div className="container"> */}
+
+        {/* Trading Section */}
+        <div className='focus-body'>
+
+        <div className="focus-section">
+          <div className="focus-content">
+            <h3 className="focus-heading">Trading</h3>
+            <div>
+
+            <p>
+              As a forward-thinking trading enterprise, SJ Tech has formed strategic partnerships with leading
+              manufacturers to meet the specialized needs of civil contractors. Our collaborations are backed by our
+              principals, ensuring that we provide comprehensive technical support.
+            </p>
+            <p>
+              At SJ Tech, we are committed to insulating the construction industry from supply chain challenges by
+              fostering strong relationships with suppliers and continuously improving our operational capabilities.
+            </p>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
+
+        {/* Contracting Section */}
+        <div className="focus-section contracting">
+          <div className="focus-content">
+            <h3 className="focus-heading">Contracting</h3>
+            <div>
+            <p>
+              Our contracting services are tailored to meet the dynamic demands of Qatar's civil construction landscape.
+              We focus on providing end-to-end solutions for contractors in Steel, Aluminum, and Glass sectors,
+              ensuring projects are delivered with quality and efficiency.
+            </p>
+            <p>
+              With a strong emphasis on customer satisfaction, SJ Tech aims to be the preferred partner for civil
+              contractors. Join us in building a future of excellence together.
+            </p>
+            </div>
+          </div>
+          <div className="rotating-icons">
+            <FaCogs className="rotating-icon" />
+            <FaIndustry className="rotating-icon" />
+          </div>
+        </div>
+        </div>
+      {/* </div> */}
     </div>
   );
 };

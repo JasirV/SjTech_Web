@@ -27,7 +27,7 @@ const AboutOne = () => {
                         <div className="col-lg-6">
                             <div className="left-item">
                                 <BounceLeft className="image">
-                                    <img src={'/images/about/04.jpeg'} alt="image" />
+                                    <img  src={'/images/about/04.jpeg'} alt="image" />
                                 </BounceLeft>
                                 {/* <h2 className="d-none d-xl-block">Since 2024</h2> */}
                             </div>
@@ -69,7 +69,7 @@ const AboutOne = () => {
 
 export default AboutOne;
 
-const Card = ({ heading,icoun, description, numberEnd }) => {
+const Card = ({ heading, icoun, description, numberEnd }) => {
     const { ref, inView } = useInView({
         triggerOnce: true,
         threshold: 0,
@@ -82,7 +82,7 @@ const Card = ({ heading,icoun, description, numberEnd }) => {
 
     const renderDescription = () => {
         const words = description.split(' ');
-        if (words.length <= 15) {
+        if (words.length <= 10) {
             return description;
         }
         return isExpanded ? description : words.slice(0, 15).join(' ') + '...';
@@ -90,14 +90,17 @@ const Card = ({ heading,icoun, description, numberEnd }) => {
 
     return (
         <SlideLeft className="col-md-6">
-            <div 
-                ref={ref} 
+            <div
+                ref={ref}
                 style={{
-                    padding: '20px', 
-                    borderRadius: '8px', 
+                    padding: '20px',
+                    borderRadius: '8px',
                     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
                     textAlign: 'center',
                     marginBottom: '20px',
+                    display: 'flex',
+                    flexDirection: 'column', // Stack content vertically
+                    height: '100%', // Ensures cards stretch to the same height
                 }}
             >
                 {/* Icons Section */}
@@ -105,23 +108,31 @@ const Card = ({ heading,icoun, description, numberEnd }) => {
                     {icoun}
                 </div>
 
-                <h3 style={{
-                    fontSize: '22px', 
-                    color: '#312D81', 
-                    fontWeight: 'bold', 
-                    marginBottom: '10px',
-                }}>
+                <h3
+                    style={{
+                        fontSize: '22px',
+                        color: '#312D81',
+                        fontWeight: 'bold',
+                        marginBottom: '10px',
+                        flex: '0', // Prevents this from stretching
+                    }}
+                >
                     {heading}
                 </h3>
-                <p style={{
-                    fontSize: '16px', 
-                    color: '#333', 
-                    lineHeight: '1.6',
-                }}>
-                   {renderDescription()} 
+
+                <p
+                    style={{
+                        fontSize: '16px',
+                        color: '#333',
+                        lineHeight: '1.6',
+                        flex: '1', // Ensures description takes available space
+                    }}
+                >
+                    {renderDescription()}
                 </p>
+
                 {description.split(' ').length > 15 && (
-                    <button onClick={toggleExpand} style={{color:'#312D81'}}>
+                    <button onClick={toggleExpand} style={{ color: '#312D81' }}>
                         {isExpanded ? 'Show less' : 'Show more'}
                     </button>
                 )}

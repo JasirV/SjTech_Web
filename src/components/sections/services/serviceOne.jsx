@@ -15,7 +15,7 @@ const ServiceOne = () => {
                 <SectionTitle className={"text-center"}>
                     {/* <SectionTitle.Name style={{color:'white'}}>OUR AWESOME SERVICES</SectionTitle.Name> */}
                     {/* <SectionTitle.Title>provides the best service <br /> for sustainable progress</SectionTitle.Title> */}
-                    <SectionTitle.Title>Our Core Areas of Expertise</SectionTitle.Title>
+                    <h2>Our Core Areas of Expertise</h2>
                 </SectionTitle>
                 <ServiceFocus/>
                 {/* <ServicesSwiper/> */}

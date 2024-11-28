@@ -87,12 +87,12 @@ const Card = ({ title1, title2, description, isActive }) => {
             animate={{ opacity: isActive ? 1 : 0 }}
         >
             <div className="col-lg-8">
-                <motion.h2 style={{color:'white'}}
+                <motion.h2 
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: isActive ? 0 : 50, opacity: isActive ? 1 : 0 }}
                     transition={{ duration: 0.3, delay: 0.3 }}
                 >{title1}</motion.h2>
-                <motion.h1 style={{color:'white'}}
+                <motion.h1 
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: isActive ? 0 : 50, opacity: isActive ? 1 : 0 }}
                     transition={{ duration: 0.3, delay: 0.5 }}
@@ -100,7 +100,7 @@ const Card = ({ title1, title2, description, isActive }) => {
             </div>
             <div className="col-lg-4">
                 <div className="content">
-                    <motion.p style={{color:'white'}}
+                    <motion.p 
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: isActive ? 0 : 50, opacity: isActive ? 1 : 0 }}
                         transition={{ duration: 0.3, delay: 0.3 }}

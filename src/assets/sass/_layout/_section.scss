@@ -36,14 +36,22 @@
 // 	}
 //   }
 
-.homefirst{
-	background:url(https://www.viaempresa.cat/uploads/s1/26/74/11/23/istock-1131359857.jpeg);
-	background-repeat: no-repeat; // Ensure no repeat
-	background-size: cover; // Scale the image to cover the entire container
-	background-position: center;
-	
-	// background-size: "cover";
-}
+.homefirst {
+	background: url(https://www.viaempresa.cat/uploads/s1/26/74/11/23/istock-1131359857.jpeg);
+	background-repeat: no-repeat; /* Ensure no repeat */
+	background-size: cover; /* Scale the image to cover the entire container */
+	background-position: center; /* Center the background image */
+  }
+  
+  /* For smaller devices like mobile */
+  @media (max-width: 768px) {
+	.homefirst {
+		background: none; /* Remove the background image */ /* Set a fallback color */
+	}
+  }
+  
+  /* For large screens like desktops *
+  
 
 //homefirst area end here
 
@@ -52,7 +60,7 @@
 
 .trust {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('https://img.freepik.com/free-photo/shanghai-skyline-sunny-day-china_1127-2916.jpg?t=st=1732617355~exp=1732620955~hmac=fb4fab46144f307484beeac346f31b7d62de6bfa02ce9a0db96482f45f2d7008&w=1380');
+        url('https://i.pinimg.com/originals/6e/0f/1d/6e0f1df891df4b963ed92820bc588f45.jpg');
     margin-top: -200px;
     padding-top: 250px;
     position: relative;
@@ -81,6 +89,7 @@
 
         @media (max-width: 480px) {
             font-size: 2rem; /* Adjust font size for small screens */
+			color: black;
         }
     }
 
@@ -133,14 +142,25 @@
                     font-family: 'Roboto', sans-serif;
                     transition: color 0.3s ease;
 
-                    .icon {
-                        font-size: 24px; /* Adjust icon size */
-                        color: var(--primary-color);
-                    }
-
-                    &:hover {
-                        color:  #0056b3
-                    }
+                    .product-dot {
+						width: 8px;           // Set the width of the dot
+						height: 8px;          // Set the height of the dot (makes it a perfect circle)
+						background-color:var(--primary-color); // Dot color (dark gray, change as needed)
+						border-radius: 50%;    // Make it circular
+						margin: 0 auto;        // Center the dot horizontally
+						display: block;        // Ensures it behaves like a block element for proper alignment
+					  
+						// Optional: Add hover effect
+						&:hover {
+						  background-color: #555; // Slightly lighter color on hover
+						  transition: background-color 0.3s ease; // Smooth transition effect
+						}
+					  
+						// Optional: Add animation
+						&.active {
+						  background-color: #007bff; // Active state color (e.g., blue)
+						}
+					  }
                 }
             }
         }
@@ -592,7 +612,14 @@
 	// padding-top: -190px;
 	// background-color: red;
 	margin-top: -10px;
-
+	.container-fluid{
+			h2{
+			color: white;
+			@media (max-width: 765px) {
+				color: black;
+			  }
+		}
+	}
 	.service-bg {
 		width: 100%;
 		// height: 70vh;
@@ -3893,15 +3920,11 @@
 	}
   
 	.section-title {
-	  font-size: 2rem;
-	  font-weight: bold;
 	  color: #312d81;
-	  text-align: left;
 	  width: 100%;
 	  margin-bottom: 20px;
   
 	  @media (max-width: 768px) {
-		font-size: 1.5rem;
 		text-align: center;
 		margin-bottom: 15px;
 	  }
@@ -3951,8 +3974,6 @@
 	  }
   
 	  .focus-heading {
-		font-size: 1.8rem;
-		font-weight: bold;
 		color: #312d81;
 		margin-bottom: 15px;
   
@@ -3962,8 +3983,6 @@
 	  }
   
 	  p {
-		font-size: 1rem;
-		line-height: 1.6;
 		color: #333;
 		margin-bottom: 10px;
   

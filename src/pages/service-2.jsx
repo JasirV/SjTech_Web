@@ -8,9 +8,9 @@ import TradingSection from '../components/sections/services/tradingSection'
 
 const ServiceTwo = () => {
     const slides = [
-        { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', heading: 'Our Service' },
-        { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg' },
-        { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', },
+        { image: 'https://assets.hrewards.com/assets/jpg.xxlarge_Adobe_Stock_64982026_10ba1a152b.jpg?optimize', heading: 'Our Service' },
+        { image: 'https://avatars.mds.yandex.net/get-altay/13581124/2a0000018f38fd0680a754c66ea3c48b4466/XXL_height',heading:"Aluminium" },
+        { image: 'https://i.pinimg.com/originals/b5/50/ef/b550ef73abfd2e07e9da96fe7e45e139.jpg',heading:"Mashrabiya" },
     ];
     return (
         <main>

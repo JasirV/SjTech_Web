@@ -26,10 +26,6 @@ const ServiceFocus = () => {
             </p>
             </div>
           </div>
-          <div className="rotating-icons">
-            <FaIndustry className="rotating-icon" />
-            <FaCogs className="rotating-icon" />
-          </div>
         </div>
 
         {/* Contracting Section */}

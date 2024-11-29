@@ -550,7 +550,7 @@
 }
 @media (max-width: 768px) {
 	.page-about{
-		margin-top: -6.7rem;
+		margin-top: -3.7rem;
 	}.page-service{
 		margin-top: -3.3rem;
 	}.service{
@@ -701,62 +701,65 @@
 			background-color: var(--primary-color);
 		}
 	}
-	.service-focus {
-		// background-color: #f9f9f9;
-		// padding: 2rem 0;
-	  
-		.container {
-		  max-width: 1200px;
-		  margin: 0 auto;
-		  padding: 0 1rem;
-		}
-	  
-	
-	  
-		.card-grid {
-		  display: grid;
-		  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		  gap: 1.5rem;
-		}
-	  
-		.card {
-		  z-index: 100;
-		//   position: relative;
-		  background-color: #fff;
-		  border-radius: 0.5rem;
-		  border: none;
-		  overflow: hidden;
-		  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		  transition: transform 0.3s ease, box-shadow 0.3s ease;
-	  
-		  &:hover {
-			transform: translateY(-5px);
-			box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-		  }
-	  
-		  .card-image {
-			height: 150px;
-			background-size: cover;
-			background-position: center;
-		  }
-	  
-		  .card-content {
-			padding: 1rem;
-			background-color: var(--primary-color);
-			text-align: center;
-	  
-			.card-title {
-			  font-size: 1.25rem;
-			  font-weight: 600;
-			  color: white;
-			}
-		  }:hover{
-			background-color: black;
-		  }
-		}
-	  }
 	  
 }
+// .service-focus {
+// 	background-color: red;  // Keep this if you want a red background
+// 	overflow: hidden;
+// 	// padding: 2rem 0; // Un-comment if you need padding for the section
+  
+// 	.container {
+// 	  max-width: 1200px;
+// 	  margin: 0 auto;
+// 	  padding: 0 1rem;
+// 	}
+  
+// 	.card-grid {
+// 	  display: grid;
+// 	  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); // Flexible grid layout
+// 	  gap: 1.5rem; // Spacing between cards
+// 	}
+  
+// 	.card {
+// 	  background-color: #fff; // White background for card for better contrast
+// 	  border-radius: 0.5rem;
+// 	  border: none;
+// 	  overflow: hidden;
+// 	  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+// 	  transition: transform 0.3s ease, box-shadow 0.3s ease;
+// 	  position: relative; // For hover effects
+  
+// 	  &:hover {
+// 		transform: translateY(-5px);
+// 		box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+// 	  }
+  
+// 	  .card-image {
+// 		height: 150px;
+// 		background-size: cover;
+// 		background-position: center;
+// 		border-bottom: 2px solid #e0e0e0; // Subtle divider between image and content
+// 	  }
+  
+// 	  .card-content {
+// 		padding: 1rem;
+// 		background-color: var(--primary-color); // Color for the card content
+// 		text-align: center;
+// 		border-top: 1px solid #e0e0e0; // Divider for clean separation of content
+  
+// 		.card-title {
+// 		  font-size: 1.25rem;
+// 		  font-weight: 600;
+// 		  color: white;
+// 		}
+// 	  }
+  
+// 	  &:hover .card-content {
+// 		background-color: #333; // Darker background on hover for the content
+// 	  }
+// 	}
+//   }
+  
 
 .service-two {
 	overflow: hidden;
@@ -3897,6 +3900,7 @@
   // service-focus 
 
   .service-focus {
+	height: 38rem;
 	margin: 0 auto;
 	padding: 50px 20px;
 	position: relative;
@@ -3906,7 +3910,7 @@
 	  display: flex;
 	  flex-direction: column;
 	  align-items: center;
-	  background-color: #f9fafb;
+	//   background-color: #f9fafb;
 	  width: 95%;
 	  border-radius: 12px;
 	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -3961,10 +3965,10 @@
 	  justify-content: space-between; /* Distributes content evenly */
 	  border-radius: 8px;
 	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-	  position: relative;
-	  z-index: 1;
+	//   position: relative;
+	//   z-index: 1;
 	  margin: 10px;
-	  min-height: 250px; /* Set consistent minimum height for all sections */
+	//   min-height: 250px; /* Set consistent minimum height for all sections */
   
 	  @media (max-width: 768px) {
 		padding: 15px;
@@ -4036,8 +4040,9 @@
 	  }
 	}
 	@media (max-width:768px) {
-		margin-top: -6rem;
-		margin-bottom: -6rem;
+		height: auto;
+		margin-top: -4rem;
+		// margin-bottom: -6rem;
 	}
   }
   

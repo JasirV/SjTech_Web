@@ -8,9 +8,9 @@ import CarouselPage from '../components/sections/pageCarousel'
 
 const ServiceOne = () => {
     const slides = [
-        { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', heading: 'Our Services' },
-        { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg' },
-        { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', },
+        { image: 'https://thepointsguy.global.ssl.fastly.net/us/originals/2021/02/accor-fairmont-raffles-dubai.jpg?width=2048', heading: 'Our Services' },
+        { image: 'https://images.prismic.io/belongtest/7155fb81-e597-4770-945a-182b09b1b3f7_9.jpg?ixlib=js-3.6.0&amp;auto=format',heading:"Glass Works" },
+        { image: 'https://www.myddisplay.com/include/upload/kind/image/20180329/20180329185234_7019.jpg',heading:'LED Screen Works' },
     ];
     return (
         <main>

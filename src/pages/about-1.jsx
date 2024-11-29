@@ -10,9 +10,9 @@ import CarouselPage from '../components/sections/pageCarousel'
 
 const AboutOne = () => {
   const slides = [
-    { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', heading: 'About Us' },
-    { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg' },
-    { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', },
+    { image: 'https://newsar.cgtn.com/n/BfJEA-CEA-BIA/BaAJAcA.jpg', heading: 'About Us' },
+    { image: 'https://azarjam.co/en/wp-content/uploads/sites/2/2018/03/1-1.jpg' ,heading:'Glass Work'},
+    { image: 'https://gubkinsk-r31.gosweb.gosuslugi.ru/netcat_files/32/115/article3641.jpg',heading:"Steel Work" },
 ];
   return (
     <main>

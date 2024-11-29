@@ -10,12 +10,16 @@ import TestimonialOne from '../components/sections/testimoniales/testimonialOne'
 import { projectsOneData } from '../utils/fackData/projectsOneData'
 import ProductsSlider from '../components/sections/products/productsSlider'
 import PartnerTwo from '../components/sections/partners/partnerTwo'
+import StyledCarousel from '../components/ui/styledCarousel'
+import ServiceFocus from '../components/sections/services/serviceFouces'
 
 
 const HomeOne = () => {
   return (
     <main>
-        <HeroOne/>
+        {/* <HeroOne/> */}
+        <StyledCarousel/>
+        <ServiceFocus/>
         <PartnerOne/>
         {/* <HeadeingSlider bg_color={"secondary-bg"} dir={"to-left"}/> */}
         <AboutOne/>

@@ -416,7 +416,7 @@
 // Page banner area start here ***
 .page-banner {
 	position: relative;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg);
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(https://tipdoma.com/wp-content/uploads/2022/11/pasted-image-0.jpg);
 	text-transform: capitalize;
 	text-align: center;
 
@@ -455,6 +455,7 @@
     // background-color: red; /* For testing, remove if not needed */
     height: 336px; /* Default height for larger screens */
     overflow: hidden; /* Ensure content doesn't overflow the container */
+	display: flex;
 
     @media (max-width: 768px) {
         height: 200px; /* Adjust height for smaller screens, you can tweak this value */
@@ -505,3 +506,150 @@
 
   
   // end the carousel-container 
+
+ // StyledCarousel.scss
+
+ .styled-carousel {
+	position: relative;
+	width: 100%;
+	height: 70vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  
+	.swiper {
+	  width: 100%;
+	  height: 100%;
+	}
+  
+	.carousel-slide {
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  position: relative;
+	  height: 100%;
+  
+	  .carousel-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 10px;
+	  }
+  
+	  .slide-content {
+		position: absolute;
+		right: 5%;
+		width: 35%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: left;
+		padding: 1rem;
+		border-radius: 10px;
+		color: #fff;
+  
+		.slide-title {
+		  font-size: 2rem;
+		  font-weight: bold;
+		  margin-bottom: 1rem;
+		}
+  
+		.slide-description {
+		  font-size: 1.2rem;
+		  margin-bottom: 1.5rem;
+		}
+  
+		.slide-button {
+		  padding: 0.8rem 1.5rem;
+		  font-size: 1rem;
+		  color: #fff;
+		  background: #007bff;
+		  border: none;
+		  border-radius: 5px;
+		  cursor: pointer;
+		  transition: background 0.3s ease, transform 0.3s ease;
+  
+		  &:hover {
+			background: #0056b3;
+			transform: scale(1.05);
+		  }
+		}
+	  }
+	}
+  
+	.swiper-pagination {
+	  position: absolute;
+	  bottom: 20px;
+	  display: flex;
+	  justify-content: center;
+	  width: 100%;
+	  z-index: 10;
+  
+	  .swiper-pagination-bullet {
+		background: #fff;
+		opacity: 0.8;
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		margin: 0 5px;
+		transition: background 0.3s ease;
+  
+		&.swiper-pagination-bullet-active {
+		  background: var(--primary-color);
+		  opacity: 1;
+		}
+  
+		&:hover {
+		  background: #0056b3;
+		}
+	  }
+	}
+  
+	/* Media Queries */
+	@media (max-width: 768px) {
+  
+	  .carousel-slide {
+		.slide-content {
+		  width: 50%;
+  
+		  .slide-title {
+			font-size: 1.5rem;
+		  }
+  
+		  .slide-button {
+			padding: 0.6rem 1rem;
+			font-size: 0.9rem;
+		  }
+		}
+	  }
+  
+	  .swiper-pagination {
+		bottom: 15px;
+	  }
+	}
+  
+	@media (max-width: 480px) {
+	  
+  
+	  .carousel-slide {
+		.slide-content {
+		  width: 80%;
+		  right: 10%;
+  
+		  .slide-title {
+			font-size: 1.2rem;
+		  }
+  
+		  .slide-button {
+			padding: 0.4rem 0.8rem;
+			font-size: 0.8rem;
+		  }
+		}
+	  }
+  
+	  .swiper-pagination {
+		bottom: 10px;
+	  }
+	}
+  }
+  

@@ -5,9 +5,9 @@ import CarouselPage from '../components/sections/pageCarousel';
 
 const Product = () => {
   const slides = [
-    { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', heading: 'Product' },
-    { image: 'https://proest.com/wp-content/uploads/2022/11/Building-Construction-Process-From-Start-To-Finish.jpg' },
-    { image: 'https://www.al-othman.com/uploads/real-estate-companies/construction111.jpg', },
+    { image: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Souq_Waqif%2C_Doha%2C_Catar%2C_2013-08-05%2C_DD_112.JPG', heading: 'Product' },
+    { image: 'https://www.rpfindia.com/images/forged-elbow-suppliers-in-mumbai.jpg',heading:"SS Fittings" },
+    { image: 'https://lexarindustrial.com/content/hardware/58x5wedgeanchorzinc.jpg',heading:'Bolts'},
 ];
 
   return (

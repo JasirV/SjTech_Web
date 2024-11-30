@@ -35,11 +35,11 @@ const AboutOne = () => {
                         <div className="col-lg-6">
                             <div className="right-item">
                                 <SectionTitle>
-                                    {/* <SectionTitle.Name>ABOUT SJ TECH</SectionTitle.Name>
-                                    <SectionTitle.Title>We take you to the next level industry solutions</SectionTitle.Title> */}
-                                    {/* <SectionTitle.Description>
+                                    <SectionTitle.Name>ABOUT SJ TECH</SectionTitle.Name>
+                                    {/* <SectionTitle.Title>We take you to the next level industry solutions</SectionTitle.Title> */}
+                                    <SectionTitle.Description>
                                         Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction industry. Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors.
-                                    </SectionTitle.Description> */}
+                                    </SectionTitle.Description>
                                 </SectionTitle>
                                 <div className="content pb-65 bor-bottom">
                                     <div className="row g-4">

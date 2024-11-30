@@ -12,6 +12,7 @@ import ProductsSlider from '../components/sections/products/productsSlider'
 import PartnerTwo from '../components/sections/partners/partnerTwo'
 import StyledCarousel from '../components/ui/styledCarousel'
 import ServiceFocus from '../components/sections/services/serviceFouces'
+import CoreAreas from '../components/sections/services/coreAreas'
 
 
 const HomeOne = () => {
@@ -19,7 +20,8 @@ const HomeOne = () => {
     <main>
         {/* <HeroOne/> */}
         <StyledCarousel/>
-        <ServiceFocus/>
+        {/* <ServiceFocus/> */}
+        <CoreAreas/>
         <PartnerOne/>
         {/* <HeadeingSlider bg_color={"secondary-bg"} dir={"to-left"}/> */}
         <AboutOne/>

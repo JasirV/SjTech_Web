@@ -38,7 +38,7 @@ const CoreAreas = () => {
           <div key={index} className="core-area-card">
             <h3 className="core-area-title">{area.title}</h3>
             {area.description.map((desc, i) => (
-              <p key={i} className="core-area-description">{desc}</p>
+              <p key={i}  className="core-area-description">{desc}</p>
             ))}
             {area.icons && <div className="core-area-icons">{area.icons}</div>}
           </div>

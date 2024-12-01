@@ -123,9 +123,10 @@ const Card = ({ heading, icoun, description, numberEnd }) => {
                 <p
                     style={{
                         fontSize: '16px',
+                        fontWeight: 500,
                         color: '#333',
                         lineHeight: '1.6',
-                        flex: '1', // Ensures description takes available space
+                        flex: '1', 
                     }}
                 >
                     {renderDescription()}

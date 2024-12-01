@@ -33,17 +33,13 @@ const PartnerOne = () => {
         { name: 'Bolts' },
     ];
 
-    // Function to divide the items into 4 parts (each part containing 5 items)
     const divideItemsIntoParts = (items, parts = 4) => {
         const chunkSize = Math.ceil(items.length / parts);
-        const chunks = [];
-        for (let i = 0; i < items.length; i += chunkSize) {
-            chunks.push(items.slice(i, i + chunkSize));
-        }
-        return chunks;
+        return Array.from({ length: parts }, (_, index) =>
+            items.slice(index * chunkSize, (index + 1) * chunkSize)
+        );
     };
 
-    // Divide the products into 4 parts
     const dividedProducts = divideItemsIntoParts(products);
 
     return (
@@ -52,23 +48,21 @@ const PartnerOne = () => {
             <div className="content-section">
                 {dividedProducts.map((part, index) => (
                     <div key={index} className="content-item">
-                        {/* Display products for each part */}
                         <div className="product-items">
                             {part.map((item, itemIndex) => (
                                 <div key={itemIndex} className="product-item">
                                     <div className="product-dot"></div>
-                                    {item.name.length < 28 ? (
-                                        <p>{item.name}</p>
-                                    ) : (
-                                        <p>{item.name.slice(0, 25)}...</p>
-                                    )}
+                                    <p
+                                        className="product-name"
+                                        title={item.name.length > 25 ? item.name : ''}
+                                    >
+                                        {item.name.length > 25
+                                            ? `${item.name.slice(0, 25)}...`
+                                            : item.name}
+                                    </p>
                                 </div>
                             ))}
                         </div>
-                        {/* Divider between sections */}
-                        {index < dividedProducts.length - 1 && (
-                            <div className="divider"></div>
-                        )}
                     </div>
                 ))}
             </div>

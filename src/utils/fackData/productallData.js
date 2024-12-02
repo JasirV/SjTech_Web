@@ -3,75 +3,75 @@ export const productAllData = [
         id: 1,
         service_name: "SS & Glass Handrails",
         src: '/images/product/image.png',
-        mainImage: '/images/product/main-image-ss-fittings.png',
-        aboutText: "Elegant glass balustrades offering safety and beauty.",
-        additionalText: "Perfect for modern homes and buildings.",
-        featuresList: ["Elegant", "Durable", "Safe"],
+        mainImage: 'https://images.dwell.com/photos/6437398472135712768/6513516549454114816/large.jpg',
+        aboutText: "Stainless Steel and Glass Handrails are expertly crafted to offer a seamless blend of modern design, durability, and safety, providing an elegant and sturdy solution for both residential and commercial spaces, ensuring a clear and open view while maintaining the necessary support and security for staircases, balconies, and other high-traffic areas",
+        additionalText: "With their sleek, minimalist aesthetic and high-quality materials, these handrails elevate the look of any contemporary space, combining the strength and corrosion resistance of stainless steel with the transparency and sophistication of glass, making them the ideal choice for those seeking a functional yet stylish way to enhance their interiors while maintaining the highest safety standards.",
+        featuresList: ["Elegant", "Durable", "Safe", "Versatile"],
         Category: "Contacting",
         modernTitle: "Stylish Glass Balustrade",
         secondaryImages: [
-            '/images/product/secondary-image-glass-balustrade-1.png',
-            '/images/product/secondary-image-glass-balustrade-2.png'
+            'https://i.pinimg.com/originals/5f/65/1b/5f651bcb38c8d7af2b8e80ecef08e45a.jpg',
+            'https://i.pinimg.com/736x/d7/5a/cc/d75acc661738fe7ed0f2f2ac1677a327.jpg'
         ]
     },
     {
         id: 2,
         service_name: "Aluminum Curtain Wall",
         src: '/images/product/image-1.png',
-        mainImage: '/images/product/main-image-ss-fittings.png',
-        aboutText: "Elegant glass balustrades offering safety and beauty.",
-        additionalText: "Perfect for modern homes and buildings.",
-        featuresList: ["Elegant", "Durable", "Safe"],
+        mainImage: 'https://i.pinimg.com/originals/d6/f6/54/d6f65412c96e5b5242424bbbaceb7282.jpg',
+        aboutText: "Aluminum Curtain Walls offer a perfect combination of strength, flexibility, and style, designed to enhance the exterior of buildings while providing optimal weather resistance and energy efficiency. With their sleek and modern appearance, these curtain walls are ideal for creating expansive, visually striking facades that allow natural light to flood the interior while maintaining durability and structural integrity over time.",
+        additionalText: "Perfect for high-rise buildings, commercial properties, and residential projects, aluminum curtain walls offer not only aesthetic appeal but also superior protection against the elements, ensuring long-lasting performance with minimal maintenance. These systems are customizable to suit any architectural design, making them an essential choice for those looking to elevate the visual impact of their building while optimizing energy efficiency and sustainability.",
+        featuresList: ["Sleek", "Durable", "Weather-Resistant", "Aesthetic"],        
         Category: "Contacting",
         modernTitle: "Stylish Glass Balustrade",
         secondaryImages: [
-            '/images/product/secondary-image-glass-balustrade-1.png',
-            '/images/product/secondary-image-glass-balustrade-2.png'
+            'https://en.idei.club/uploads/posts/2023-06/1685716259_en-idei-club-p-double-glazed-glass-facade-dizain-instagra-3.jpg',
+            'https://i.pinimg.com/originals/0d/3d/85/0d3d85766b42a59e223297e0613984e5.jpg'
         ]
     },
     {
         id: 3,
         service_name: "Stailess Steel Cladded Doors",
         src: '/images/product/image-2.png',
-        mainImage: '/images/product/main-image-ss-fittings.png',
-        aboutText: "Elegant glass balustrades offering safety and beauty.",
-        additionalText: "Perfect for modern homes and buildings.",
-        featuresList: ["Elegant", "Durable", "Safe"],
+        mainImage: 'https://i.pinimg.com/originals/94/9a/26/949a26b6d237b856c8b34cadfbb4d6e6.jpg',
+        aboutText: "Stainless Steel Cladded Doors combine robust security with an elegant design, offering a perfect balance of strength and style. These doors are built to withstand the elements while providing a sleek, modern appearance that enhances the aesthetic of any property.",
+additionalText: "Ideal for both residential and commercial spaces, stainless steel cladded doors offer durability, low maintenance, and long-lasting performance, making them a reliable choice for those seeking both function and beauty in their entryways.",
+featuresList: ["Elegant", "Durable", "Secure", "Low-Maintenance"],
         Category: "Contacting",
         modernTitle: "Stylish Glass Balustrade",
         secondaryImages: [
-            '/images/product/secondary-image-glass-balustrade-1.png',
-            '/images/product/secondary-image-glass-balustrade-2.png'
+            'https://i.pinimg.com/originals/bf/22/97/bf2297df5e67400ac72abbd3efc0cf2f.jpg',
+            'https://s3.eu-1.blufs.ir/aradbranding-en-wp-content/uploads/2022/08/904ce514a873.jpg'
         ]
     },
     {
         id: 4,
         service_name: "Stinless Steel Handrails",
         src: '/images/product/image-3.png',
-        mainImage: '/images/product/main-image-ss-fittings.png',
-        aboutText: "Elegant glass balustrades offering safety and beauty.",
-        additionalText: "Perfect for modern homes and buildings.",
-        featuresList: ["Elegant", "Durable", "Safe"],
+        mainImage: 'https://cdn.stpulscen.ru/system/ckeditor_assets/pictures/285725/content_proizvodstvo_peril_i_ograzhdeniy_iz_nerzhaveyuschey_stali_1.jpg',
+        aboutText: "Stainless Steel Handrails offer a seamless blend of strength, elegance, and functionality, designed to enhance both the safety and aesthetic appeal of staircases, balconies, and other elevated structures. Their sleek, modern finish complements any contemporary design while ensuring long-lasting durability.",
+        additionalText: "Perfect for residential and commercial properties, stainless steel handrails provide a reliable and low-maintenance solution for creating stylish, secure environments that meet the highest safety standards.",
+        featuresList: ["Elegant", "Durable", "Safe", "Low-Maintenance"],        
         Category: "Contacting",
         modernTitle: "Stylish Glass Balustrade",
         secondaryImages: [
-            '/images/product/secondary-image-glass-balustrade-1.png',
-            '/images/product/secondary-image-glass-balustrade-2.png'
+            'https://thearchitecturedesigns.com/wp-content/uploads/2020/03/staircases-design-7.jpg',
+            'https://image.made-in-china.com/2f0j00iwSEdTkGhpzc/Outdoor-Indoor-Modern-Design-Stainless-Steel-Curved-Staircase-Residential-Steel-Stairs-Curved-Glass-Staircase-Helical-Staircase.jpg'
         ]
     },
     {
         id: 5,
         service_name: "Aluminum Doors & Window",
         src: '/images/product/image-4.png',
-        mainImage: '/images/product/main-image-ss-fittings.png',
-        aboutText: "Elegant glass balustrades offering safety and beauty.",
-        additionalText: "Perfect for modern homes and buildings.",
-        featuresList: ["Elegant", "Durable", "Safe"],
+        mainImage: 'https://holdis.ru/wp-content/uploads/2019/01/Razdvizhnye-dveri-dlya-balkona.jpg',
+        aboutText: "Aluminum Doors & Windows provide a sleek, modern look while offering exceptional durability and energy efficiency. Their lightweight yet sturdy construction ensures long-lasting performance, making them a perfect choice for both residential and commercial applications.",
+additionalText: "These doors and windows are designed to withstand harsh weather conditions while enhancing the aesthetic appeal of any space. With a focus on security, thermal insulation, and ease of maintenance, aluminum doors and windows are ideal for those seeking functionality and style.",
+featuresList: ["Sleek", "Durable", "Energy-Efficient", "Low-Maintenance"],
         Category: "Contacting",
         modernTitle: "Stylish Glass Balustrade",
         secondaryImages: [
-            '/images/product/secondary-image-glass-balustrade-1.png',
-            '/images/product/secondary-image-glass-balustrade-2.png'
+            'https://static.tildacdn.com/tild3439-6539-4230-b331-396337613665/razdvizhnoj-aljumini.jpg',
+            'https://en.idei.club/uploads/posts/2023-03/1680109210_en-idei-club-p-aluminium-wood-door-dizain-krasivo-30.jpg'
         ]
     },
     {

@@ -52,7 +52,7 @@ const HeaderOne = () => {
                     </div>
                 </div>
             </header>
-            <Sidebar isActiveSidebar={isActiveSidebar} setIsActiveSidebar={setIsActiveSidebar} />
+            {/* <Sidebar isActiveSidebar={isActiveSidebar} setIsActiveSidebar={setIsActiveSidebar} /> */}
         </>
     );
 };

@@ -4,14 +4,15 @@ import { FaArrowRight } from 'react-icons/fa6'
 // import { serviceThreeData } from '../../../utils/fackData/serviceThreeData'
 import { productAllData } from '../../../utils/fackData/productallData'
 import SlideUp from '../../../utils/animations/slideUp'
-
 const ServiceThree = () => {
+    console.log(productAllData);
+    
     return (
         <section className="page-service section-padding">
             <div className="container">
                 <div className="row g-4">
                     {
-                        productAllData.map(({id, service_name, src}) => <Card key={id} id={id} src={src} service_name={service_name}/>)
+                        productAllData.map(({id, Title, ProductImage}) => <Card key={id} id={id} ProductImage={ProductImage} Title={Title}/>)
                     }
                 </div>
             </div>
@@ -21,13 +22,13 @@ const ServiceThree = () => {
 
 export default ServiceThree
 
-const Card = ({ id, src, service_name }) => {
+const Card = ({ id, ProductImage, Title }) => {
     return (
         <SlideUp delay={id} className="col-xl-4 col-lg-6" >
             <div className="item">
-                <h3><Link to="/service-single">{service_name}</Link></h3>
+                <h3><Link to="/service-single">{Title}</Link></h3>
                 <Link to="/service-single" className="image d-block">
-                    <img src={src} alt="image" />
+                    <img src={ProductImage} alt={Title}/>
                     <div className="gaps-right d-none d-sm-block float-bob-x">
                         <img src="/images/shape/gaps-primary.png" alt="gaps-primary" />
                     </div>

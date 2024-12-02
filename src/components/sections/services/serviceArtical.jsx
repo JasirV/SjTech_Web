@@ -1,69 +1,62 @@
-import React from 'react'
-// import ServiceSidebar from './serviceSidebar'
+import React from 'react';
 
-const ServiceArtical = () => {
+const ServiceArtical = ({product}) => {
+const { mainImage,service_name, 
+    aboutText, 
+    additionalText, 
+    featuresList, 
+    modernTitle, 
+    secondaryImages,
+src}=product
+    
     return (
         <section className="service-single section-padding">
             <div className="container">
                 <div className="row g-4">
                     <div className="col-lg-8">
                         <div className="left-item">
+                            {/* Main Image */}
                             <div className="image">
-                                <img src="/images/service/single1.jpg" alt="image" />
+                                <img src={src} alt={service_name} />
                             </div>
-                            <h3 className="text-capitalize mt-40 mb-30">We ensure best service</h3>
-                            <p>We have facility to produce advance work various industrial applications based on
-                                specially developed technol-ogy. We
-                                are also ready to developement by according to users changing.
-                                Cras enim urna, interdum nec porttitor vitae, sollicitudin eu eros.</p>
-                            <p className="mt-30 mb-40">Praesent eget mollis nulla, non lacinia urna. Donec sit amet neque
-                                auctor, ornare dui
-                                rutrum, condimentum justo. Duis
-                                dictum, ex accumsan eleifend eleifend, ex justo aliquam nunc, in ultrices ante quam eget
-                                massa. Sed scelerisque, odio eu
-                                tempor pulvinar, magna tortor finibus lorem, ut mattis tellus nunc ut quam. Curabitur
-                                quis ornare leo. Suspendisse
-                                bibendum nibh non turpis vestibulum pellentesque.</p>
+
+                            {/* About Section */}{
+                                service_name&&
+                            <h3 className="text-capitalize mt-40 mb-30">About {service_name}</h3>
+                            }
+                            <p>{aboutText}</p>
+                            <p className="mt-30 mb-40">{additionalText}</p>
+
+                            {/* Features List */}
                             <ul>
-                                <li><span></span> Greate Technology</li>
-                                <li><span></span> Delivery Ontime</li>
-                                <li><span></span> Certified Engineers</li>
+                                {featuresList?.map((feature, index) => (
+                                    <li key={index}>
+                                        <span></span> {feature}
+                                    </li>
+                                ))}
                             </ul>
-                            <ul className="mt-30 mb-40">
-                                <li><span></span> Greate Technology</li>
-                                <li><span></span> Delivery Ontime</li>
-                                <li><span></span> Certified Engineers</li>
-                            </ul>
-                            <h3 className="text-capitalize mb-30">Modern Service Standard</h3>
+
+                            {/* Modern Service Section */}
+                            <h3 className="text-capitalize mb-30">{modernTitle}</h3>
                             <div className="row g-4">
-                                <div className="col-md-6">
-                                    <div className="image">
-                                        <img src="/images/service/single2.jpg" alt="image" />
+                                {secondaryImages?.map((image, index) => (
+                                    <div className="col-md-6" key={index}>
+                                        <div className="image">
+                                            <img src={image} alt={`Service detail ${index + 1}`} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="image">
-                                        <img src="/images/service/single3.jpg" alt="image" />
-                                    </div>
-                                </div>
+                                ))}
                             </div>
-                            <p className="mt-3">Praesent eget mollis nulla, non lacinia urna. Donec sit amet neque auctor,
-                                ornare dui
-                                rutrum, condimentum justo. Duis
-                                dictum, ex accumsan eleifend eleifend, ex justo aliquam nunc, in ultrices ante quam eget
-                                massa. Sed scelerisque, odio eu
-                                tempor pulvinar, magna tortor finibus lorem, ut mattis tellus nunc ut quam. Curabitur
-                                quis ornare leo. Suspendisse
-                                bibendum nibh non turpis vestibulum pellentesque.</p>
                         </div>
                     </div>
+
                     <div className="col-lg-4">
-                        {/* <ServiceSidebar /> */}
+                        {/* Add additional sidebar component or content here */}
                     </div>
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default ServiceArtical
+export default ServiceArtical;

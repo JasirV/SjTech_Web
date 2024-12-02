@@ -29,13 +29,13 @@ const Card = ({ id, ProductImage, Title }) => {
     return (
         <SlideUp delay={id} className="col-xl-4 col-lg-6">
             <div className="item text-center">
-                <Link to="/service/" className="image d-block">
+                <Link to={`/service/service-details/${id}`} className="image d-block">
                     <img src={ProductImage} alt={Title} className="img-fluid" />
                 </Link>
                 <h3 className="mt-3">
-                    <Link to="/service-single">{Title}</Link>
+                    <Link to={`/service/service-details/${id}`}>{Title}</Link>
                 </h3>
-                <Link className="btn-three mt-2 d-inline-block" to="/service-single">
+                <Link className="btn-three mt-2 d-inline-block" to={`/service/service-details/${id}`}>
                     Service Details <i><FaArrowRight /></i>
                 </Link>
             </div>

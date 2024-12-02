@@ -5,6 +5,7 @@ import ExperienceFour from '../components/sections/experiences/experienceFour'
 import TestimonialOne from '../components/sections/testimoniales/testimonialOne'
 import CarouselPage from '../components/sections/pageCarousel'
 import TradingSection from '../components/sections/services/tradingSection'
+import ServiceTradingProducts from '../components/sections/services/serviceTradingProduct'
 
 const ServiceTwo = () => {
     const slides = [
@@ -18,6 +19,7 @@ const ServiceTwo = () => {
             <CarouselPage slides={slides} />
             <ServiceFour/>
             <TradingSection/>
+            <ServiceTradingProducts/>
             {/* <ExperienceFour className={"page bg-image"}/> */}
             {/* <TestimonialOne/> */}
         </main>

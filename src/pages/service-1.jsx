@@ -6,6 +6,7 @@ import TestimonialOne from '../components/sections/testimoniales/testimonialOne'
 import ServiceThree from '../components/sections/services/serviceThree'
 import CarouselPage from '../components/sections/pageCarousel'
 import ServiceSix from '../components/sections/services/serviceSix'
+import ServiceContractingProduct from '../components/sections/services/serviceContractingProduct'
 
 const ServiceOne = () => {
     const slides = [
@@ -18,7 +19,8 @@ const ServiceOne = () => {
             {/* <PageBanner breadcrumbTitle={"Our Services"} /> */}
             <CarouselPage slides={slides} />
             <ServiceSix/>
-            <ServiceThree />
+            {/* <ServiceThree /> */}
+            <ServiceContractingProduct/>
             {/* <HeadeingSlider bg_color={"primary-bg"} dir="to-left" /> */}
             <VideoArea />
             {/* <HeadeingSlider bg_color={"primary-bg"} dir="to-right" /> */}

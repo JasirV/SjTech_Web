@@ -2,12 +2,14 @@ import React from 'react';
 import { FaCogs, FaIndustry } from 'react-icons/fa';
 import CoreAreasCarousel from '../abouts/coreAreaCasrol';
 import StyledCarousel from '../../ui/styledCarousel';
+import { Link } from 'react-router-dom';
 
 
 const CoreAreas = () => {
   const coreAreas = [
     {
       title: "Trading",
+      location:'/service/trading',
       description: [
         "As a forward-thinking trading enterprise, SJ Tech has formed strategic partnerships with leading manufacturers to meet the specialized needs of civil contractors. Our collaborations are backed by our principals, ensuring that we provide comprehensive technical support.",
       ],
@@ -15,6 +17,7 @@ const CoreAreas = () => {
     },
     {
       title: "Contracting",
+      location:'/service/contracting',
       description: [
         "Our contracting services are tailored to meet the dynamic demands of Qatar's civil construction landscape. We focus on providing end-to-end solutions for contractors in Steel, Aluminum, and Glass sectors, ensuring projects are delivered with quality and efficiency.",
       ],
@@ -35,6 +38,7 @@ const CoreAreas = () => {
       </div>
       <div className="core-areas-list">
         {coreAreas.map((area, index) => (
+          <Link key={index} to={area.location}>
           <div key={index} className="core-area-card">
             <h3 className="core-area-title">{area.title}</h3>
             {area.description.map((desc, i) => (
@@ -42,6 +46,7 @@ const CoreAreas = () => {
             ))}
             {area.icons && <div className="core-area-icons">{area.icons}</div>}
           </div>
+          </Link>
         ))}
       </div>
       </div>

@@ -30,7 +30,7 @@ const FooterCommonLink = () => {
                         </Link>
                             <Link to="#0" className="map-popup">View Map <i><FaLocationArrow /></i></Link>
                         </li>
-                        <li><Link to="tel:+0097433536239"><i className="pe-1 text-white"><FaPhoneVolume /></i>+0097433536239</Link></li>
+                        <li><Link to="tel:+974 66369111"><i className="pe-1 text-white"><FaPhoneVolume /></i>+974 66369111</Link></li>
                         <li><Link to="mailto:info@sjtechqa.com"><i className="pe-1 text-white"><FaEnvelope /></i> info@sjtechqa.com</Link></li>
                     </ul>
                 </div>

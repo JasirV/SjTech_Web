@@ -108,7 +108,7 @@ const AboutFour = () => {
                     <span className="d-block text-capitalize">
                       Call Us Anytime
                     </span>
-                    <Link to="tel:+912659302003">+0097433536239</Link>
+                    <Link to="tel:+912659302003">+974 66369111</Link>
                   </div>
                 </div>
               </SlideUp> */}

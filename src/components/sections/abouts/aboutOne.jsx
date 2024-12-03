@@ -52,7 +52,7 @@ const AboutOne = () => {
                                         <i className="ring-animation"><FaPhoneVolume /></i>
                                         <div className="about_info_con">
                                             <span>call any time</span>
-                                            <a href="tel:+0097433536239">+0097433536239</a>
+                                            <a href="tel:+974 66369111">+974 66369111</a>
                                         </div>
                                     </div>
                                     <span className="d-none d-sm-inline">Or</span>

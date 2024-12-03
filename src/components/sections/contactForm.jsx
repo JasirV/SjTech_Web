@@ -48,7 +48,7 @@ const ContactForm = () => {
                     <i>
                       <FaPhone />
                     </i>
-                    +0097433536239
+                    +974 66369111
                   </Link>
                 </li>
                 <li>

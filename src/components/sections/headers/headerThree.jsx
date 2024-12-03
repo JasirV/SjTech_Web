@@ -33,7 +33,7 @@ const HeaderThree = () => {
                                 <i className="call_ico"><FaPhoneVolume /></i>
                                 <div className="call_info">
                                     <span>Call Any Time</span>
-                                    <a className="d-block p-0" href="tel:+0097433536239">+0097433536239</a>
+                                    <a className="d-block p-0" href="tel:+974 66369111">+974 66369111</a>
                                 </div>
                             </li>
                         </ul>

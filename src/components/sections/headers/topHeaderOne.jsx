@@ -42,7 +42,7 @@ const TopHeaderOne = () => {
                             <i className="primary-color me-2">
                                 <FaPhoneVolume />
                             </i>
-                            <a href="tel:+0097433536239">+0097433536239</a>
+                            <a href="tel:+974 66369111">+974 66369111</a>
                         </li>
                     </ul>
                 </div>

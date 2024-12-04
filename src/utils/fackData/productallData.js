@@ -256,7 +256,7 @@ featuresList: ["Sleek", "Durable", "Energy-Efficient", "Low-Maintenance"],
     },
     {
         id: 18,
-        service_name: "Authomatic Sliding Doors",
+        service_name: "Automatic Sliding Doors",
         src: '/images/product/image-17.png',
         mainImage: '/images/product/main-image-ss-fittings.png',
         aboutText: "Elegant glass balustrades offering safety and beauty.",

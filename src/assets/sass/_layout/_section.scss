@@ -927,12 +927,20 @@
   }
 
   // Responsive Styles
-  @media (max-width: 1024px) and (min-width: 768px) {
+  @media (max-width: 1024px) and (min-width: 768px) {	
 	.item{
 		height: auto;
 	}
 }
+
 }
+@media (max-width:768px) {
+	.page-tradingProdict{
+		margin-top: -8rem;
+	}
+}
+
+
 
 
 .service.page {

@@ -10,7 +10,10 @@ const ServiceTradingProducts = () => {
     console.log(tradingProducts); // Debugging the filtered data
 
     return (
-        <section className="page-service section-padding">
+        <section className="page-service section-padding page-tradingProdict">
+            <div style={{display:"flex",justifyContent:"center",marginTop:"-50px",marginBottom:"20px"}}>
+            <h2>Our Product</h2>
+            </div>
             <div className="container">
                 <div className="row g-4">
                     {tradingProducts.map(({ id, modernTitle, src }) => (

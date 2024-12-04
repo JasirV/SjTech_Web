@@ -65,6 +65,7 @@ const TradingSection = () => {
          @media (max-width: 768px) {
     .trading-section {
         // background-color: red;
+        display:none;
         padding: 20px;
         margin-top: -9rem; /* Added margin-top */
     }

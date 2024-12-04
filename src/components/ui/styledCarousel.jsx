@@ -23,7 +23,7 @@ const StyledCarousel = () => {
   const slides = [
     {
       image: "https://www.agoda.com/wp-content/uploads/2024/05/The-bay-of-Doha-Qatar.jpg",
-      title: "Trading and Contracting",
+      title: "Trading and Contracting W.L.L",
       description: "Explore new worlds daily.",
     },
     {

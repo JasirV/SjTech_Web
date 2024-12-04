@@ -26,7 +26,7 @@ const TopHeaderOne = () => {
                                 fontWeight: '500',
                             }}
                         >
-                            Trading and Contracting
+                            Trading and Contracting w.L.L
                         </p>
                     </div>
 

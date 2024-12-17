@@ -13,6 +13,12 @@ const ServiceOne = () => {
         { image: 'https://thepointsguy.global.ssl.fastly.net/us/originals/2021/02/accor-fairmont-raffles-dubai.jpg?width=2048', heading: 'Our Services' },
         { image: 'https://images.prismic.io/belongtest/7155fb81-e597-4770-945a-182b09b1b3f7_9.jpg?ixlib=js-3.6.0&amp;auto=format',heading:"Glass Works" },
         { image: 'https://www.myddisplay.com/include/upload/kind/image/20180329/20180329185234_7019.jpg',heading:'LED Screen Works' },
+        { image: 'https://avatars.mds.yandex.net/get-altay/2022045/2a0000016bfecc3744a139533a43e7fe5427/XXL_height',heading:'Handrails' },
+        { image: 'https://storage.yandexcloud.net/moskvichmag/uploads/2019/04/shutterstock_1186906468.jpg',heading:'Steel Works' },
+        { image: 'https://avatars.mds.yandex.net/get-ydo/1649611/2a0000017110e376d39f44dd81e01a0f2a4e/diploma',heading:'Glass Partitions' },
+        { image: 'https://img2.teletype.in/files/9d/0e/9d0ef844-740b-419b-847e-4131ad29c077.png',heading:'Curtain Wall' },
+        { image: 'https://lindusconstruction.com/wp-content/uploads/2021/01/2-panel-Infinity-Sliding-French-Door-and-Casement-windows.jpg',heading:'Windows and Doors' },
+        { image: 'https://i.pinimg.com/originals/f2/8b/12/f28b12b6f9069684727be8c3cf744c72.jpg',heading:'ACP Cladding' },
     ];
     return (
         <main>

@@ -352,7 +352,7 @@ export const productAllData = [
         aboutText: "Stainless steel fittings for structural and architectural applications.",
         additionalText: "Corrosion-resistant and perfect for high-end projects.",
         featuresList: ["Corrosion-resistant", "Durable", "Stylish Design"],
-        Category: "Hardware",
+        Category: "trading",
         modernTitle: "Premium Stainless Steel Fittings",
         secondaryImages: [
             '/images/product/secondary-image-ss-fittings-1.png',
@@ -367,7 +367,7 @@ export const productAllData = [
         aboutText: "Comprehensive safety solutions for various applications.",
         additionalText: "Ensure safety with our range of products, including gloves, helmets, and more.",
         featuresList: ["Protective", "Durable", "Certified"],
-        Category: "Safety",
+        Category: "trading",
         modernTitle: "Reliable Safety Solutions",
         secondaryImages: [
             '/images/product/secondary-image-safety-1.png',
@@ -382,7 +382,7 @@ export const productAllData = [
         aboutText: "High-strength tubes and pipes for plumbing and construction.",
         additionalText: "Available in various materials and diameters.",
         featuresList: ["Strong", "Corrosion-resistant", "Versatile"],
-        Category: "Plumbing",
+        Category: "trading",
         modernTitle: "Durable Tubes and Pipes for Plumbing",
         secondaryImages: [
             '/images/product/secondary-image-tubes-pipes-1.png',
@@ -427,7 +427,7 @@ export const productAllData = [
         aboutText: "Consumables for various industries, including construction and manufacturing.",
         additionalText: "Available in bulk quantities to meet industry needs.",
         featuresList: ["Cost-effective", "Reliable", "Versatile"],
-        Category: "Supplies",
+        Category: "trading",
         modernTitle: "High-Quality Consumables",
         secondaryImages: [
             '/images/product/secondary-image-consumables-1.png',
@@ -442,7 +442,7 @@ export const productAllData = [
         aboutText: "Glass accessories for various architectural and decorative applications.",
         additionalText: "Enhance your glass projects with our premium accessories.",
         featuresList: ["Stylish", "Functional", "Durable"],
-        Category: "Glass",
+        Category: "trading",
         modernTitle: "Elegant Glass Accessories",
         secondaryImages: [
             '/images/product/secondary-image-glass-accessories-1.png',
@@ -457,7 +457,7 @@ export const productAllData = [
         aboutText: "High-strength bolts for construction and industrial applications.",
         additionalText: "Available in various sizes and materials.",
         featuresList: ["Strong", "Corrosion-resistant", "Versatile"],
-        Category: "Hardware",
+        Category: "trading",
         modernTitle: "Durable Bolts for Every Need",
         secondaryImages: [
             '/images/product/secondary-image-bolts-1.png',
@@ -472,15 +472,31 @@ export const productAllData = [
         aboutText: "High-quality aluminum and stainless steel sheets for industrial use.",
         additionalText: "Perfect for manufacturing, construction, and more.",
         featuresList: ["Durable", "Versatile", "Lightweight"],
-        Category: "Materials",
+        Category: "trading",
         modernTitle: "Top-Quality Aluminum & Stainless Steel Sheets",
         secondaryImages: [
             '/images/product/secondary-image-aluminum-sheet-1.png',
             '/images/product/secondary-image-aluminum-sheet-2.png'
         ]
+    },
+    {
+        id: 33,
+        service_name: "Rubber Products",
+        src: 'https://www.customrubbercorp.com/CustomRubber/media/CustomRubber/products-callouts/rubber-to-metal-rubber-to-plastic_1.jpg',
+        mainImage: 'https://avatars.mds.yandex.net/get-altay/6141684/2a00000183f4364938a80459ef5410b07d78/XXL_height',
+        aboutText: "Premium-quality rubber products designed for industrial and commercial applications.",
+        additionalText: "Ideal for sealing, vibration control, and flexible manufacturing solutions.",
+        featuresList: ["High Durability", "Elastic & Flexible", "Customizable", "Resistant to Wear"],
+        Category: "trading",
+        modernTitle: "High-Performance Industrial Rubber Products",
+        secondaryImages: [
+            'https://nd36.ru/wp-content/uploads/2019/12/muwh.jpg',
+            'https://avatars.mds.yandex.net/get-altay/1975185/2a000001707b86a4d32d1043f62251bf587a/XXL'
+        ]
     }
-]
+    
 
+]
 
 
 // export const productAllData = [

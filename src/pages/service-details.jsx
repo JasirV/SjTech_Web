@@ -4,6 +4,7 @@ import PageBanner from '../components/sections/pageBanner';
 import ServiceArtical from '../components/sections/services/serviceArtical';
 import DetailsBanner from '../components/sections/detailsBanner';
 import { productAllData } from '../utils/fackData/productallData';
+import PdfViewer from '../components/sections/products/pdfView';
 
 const ServiceDetails = () => {
   const { id } = useParams(); // Fetching id from URL parameters
@@ -26,6 +27,7 @@ const ServiceDetails = () => {
       <DetailsBanner image={product.mainImage} title={product.service_name} />
       {/* Article section with product details */}
       <ServiceArtical product={product} />
+      {/* <PdfViewer /> */}
       {/* Uncomment if ServiceFive is needed */}
       {/* <ServiceFive /> */}
     </main>

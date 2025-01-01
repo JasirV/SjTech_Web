@@ -4435,3 +4435,272 @@
 //admindashbord
 
 
+//product list for adming 
+
+.product-list {
+	overflow: hidden;
+	padding: 60px 0;
+  
+	.product-item {
+	  padding: 30px;
+	  border: 1px solid var(--border);
+	  height: 500px;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: space-between;
+	  transition: var(--transition);
+  
+	  h3 {
+		text-align: center;
+  
+		a {
+		  font-size: 1.5rem;
+		  color: var(--text-color);
+		  text-decoration: none;
+		  transition: color 0.3s;
+  
+		  &:hover {
+			color: var(--primary-color);
+		  }
+		}
+	  }
+  
+	  .product-image {
+		position: relative;
+		width: 100%;
+		height: 250px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+  
+		img {
+		  width: 100%;
+		  height: 100%;
+		  object-fit: cover;
+		}
+  
+		.gaps-right,
+		.gaps-left {
+		  position: absolute;
+		  z-index: 1;
+		  opacity: 0;
+		  transition: var(--transition);
+  
+		  img {
+			width: 100px;
+		  }
+		}
+  
+		.gaps-right {
+		  top: 0;
+		  right: 0;
+		}
+  
+		.gaps-left {
+		  bottom: 0;
+		  left: 0;
+		}
+	  }
+  
+	  .btn-three {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		border-radius: 5px;
+		transition: var(--transition);
+  
+		i {
+		  margin-left: 8px;
+		}
+  
+		&:hover {
+		  background: #fff;
+		  color: var(--primary-color);
+		  border: 1px solid var(--primary-color);
+		}
+	  }
+  
+	  &:hover {
+		.gaps-right,
+		.gaps-left {
+		  opacity: 1;
+		}
+	  }
+	}
+  
+	// Responsive Styles
+	@media (max-width: 1024px) and (min-width: 768px) {
+	  .product-item {
+		height: auto;
+	  }
+  
+	  .row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+	  }
+  
+	  .product-item {
+		width: 48%; /* Two items per row */
+		margin-bottom: 20px;
+	  }
+	}
+  
+	// Small screen styles (Mobile-first)
+	@media (max-width: 767px) {
+	  .product-item {
+		width: 100%; /* One item per row on small screens */
+	  }
+	}
+  }
+
+  
+//addProduct addmin
+$primary-color: #007bff;
+$text-color: #333;
+$border-color: #ddd;
+$bg-color: #f9f9f9;
+$focus-color: lighten($primary-color, 15%);
+$error-color: #e74c3c;
+$success-color: #27ae60;
+
+.add-product {
+  padding: 80px 0;
+  background-color: $bg-color;
+
+  .container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: $primary-color;
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        color: $text-color;
+        font-weight: 500;
+      }
+
+      input, textarea, select {
+        padding: 14px;
+        font-size: 1rem;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        outline: none;
+        transition: all 0.3s ease;
+        background: #fefefe;
+        width: 100%; /* Ensure inputs take full width */
+
+        &:focus {
+          border-color: $focus-color;
+          box-shadow: 0 4px 8px rgba($focus-color, 0.2);
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+    }
+
+    .btn-submit {
+      background-color: $primary-color;
+      color: #fff;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background-color 0.3s, transform 0.2s;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    .form-feedback {
+      font-size: 0.9rem;
+      color: $error-color;
+      margin-top: 5px;
+
+      &.success {
+        color: $success-color;
+      }
+    }
+  }
+
+  // Responsive styles
+  @media (max-width: 768px) {
+    padding: 0 0; /* Reduce padding for smaller screens */
+	
+    .container {
+      width: 100%; /* Ensure the container takes full width */
+      border-radius: 0; /* Remove rounded corners for a cleaner mobile look */
+      padding: 20px;
+    }
+
+    .form {
+      gap: 18px;
+    }
+
+    .form-group {
+      input, textarea, select {
+        font-size: 0.95rem;
+        width: 100%; /* Full-width form inputs */
+      }
+    }
+
+    .btn-submit {
+      font-size: 1rem;
+      width: 100%; /* Full-width submit button */
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .title {
+      font-size: 2rem;
+    }
+
+    .container {
+      padding: 15px;
+    }
+
+    .form-group label {
+      font-size: 1rem;
+    }
+  }
+}

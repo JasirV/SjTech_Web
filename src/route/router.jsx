@@ -9,6 +9,7 @@ import ServiceDetails from "../pages/service-details";
 import Contact from "../pages/contact";
 import Product from "../pages/Product";
 import Login from "../pages/login";
+import AdminDashboard from "../pages/admin/adminDashboard ";
 // import AdminDashboard from "../pages/adminDash";
 
 export const router = createBrowserRouter([
@@ -84,14 +85,14 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/homead",
-  //   element: "",
-  //   children: [
-  //     {
-  //       path: "", // This will match /contact
-  //       element: <AdminDashboard />,
-  //     },
-  //   ],
-  // },
+  {
+    path: "/homead",
+    element: "",
+    children: [
+      {
+        path: "", // This will match /contact
+        element: <AdminDashboard />,
+      },
+    ],
+  },
 ]);

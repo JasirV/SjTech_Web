@@ -372,3 +372,126 @@
 
 // Sidebar area start here ***
 // SidebarAdmin SCSS
+
+
+.adminHome{
+	// .container {
+	// 	display: flex;
+	// 	flex-direction: column;
+	// 	align-items: center;
+	// 	justify-content: flex-start;
+	// 	min-height: 100vh;
+	// 	background-color: #f3f3f3; // 'sub-bg'
+	// 	padding: 3rem 1.5rem;
+	// 	font-family: 'Prompt', sans-serif;
+	  
+		.stats-container {
+		  display: flex;
+		  justify-content: space-between;
+		  width: 100%;
+		  margin-bottom: 3rem;
+		  flex-wrap: wrap;
+		  gap: 2rem; // Added gap for better spacing
+	  
+		  .stat-box {
+			width: 30%; // Adjust the width for better responsiveness
+			text-align: center;
+			background-color: #312d81; // 'primary'
+			color: #fff;
+			padding: 2rem 1.5rem;
+			border-radius: 12px;
+			font-weight: bold;
+			box-shadow: 0px 4px 30px 0px rgba(233, 51, 43, 0.15); // 'custom' boxShadow
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); // 'custom' transition timing
+	  
+			.stat-box-title {
+			  color: #ffffff;
+			  margin-bottom: 0.8rem;
+			  font-size: 1.3rem;
+			  font-weight: 600;
+			}
+	  
+			.stat-box-value {
+			  color: #ffffff;
+			  font-size: 2.4rem;
+			  font-weight: 700;
+			}
+		  }
+		}
+	  
+		.graph-section {
+		  width: 100%;
+		  margin-top: 3rem;
+		  padding: 2rem;
+		  background-color: #ffffff; // White background for graph area
+		  border-radius: 12px;
+		  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+	  
+		  .heading {
+			font-size: 2rem;
+			color: #0e0e0e; // 'heading'
+			margin-bottom: 1rem;
+			font-weight: 600;
+		  }
+	  
+		  .graph-placeholder {
+			width: 100%;
+			height: 300px;
+			background-color: #f0f0f0; // Light gray background for the placeholder
+			border-radius: 8px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 1.5rem;
+			color: #888888; // 'span' color
+			font-weight: 500;
+		  }
+		}
+	//   }
+	  
+	  // Media Queries for responsiveness
+	  @media (max-width: 768px) {
+		.container {
+		  padding: 2rem 1rem;
+		}
+	  
+		.stats-container {
+		  .stat-box {
+			width: 48%; // Adjust width for smaller screens
+		  }
+		}
+	  
+		.graph-section {
+		  .heading {
+			font-size: 1.6rem;
+		  }
+	  
+		  .graph-placeholder {
+			height: 250px; // Adjust height for smaller screens
+		  }
+		}
+	  }
+	  
+	  @media (max-width: 480px) {
+		.container {
+		  padding: 1.5rem 1rem;
+		}
+	  
+		.stats-container {
+		  .stat-box {
+			width: 100%; // Stack stats boxes vertically
+		  }
+		}
+	  
+		.graph-section {
+		  .heading {
+			font-size: 1.4rem;
+		  }
+	  
+		  .graph-placeholder {
+			height: 200px; // Adjust height further for very small screens
+		  }
+		}
+	  }
+	  
+}

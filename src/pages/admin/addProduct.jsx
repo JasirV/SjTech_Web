@@ -14,7 +14,7 @@ const AddProduct = () => {
         secondaryImages: '',
     });
 
-    const [errors, setErrors] = useState({}); 
+    const [errors, setErrors] = useState({});  
 
     // Sanitization Function
     const sanitizeInput = (value) => {

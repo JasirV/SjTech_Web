@@ -8,7 +8,7 @@ import ServiceTwo from "../pages/service-2";
 import ServiceDetails from "../pages/service-details";
 import Contact from "../pages/contact";
 import Product from "../pages/Product";
-import Login from "../pages/login";
+import Login from "../pages/admin/login";
 import AdminDashboard from "../pages/admin/adminDashboard ";
 // import AdminDashboard from "../pages/adminDash";
 

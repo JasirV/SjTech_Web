@@ -8,12 +8,12 @@ const TopHeaderOne = () => {
             <div className="container">
                 <div className="header-top-wrp d-flex align-items-center justify-content-between">
                     {/* Logo Section */}
-                    <div className="logo">
+                    <div className="logo" >
                         <Link to="/" className="logo">
                             <img
                                 src="/images/logo/SJ_Tech_Logo-01w2.png"
                                 alt="SJ Tech Logo"
-                                style={{ maxHeight: '50px' }}
+                                // style={{ maxHeight: '70px' }}
                             />
                         </Link>
                         <p

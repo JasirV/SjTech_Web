@@ -86,7 +86,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/homead",
+    path: "/home",
     element: "",
     children: [
       {

@@ -4440,7 +4440,6 @@
 .product-list {
 	overflow: hidden;
 	padding: 60px 0;
-  
 	.product-item {
 	  padding: 30px;
 	  border: 1px solid var(--border);
@@ -4551,7 +4550,12 @@
   
 	// Small screen styles (Mobile-first)
 	@media (max-width: 767px) {
+		padding: 0px;
 	  .product-item {
+		padding: 2px;
+		justify-content: start;
+		gap: 20px;
+		height: auto;
 		width: 100%; /* One item per row on small screens */
 	  }
 	}
@@ -4703,4 +4707,93 @@ $success-color: #27ae60;
       font-size: 1rem;
     }
   }
+}
+
+
+
+// modal 
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px; /* Limit the max width */
+    box-sizing: border-box; /* Ensures padding does not overflow */
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column; /* Stack the buttons vertically on smaller screens */
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.confirm-btn,
+.cancel-btn {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 0; /* Add space between buttons */
+    width: 100%; /* Make buttons full-width on small screens */
+}
+
+.confirm-btn {
+    background-color: #f44336; /* Red */
+}
+
+.cancel-btn {
+    background-color: #2196f3; /* Blue */
+}
+
+.confirm-btn:hover, .cancel-btn:hover {
+    opacity: 0.8;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 80%; /* Make modal take up 80% of screen width on smaller screens */
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .confirm-btn,
+    .cancel-btn {
+        width: 100%; /* Make buttons full-width */
+        padding: 12px 20px; /* Adjust button padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+		margin-left: 80px;
+        width: 70%; /* Make modal take up 90% of screen width on very small screens */
+        padding: 10px; /* Adjust padding for very small screens */
+    }
+
+    .confirm-btn,
+    .cancel-btn {
+        padding: 12px 16px; /* Adjust button padding for smaller screens */
+    }
 }

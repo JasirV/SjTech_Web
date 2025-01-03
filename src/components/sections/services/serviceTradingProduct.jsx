@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa6';
 import { productAllData } from '../../../utils/fackData/productallData';
 import SlideUp from '../../../utils/animations/slideUp';
+import { useCategoryProduct } from '../../../hooks/useapiHoooks';
 
 const ServiceTradingProducts = () => {
     // Filter products with the "trading" category
-    const tradingProducts = productAllData.filter((item) => item.Category === "trading");
-    console.log(tradingProducts); // Debugging the filtered data
+    const {data:tradingProducts}=useCategoryProduct('trading')
+    
 
     return (
         <section className="page-service section-padding page-tradingProdict">
@@ -16,10 +17,10 @@ const ServiceTradingProducts = () => {
             </div>
             <div className="container">
                 <div className="row g-4">
-                    {tradingProducts.map(({ id, modernTitle, src }) => (
+                    {tradingProducts?.map(({ _id, modernTitle, src }) => (
                         <Card 
-                            key={id} 
-                            id={id} 
+                            key={_id} 
+                            id={_id} 
                             ProductImage={src} 
                             Title={modernTitle} 
                         />
@@ -38,9 +39,9 @@ const Card = ({ id, ProductImage, Title }) => {
         <SlideUp delay={id} className="col-xl-4 col-lg-6">
             <div className="item">
                 <h3>
-                    <Link to={`/service-single/${id}`}>{Title}</Link>
+                    <Link to={`/service/service-details/${id}`}>{Title}</Link>
                 </h3>
-                <Link to={`/service-single/${id}`} className="image d-block">
+                <Link to={`/service/service-details/${id}`} className="image d-block">
                     <img src={ProductImage} alt={Title || "Product"} />
                     <div className="gaps-right d-none d-sm-block float-bob-x">
                         <img 
@@ -55,7 +56,7 @@ const Card = ({ id, ProductImage, Title }) => {
                         />
                     </div>
                 </Link>
-                <Link className="btn-three" to={`/service-single/${id}`}>
+                <Link className="btn-three" to={`/service/service-details/${id}`}>
                     Service Details <i><FaArrowRight /></i>
                 </Link>
             </div>

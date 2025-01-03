@@ -5,12 +5,12 @@ import ServiceArtical from '../components/sections/services/serviceArtical';
 import DetailsBanner from '../components/sections/detailsBanner';
 import { productAllData } from '../utils/fackData/productallData';
 import PdfViewer from '../components/sections/products/pdfView';
+import { useProductById } from '../hooks/useapiHoooks';
 
 const ServiceDetails = () => {
   const { id } = useParams(); // Fetching id from URL parameters
   const numericId = parseInt(id, 10);
-  const product = productAllData.find((i) => i.id === numericId); // Correctly compare IDs
-  
+  const { data: product, isLoading, error } = useProductById(id);
   if (!product) {
     return <div>Product not found!</div>; // Handle cases where the product is not found
   }

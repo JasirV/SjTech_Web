@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-
+const sitekey = import.meta.env.VITE_SITE_KEY;
 // Utility function to sanitize input
 const sanitizeInput = (input) => {
   return input.replace(/[^a-zA-Z0-9@._-]/g, ""); // Allow only safe characters
@@ -75,7 +75,7 @@ const Login = () => {
           </div>
           <div className="form-group">
             <ReCAPTCHA
-              sitekey="6LcISpAqAAAAAAMzuztMu7oWkum46eURNRQ_Fgae" // Replace with your Google reCAPTCHA site key
+              sitekey={sitekey} // Replace with your Google reCAPTCHA site key
               onChange={handleCaptchaChange}
             />
           </div>

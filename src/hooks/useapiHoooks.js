@@ -8,7 +8,7 @@ export const useProduct = () => {
     queryFn: async () => {
       const response = await api(`/product/`);
       return response.data.data;
-    }
+    },
   });
 };
 
@@ -23,7 +23,7 @@ export const useProductById = (id) => {
       const response = await api(`/product/${id}`);
       return response.data.data;
     },
-    enabled: !!id,  // Ensures the query runs only if `id` is provided
+    enabled: !!id, // Ensures the query runs only if `id` is provided
   });
 };
 
@@ -43,7 +43,7 @@ export const useCategoryProduct = (category) => {
 };
 
 // Custom hook for deleting a product
-const useDeleteProduct = () => {
+export const useDeleteProduct = () => {
   const queryClient = useQueryClient(); // Access the query client to manage cache
   const deleteProduct = async (id) => {
     try {
@@ -60,4 +60,4 @@ const useDeleteProduct = () => {
   return deleteProduct;
 };
 
-export default useDeleteProduct;
+

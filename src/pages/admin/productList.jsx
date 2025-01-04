@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa6';
 import SlideUp from '../../utils/animations/slideUp';
-import useDeleteProduct, { useProduct } from '../../hooks/useapiHoooks';
 import { MdOutlineDelete } from "react-icons/md";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
-import api from '../../api/axiosInstance';
 import DeleteConfirmationModal from '../../components/sections/modal/deleteModal';
-import { useQueryClient } from '@tanstack/react-query';
+import EditProductModal from '../../components/sections/modal/editProductModal'; // Import the new edit modal
+import { useDeleteProduct, useProduct } from '../../hooks/useapiHoooks';
 
 const ProductList = () => {
-    const {data:productAllData}=useProduct()
-    
+    const { data: productAllData } = useProduct();
+
     return (
         <section className="product-list section-padding">
             <div className="container">
@@ -28,28 +27,32 @@ const ProductList = () => {
 export default ProductList;
 
 const ProductCard = ({ id, src, product_name }) => {
-    const [showModal, setShowModal] = useState(false); // Manage modal visibility
-    const [productIdToDelete, setProductIdToDelete] = useState(null); // Store product ID to delete
-  
-    const deleteProduct = useDeleteProduct(); // Call custom hook for deleting products
-  
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [productIdToDelete, setProductIdToDelete] = useState(null);
+
+    const deleteProduct = useDeleteProduct();
+
     const handleDeleteClick = (id) => {
-      setProductIdToDelete(id); // Store the product ID to be deleted
-      setShowModal(true); // Show the confirmation modal
-    };
-  
-    const confirmDelete = () => {
-      if (productIdToDelete) {
-        deleteProduct(productIdToDelete) // Call the delete function from the custom hook
-          .then(() => setShowModal(false)) // Close modal after successful deletion
-          .catch((error) => console.error('Error confirming deletion:', error));
-      }
-    };
-  
-    const cancelDelete = () => {
-      setShowModal(false); // Close modal without deleting
+        setProductIdToDelete(id);
+        setShowDeleteModal(true);
     };
 
+    const confirmDelete = () => {
+        if (productIdToDelete) {
+            deleteProduct(productIdToDelete)
+                .then(() => setShowDeleteModal(false))
+                .catch((error) => console.error('Error confirming deletion:', error));
+        }
+    };
+
+    const cancelDelete = () => {
+        setShowDeleteModal(false);
+    };
+
+    const handleEditClick = () => {
+        setShowEditModal(true); // Open the edit modal
+    };
     return (
         <SlideUp delay={id} className="col-xl-4 col-lg-6">
             <div className="product-item">
@@ -62,20 +65,32 @@ const ProductCard = ({ id, src, product_name }) => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', width: "80%" }}>
                     <button
                         style={{ backgroundColor: "#f7c8ce", padding: '3px', borderRadius: "50%" }}
-                        onClick={() => setShowModal(true)} // Show modal on delete button click
+                        onClick={() => handleDeleteClick(id)}
                     >
                         <MdOutlineDelete size={30} color='red' />
                     </button>
-                    <button style={{ backgroundColor: "#d3cfff", padding: '3px', borderRadius: "50%" }}>
+                    <button
+                        style={{ backgroundColor: "#d3cfff", padding: '3px', borderRadius: "50%" }}
+                        onClick={handleEditClick}
+                    >
                         <HiOutlineAdjustmentsHorizontal size={30} color='blue' />
                     </button>
                 </div>
 
-                {/* Render the delete confirmation modal */}
-                {showModal && (
+                {/* Delete Confirmation Modal */}
+                {showDeleteModal && (
                     <DeleteConfirmationModal
-                        onConfirm={() => deleteProduct(id)} // On confirm, delete the product
-                        onCancel={() => setShowModal(false)} // On cancel, close the modal
+                        onConfirm={confirmDelete}
+                        onCancel={cancelDelete}
+                    />
+                )}
+
+                {/* Edit Product Modal */}
+                {showEditModal && (
+                    <EditProductModal
+                        productId={id} // Pass product ID to edit modal
+                        productName={product_name}
+                        onCancel={() => setShowEditModal(false)} // Close modal
                     />
                 )}
             </div>

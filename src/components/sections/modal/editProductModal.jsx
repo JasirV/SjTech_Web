@@ -6,7 +6,10 @@ import api from "../../../api/axiosInstance";
 const EditProductModal = ({ productId, productName, onCancel }) => {
   const fileInputRef = useRef();
   const { data: productData, isLoading, error } = useProductById(productId); // Pass productId to the hook
-
+  const [ImagePre, setImagePre] = useState();
+  const [mainImagePre,setMainImagePre]=useState()
+  const [secondaryImagePreviews, setSecondaryImagePreviews] = useState([]);
+  
   const [formData, setFormData] = useState({
     service_name: "",
     aboutText: "",
@@ -31,6 +34,9 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
         existingMainImage: productData.mainImage || "",
         secondaryImages: productData.secondaryImages || [],
       });
+      setImagePre(productData.Image)
+      setMainImagePre(productData.mainImage)
+      setSecondaryImagePreviews(productData.secondaryImages)
     }
   }, [productData]); // This useEffect depends on productData
 

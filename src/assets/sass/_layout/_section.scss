@@ -4671,14 +4671,12 @@ $success-color: #27ae60;
 	display: inline-block;
   
 	.preview-img {
-	  width: 100%;  // Adjust as needed
-	  height: auto; // Adjust as needed
+	  width: 100px;  // Adjust as needed
+	  height: 100px; // Adjust as needed
 	}
   
 	.delete-btn {
 	  position: absolute;
-	  top: 50%;
-	  left: 50%;
 	  transform: translate(-50%, -50%);
 	  background: rgba(255, 255, 255, 0.6); // Optional: Adds a semi-transparent background
 	  border: none;

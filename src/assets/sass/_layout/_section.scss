@@ -4619,7 +4619,7 @@ $success-color: #27ae60;
         outline: none;
         transition: all 0.3s ease;
         background: #fefefe;
-        width: 100%; /* Ensure inputs take full width */
+        width: 100%;
 
         &:focus {
           border-color: $focus-color;
@@ -4630,6 +4630,16 @@ $success-color: #27ae60;
       textarea {
         resize: vertical;
         min-height: 120px;
+      }
+
+      .form-feedback {
+        font-size: 0.9rem;
+        color: $error-color;
+        margin-top: 5px;
+
+        &.success {
+          color: $success-color;
+        }
       }
     }
 
@@ -4654,57 +4664,117 @@ $success-color: #27ae60;
         transform: translateY(0);
       }
     }
-
-    .form-feedback {
-      font-size: 0.9rem;
-      color: $error-color;
-      margin-top: 5px;
-
-      &.success {
-        color: $success-color;
-      }
-    }
   }
+
+  .image-preview {
+	position: relative;
+	display: inline-block;
+  
+	.preview-img {
+	  width: 100%;  // Adjust as needed
+	  height: auto; // Adjust as needed
+	}
+  
+	.delete-btn {
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  background: rgba(255, 255, 255, 0.6); // Optional: Adds a semi-transparent background
+	  border: none;
+	  padding: 8px;
+	  border-radius: 50%;
+	  cursor: pointer;
+	  transition: background 0.3s;
+  
+	  &:hover {
+		background: rgba(255, 255, 255, 0.9); // Optional: Hover effect
+	  }
+  
+	  svg {
+		font-size: 20px;  // Adjust size of the icon
+		color: #000;  // Adjust color of the icon
+	  }
+	}
+  }
+ 
+  .preview-section {
+	display: flex;
+	overflow-x: auto; // Allows for multiple images to wrap onto new lines
+	gap: 16px;  // Adds spacing between the images
+  }
+  
+  .image-preview-item {
+	position: relative;
+	width: 150px;  // Adjust as needed
+	height: 150px; // Adjust as needed
+	display: inline-block;
+	overflow: hidden;
+	border-radius: 8px; // Optional: Rounds the corners of the images
+  
+	.preview-img {
+	  width: 100%;
+	  height: 100%;
+	  object-fit: cover;  // Ensures the image covers the container
+	}
+  
+	.delete-btn {
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  background: rgba(255, 255, 255, 0.7);
+	  border: none;
+	  padding: 8px;
+	  border-radius: 50%;
+	  cursor: pointer;
+	  transition: background 0.3s;
+  
+	  &:hover {
+		background: rgba(255, 255, 255, 0.9);
+	  }
+  
+	  svg {
+		font-size: 18px;  // Adjust size of the icon
+		color: #000;  // Adjust color of the icon
+	  }
+	}
+  }
+  
 
   // Responsive styles
   @media (max-width: 768px) {
-    padding: 0 0; /* Reduce padding for smaller screens */
-	
     .container {
-      width: 100%; /* Ensure the container takes full width */
-      border-radius: 0; /* Remove rounded corners for a cleaner mobile look */
+      width: 100%;
+      border-radius: 0;
       padding: 20px;
     }
 
-    .form {
-      gap: 18px;
-    }
-
-    .form-group {
-      input, textarea, select {
-        font-size: 0.95rem;
-        width: 100%; /* Full-width form inputs */
-      }
-    }
-
-    .btn-submit {
-      font-size: 1rem;
-      width: 100%; /* Full-width submit button */
-      text-align: center;
-    }
-  }
-
-  @media (max-width: 480px) {
     .title {
       font-size: 2rem;
     }
 
+    .form-group input, .form-group textarea {
+      font-size: 0.95rem;
+    }
+
+    .btn-submit {
+      font-size: 1rem;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
     .container {
       padding: 15px;
     }
 
     .form-group label {
       font-size: 1rem;
+    }
+
+    .title {
+      font-size: 1.8rem;
     }
   }
 }

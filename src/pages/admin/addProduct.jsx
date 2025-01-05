@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import validator from 'validator';
 import api from '../../api/axiosInstance';
+import { FaTrashAlt } from 'react-icons/fa'; 
 
 const AddProduct = () => {
+  const[ImagePre,setImagePre]=useState()
+  const [secondaryImagePreviews, setSecondaryImagePreviews] = useState([]);
   const [formData, setFormData] = useState({
     service_name: '',
-    src: '',
-    mainImage: null, // File input for the main image
+    Image: '',
+    mainImage: null, 
     aboutText: '',
     additionalText: '',
-    featuresList: '', // Comma-separated string for features
+    featuresList: '', 
     Category: '',
     modernTitle: '',
-    secondaryImages: [] // Array for secondary image files
+    secondaryImages: [] 
   });
 
   const [errors, setErrors] = useState({});
@@ -21,7 +24,7 @@ const AddProduct = () => {
   const validateInputs = () => {
     const newErrors = {};
     if (!formData.service_name) newErrors.service_name = 'Service name is required.';
-    if (!formData.src) newErrors.src = 'Source (src) is required.';
+    if (!formData.Image) newErrors.Image = 'Image (src) is required.'; 
     if (!formData.mainImage) newErrors.mainImage = 'Main image is required.';
     if (!formData.featuresList) newErrors.featuresList = 'Features list is required.';
     if (formData.secondaryImages.length === 0) newErrors.secondaryImages = 'At least one secondary image is required.';
@@ -36,13 +39,20 @@ const AddProduct = () => {
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === 'mainImage') {
+    if(name==="Image"){
+      setFormData((prevData)=>({...prevData,Image:files[0]}))
+      setImagePre(URL.createObjectURL(files[0]));
+    }
+    else if(name === 'mainImage') {
       setFormData((prevData) => ({ ...prevData, mainImage: files[0] }));
     } else if (name === 'secondaryImages') {
+      const filesArray = Array.from(files);
       setFormData((prevData) => ({
         ...prevData,
-        secondaryImages: [...files], // Spread files into an array
+        secondaryImages: [...files], 
       }));
+      const newPreviews = filesArray.map((file) => URL.createObjectURL(file));
+      setSecondaryImagePreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: validator.escape(value.trim()) }));
     }
@@ -54,7 +64,7 @@ const AddProduct = () => {
 
     const formDataToSend = new FormData();
     formDataToSend.append('service_name', formData.service_name);
-    formDataToSend.append('src', formData.src);
+    formDataToSend.append('Image', formData.Image); // Change to Image
     formDataToSend.append('aboutText', formData.aboutText);
     formDataToSend.append('additionalText', formData.additionalText);
     formDataToSend.append('featuresList', formData.featuresList.split(',').map((item) => item.trim())); // Convert to array
@@ -75,7 +85,23 @@ const AddProduct = () => {
       console.error('Error adding product:', error.response?.data || error.message);
     }
   };
-
+  const handleDeleteImage = (type, index) => {
+    if (type === 'Image') {
+      setFormData((prevData) => ({ ...prevData, Image: null }));
+      setImagePre(null);
+    } else if (type === 'secondaryImages') {
+      setSecondaryImagePreviews((prevPreviews) =>
+        prevPreviews.filter((_, i) => i !== index)
+      );
+      setFormData((prevData) => ({
+        ...prevData,
+        secondaryImages: prevData.secondaryImages.filter((_, i) => i !== index),
+      }));
+    }
+  };
+  
+ 
+  
   return (
     <div className="add-product">
       <div className="container">
@@ -95,16 +121,22 @@ const AddProduct = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="src">Product Image</label>
+            <label htmlFor="Image">Product Image</label>
+            {ImagePre && (
+              <div className="image-preview">
+                <img src={ImagePre} alt="Preview" className="preview-img" />
+                <button type="button" className="delete-btn" onClick={() => handleDeleteImage('Image')}>
+                  <FaTrashAlt />
+                </button>
+              </div>
+            )}
             <input
-              type="text"
-              id="src"
-              name="src"
-              value={formData.src}
+              type="file"
+              id="Image"
+              name="Image" // Change to Image
               onChange={handleInputChange}
-              placeholder="Enter image URL"
             />
-            {errors.src && <div className="form-feedback">{errors.src}</div>}
+            {errors.Image && <div className="form-feedback">{errors.Image}</div>} {/* Updated error message */}
           </div>
 
           <div className="form-group">
@@ -180,16 +212,24 @@ const AddProduct = () => {
             />
             {errors.modernTitle && <div className="form-feedback">{errors.modernTitle}</div>}
           </div>
-
           <div className="form-group">
             <label htmlFor="secondaryImages">Secondary Images</label>
-            <input
-              type="file"
-              id="secondaryImages"
-              name="secondaryImages"
-              multiple
-              onChange={handleInputChange}
-            />
+            <input type="file" id="secondaryImages" name="secondaryImages" multiple onChange={handleInputChange} />
+            <div className="preview-section">
+  {secondaryImagePreviews.map((preview, index) => (
+    <div key={index} className="image-preview-item">
+      <img src={preview} alt={`Preview ${index}`} className="preview-img" />
+      <button 
+        type="button" 
+        className="delete-btn" 
+        onClick={() => handleDeleteImage('secondaryImages', index)}
+      >
+        <FaTrashAlt />
+      </button>
+    </div>
+  ))}
+</div>
+
             {errors.secondaryImages && <div className="form-feedback">{errors.secondaryImages}</div>}
           </div>
 

@@ -16,7 +16,6 @@ const PartnerOne = () => {
     
     const dividedProducts = divideItemsIntoParts(productAllData);
     const handleClicked=(id)=>{
-        console.log('hai',id);
         
         navigate(`/service/service-details/${id}`)
     }

@@ -15,8 +15,8 @@ const ProductList = () => {
         <section className="product-list section-padding">
             <div className="container">
                 <div className="row g-4">
-                    {productAllData?.map(({ _id, service_name, src }) => (
-                        <ProductCard key={_id} id={_id} src={src} product_name={service_name} />
+                    {productAllData?.map(({ _id, service_name, Image }) => (
+                        <ProductCard key={_id} id={_id} src={Image} product_name={service_name} />
                     ))}
                 </div>
             </div>

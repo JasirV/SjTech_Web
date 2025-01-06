@@ -5,7 +5,6 @@ import { FaArrowRight } from 'react-icons/fa6'
 import { productAllData } from '../../../utils/fackData/productallData'
 import SlideUp from '../../../utils/animations/slideUp'
 const ServiceThree = () => {
-    console.log(productAllData);
     
     return (
         <section className="page-service section-padding">

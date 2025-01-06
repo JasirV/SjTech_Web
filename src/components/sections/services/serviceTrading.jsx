@@ -35,7 +35,7 @@ const ServicesTrading = () => {
             modules={[Autoplay]}
         >
             {
-                serviveDataTrading.map(({ id, src, service_name }) => <SwiperSlide key={id}><Card service_name={service_name} src={src} /></SwiperSlide>)
+                serviveDataTrading.map(({ id, Image, service_name }) => <SwiperSlide key={id}><Card service_name={service_name} src={Image} /></SwiperSlide>)
             }
         </Swiper>
     )

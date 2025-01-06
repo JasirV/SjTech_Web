@@ -9,7 +9,7 @@ const AddProduct = () => {
   const [secondaryImagePreviews, setSecondaryImagePreviews] = useState([]);
   const [formData, setFormData] = useState({
     service_name: "",
-    Image: "",
+    Image: null,
     mainImage: null,
     aboutText: "",
     additionalText: "",
@@ -73,7 +73,6 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateInputs()) return;
-
     const formDataToSend = new FormData();
     formDataToSend.append("service_name", formData.service_name);
     formDataToSend.append("Image", formData.Image); // Change to Image
@@ -90,7 +89,6 @@ const AddProduct = () => {
     formData.secondaryImages.forEach((image) => {
       formDataToSend.append("secondaryImages", image);
     });
-
     try {
       const response = await api.post("/product/", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },

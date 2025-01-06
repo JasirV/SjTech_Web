@@ -35,7 +35,7 @@ const ServicesSwiper = () => {
             modules={[Autoplay]}
         >
             {
-                serviceOneData.map(({ id, src, service_name }) => <SwiperSlide key={id}><Card service_name={service_name} src={src} /></SwiperSlide>)
+                serviceOneData.map(({ id, Image, service_name }) => <SwiperSlide key={id}><Card service_name={service_name} src={Image} /></SwiperSlide>)
             }
         </Swiper>
     )

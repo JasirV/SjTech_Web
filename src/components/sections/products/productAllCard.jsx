@@ -11,7 +11,7 @@ const ProductAllCard = () => {
             <div className="container">
                 <div className="row g-4">
                     {
-                        productAllData?.map(({_id, service_name, src}) => <Card key={_id} id={_id} src={src} service_name={service_name}/>)
+                        productAllData?.map(({_id, service_name, Image}) => <Card key={_id} id={_id} src={Image} service_name={service_name}/>)
                     }
                 </div>
             </div>

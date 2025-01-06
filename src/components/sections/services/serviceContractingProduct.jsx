@@ -7,15 +7,14 @@ import { useCategoryProduct } from '../../../hooks/useapiHoooks';
 const ServiceContractingProduct = () => {
     // Filter products by "Contacting" category
     const {data:Products}=useCategoryProduct('Contacting')
-    console.log(Products,'products');
     
     return (
         <section className="page-service section-padding">
             <div className="container">
                 <div className="row g-4">
                     {Products?.length > 0 ? (
-                        Products?.map(({ _id, service_name, src }) => (
-                            <Card key={_id} id={_id} ProductImage={src} Title={service_name} />
+                        Products?.map(({ _id, service_name, Image }) => (
+                            <Card key={_id} id={_id} ProductImage={Image} Title={service_name} />
                         ))
                     ) : (
                         <p className="text-center">No products found in this category.</p>

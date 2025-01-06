@@ -17,11 +17,11 @@ const ServiceTradingProducts = () => {
             </div>
             <div className="container">
                 <div className="row g-4">
-                    {tradingProducts?.map(({ _id, modernTitle, src }) => (
+                    {tradingProducts?.map(({ _id, modernTitle, Image }) => (
                         <Card 
                             key={_id} 
                             id={_id} 
-                            ProductImage={src} 
+                            ProductImage={Image} 
                             Title={modernTitle} 
                         />
                     ))}

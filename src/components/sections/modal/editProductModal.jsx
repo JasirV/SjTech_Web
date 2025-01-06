@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios"; // Assuming you are using axios for API requests
 import { useProductById } from "../../../hooks/useapiHoooks";
 import api from "../../../api/axiosInstance";
+import { FaTrashAlt } from "react-icons/fa";
 
 const EditProductModal = ({ productId, productName, onCancel }) => {
   const fileInputRef = useRef();
-  const { data: productData, isLoading, error } = useProductById(productId); // Pass productId to the hook
-  const [ImagePre, setImagePre] = useState();
-  const [mainImagePre,setMainImagePre]=useState()
+  const { data: productData, isLoading, error } = useProductById(productId);
+  const [imagePre, setImagePre] = useState(null);
+  const [mainImagePre, setMainImagePre] = useState(null);
   const [secondaryImagePreviews, setSecondaryImagePreviews] = useState([]);
-  
+
   const [formData, setFormData] = useState({
     service_name: "",
+    Image: "",
     aboutText: "",
     additionalText: "",
-    Category: "",
+    category: "",
     featuresList: "",
     modernTitle: "",
     mainImage: null,
@@ -26,46 +27,82 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     if (productData) {
       setFormData({
         service_name: productData.service_name || "",
+        Image: productData.Image || "",
         aboutText: productData.aboutText || "",
         additionalText: productData.additionalText || "",
-        Category: productData.Category || "",
+        category: productData.category || "",
         featuresList: productData.featuresList || "",
         modernTitle: productData.modernTitle || "",
         existingMainImage: productData.mainImage || "",
-        secondaryImages: productData.secondaryImages || [],
+        secondaryImages: [],
       });
-      setImagePre(productData.Image)
-      setMainImagePre(productData.mainImage)
-      setSecondaryImagePreviews(productData.secondaryImages)
+      setImagePre(productData.Image);
+      setMainImagePre(productData.mainImage);
+      setSecondaryImagePreviews(productData.secondaryImages || []);
     }
-  }, [productData]); // This useEffect depends on productData
+  }, [productData]);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, files } = e.target;
+  
+    if (type === "file" && files.length > 0) {
+      const file = files[0];
+      setFormData((prev) => ({ ...prev, [name]: file }));
+      if (name === "Image") {
+        setImagePre(URL.createObjectURL(file));
+      }
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
+  
 
   const handleMainImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setFormData((prev) => ({ ...prev, mainImage: file }));
+      setMainImagePre(URL.createObjectURL(file));
     }
   };
 
   const handleAddSecondaryImages = (e) => {
     const files = Array.from(e.target.files);
+    const filePreviews = files.map((file) => URL.createObjectURL(file));
     setFormData((prev) => ({
       ...prev,
       secondaryImages: [...prev.secondaryImages, ...files],
     }));
+    setSecondaryImagePreviews((prev) => [...prev, ...filePreviews]);
+  };
+
+  const handleDeleteImage = (type, index = null) => {
+    if (type === "mainImage") {
+      setFormData((prev) => ({ ...prev, mainImage: null }));
+      setMainImagePre(null);
+    } else if (type === "secondaryImages" && index !== null) {
+      setFormData((prev) => {
+        const updatedImages = [...prev.secondaryImages];
+        updatedImages.splice(index, 1);
+        return { ...prev, secondaryImages: updatedImages };
+      });
+      setSecondaryImagePreviews((prev) => {
+        const updatedPreviews = [...prev];
+        updatedPreviews.splice(index, 1);
+        return updatedPreviews;
+      });
+    } else if (type === "Image") {
+      setFormData((prev) => ({ ...prev, image: "" }));
+      setImagePre(null);
+    }
   };
 
   const prepareFormData = () => {
     const data = new FormData();
     data.append("service_name", formData.service_name);
+    data.append("Image", formData.Image);
     data.append("aboutText", formData.aboutText);
     data.append("additionalText", formData.additionalText);
-    data.append("Category", formData.Category);
+    data.append("category", formData.category);
     data.append("featuresList", formData.featuresList);
     data.append("modernTitle", formData.modernTitle);
 
@@ -74,7 +111,7 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     }
 
     formData.secondaryImages.forEach((file, index) => {
-      data.append(`secondaryImages[${index}]`, file); // Ensure correct field names here
+      data.append(`secondaryImages[${index}]`, file);
     });
 
     return data;
@@ -85,11 +122,11 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     try {
       const response = await api.put(`/product/${productId}`, data, {
         headers: {
-          "Content-Type": "multipart/form-data", // Ensure this header is set for form-data requests
+          "Content-Type": "multipart/form-data",
         },
       });
       console.log("Product updated successfully:", response.data);
-      onCancel(); // Fixed: Use onCancel properly here
+      onCancel();
     } catch (error) {
       console.error("Failed to update product:", error);
     }
@@ -113,6 +150,26 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
           />
         </label>
 
+        <label htmlFor="Image">Product Image:</label>
+        {imagePre && (
+          <div className="image-preview">
+            <img src={imagePre} alt="Preview" className="preview-img" />
+            <button
+              type="button"
+              className="delete-btn"
+              onClick={() => handleDeleteImage("Image")}
+            >
+              <FaTrashAlt />
+            </button>
+          </div>
+        )}
+        <input
+          type="file"
+          id="Image"
+          name="Image"
+          onChange={handleInputChange}
+        />
+
         <label>
           About Text:
           <textarea
@@ -135,8 +192,8 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
           Category:
           <input
             type="text"
-            name="Category"
-            value={formData.Category}
+            name="category"
+            value={formData.category}
             onChange={handleInputChange}
           />
         </label>
@@ -163,18 +220,16 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
 
         <label>
           Main Image:
-          {formData.existingMainImage && (
-            <div style={{ cursor: "pointer", marginBottom: "8px" }}>
-              <img
-                src={formData.existingMainImage}
-                alt="Main"
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  objectFit: "cover",
-                  borderRadius: "8px",
-                }}
-              />
+          {mainImagePre && (
+            <div className="image-preview">
+              <img src={mainImagePre} alt="Main" className="preview-img" />
+              <button
+                type="button"
+                className="delete-btn"
+                onClick={() => handleDeleteImage("mainImage")}
+              >
+                <FaTrashAlt />
+              </button>
             </div>
           )}
           <input
@@ -184,6 +239,25 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
             onChange={handleMainImageChange}
           />
         </label>
+
+        <div className="preview-section">
+          {secondaryImagePreviews.map((preview, index) => (
+            <div key={index} className="image-preview-item">
+              <img
+                src={preview}
+                alt={`Preview ${index}`}
+                className="preview-img"
+              />
+              <button
+                type="button"
+                className="delete-btn"
+                onClick={() => handleDeleteImage("secondaryImages", index)}
+              >
+                <FaTrashAlt />
+              </button>
+            </div>
+          ))}
+        </div>
 
         <label>
           Secondary Images:
@@ -196,8 +270,8 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
         </label>
 
         <div className="modal-actions">
-          <button onClick={handleSave}>Save</button>
-          <button onClick={onCancel}>Cancel</button>
+          <button className="save-btn" onClick={handleSave}>Save</button>
+          <button className="cancel-btn" onClick={onCancel}>Cancel</button>
         </div>
       </div>
     </div>

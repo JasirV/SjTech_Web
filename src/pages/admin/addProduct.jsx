@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import validator from "validator";
 import api from "../../api/axiosInstance";
 import { FaTrashAlt } from "react-icons/fa";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AddProduct = () => {
+  const queryClient = useQueryClient();
   const [ImagePre, setImagePre] = useState();
   const [mainImagePre,setMainImagePre]=useState()
   const [secondaryImagePreviews, setSecondaryImagePreviews] = useState([]);
@@ -93,7 +95,10 @@ const AddProduct = () => {
       const response = await api.post("/product/", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log("Product added successfully:", response.data);
+      if(response.status===201){
+        queryClient.invalidateQueries(['allProduct']);
+        console.log("Product added successfully:", response.data);
+      }
     } catch (error) {
       console.error(
         "Error adding product:",

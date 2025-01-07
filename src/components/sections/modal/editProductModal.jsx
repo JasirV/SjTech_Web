@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { useProductById } from "../../../hooks/useapiHoooks";
 import api from "../../../api/axiosInstance";
 import { FaTrashAlt } from "react-icons/fa";
+import { useQueryClient } from "@tanstack/react-query";
 
 const EditProductModal = ({ productId, productName, onCancel }) => {
+  const queryClient = useQueryClient();
   const fileInputRef = useRef();
   const { data: productData, isLoading, error } = useProductById(productId);
   const [imagePre, setImagePre] = useState(null);
@@ -21,6 +23,7 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     mainImage: null,
     secondaryImages: [],
     existingMainImage: "",
+    deletedImages:[],
   });
 
   useEffect(() => {
@@ -82,14 +85,22 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     } else if (type === "secondaryImages" && index !== null) {
       setFormData((prev) => {
         const updatedImages = [...prev.secondaryImages];
-        updatedImages.splice(index, 1);
-        return { ...prev, secondaryImages: updatedImages };
-      });
+        const [deletedImage] = updatedImages.splice(index, 1); // Extract the removed image
+      
+        return {
+          ...prev,
+          secondaryImages: updatedImages, // Update secondary images
+          deletedImages: prev.deletedImages
+            ? [...prev.deletedImages, deletedImage] // Append if it exists
+            : [deletedImage], // Initialize if undefined
+        };
+      });          
       setSecondaryImagePreviews((prev) => {
         const updatedPreviews = [...prev];
         updatedPreviews.splice(index, 1);
         return updatedPreviews;
       });
+      setDeletedImages('thisimagename')
     } else if (type === "Image") {
       setFormData((prev) => ({ ...prev, image: "" }));
       setImagePre(null);
@@ -125,8 +136,11 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("Product updated successfully:", response.data);
-      onCancel();
+      if(response.status===200){
+        queryClient.invalidateQueries(['allProduct']);
+        console.log("Product updated successfully:", response.data);
+        onCancel();
+      }
     } catch (error) {
       console.error("Failed to update product:", error);
     }

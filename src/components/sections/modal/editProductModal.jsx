@@ -109,6 +109,8 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
 
   const prepareFormData = () => {
     const data = new FormData();
+    
+    // Append simple fields
     data.append("service_name", formData.service_name);
     data.append("Image", formData.Image);
     data.append("aboutText", formData.aboutText);
@@ -116,17 +118,20 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     data.append("category", formData.category);
     data.append("featuresList", formData.featuresList);
     data.append("modernTitle", formData.modernTitle);
-
+  
+    // Append mainImage if provided
     if (formData.mainImage) {
       data.append("mainImage", formData.mainImage);
     }
-
-    formData.secondaryImages.forEach((file, index) => {
-      data.append(`secondaryImages[${index}]`, file);
+  
+    // Append secondaryImages under the same field name
+    formData.secondaryImages.forEach((file) => {
+      data.append("secondaryImages", file); // Use the same key for all files
     });
-
+  
     return data;
   };
+  
 
   const handleSave = async () => {
     const data = prepareFormData();

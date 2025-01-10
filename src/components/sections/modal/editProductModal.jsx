@@ -3,6 +3,7 @@ import { useProductById } from "../../../hooks/useapiHoooks";
 import api from "../../../api/axiosInstance";
 import { FaTrashAlt } from "react-icons/fa";
 import { useQueryClient } from "@tanstack/react-query";
+import { uploadToCloudinary } from "../../../utils/imageUpload";
 
 const EditProductModal = ({ productId, productName, onCancel }) => {
   const queryClient = useQueryClient();
@@ -11,6 +12,7 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
   const [imagePre, setImagePre] = useState(null);
   const [mainImagePre, setMainImagePre] = useState(null);
   const [secondaryImagePreviews, setSecondaryImagePreviews] = useState([]);
+  const[newSecondaryImage,setNewSecondaryImage]=useState([])
 
   const [formData, setFormData] = useState({
     service_name: "",
@@ -70,13 +72,23 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
 
   const handleAddSecondaryImages = (e) => {
     const files = Array.from(e.target.files);
-    const filePreviews = files.map((file) => URL.createObjectURL(file));
-    setFormData((prev) => ({
-      ...prev,
-      secondaryImages: [...prev.secondaryImages, ...files],
-    }));
+  
+    // Ensure that only valid files are processed (optional)
+    const validFiles = files.filter((file) => file.type.startsWith("image/"));
+  
+    if (validFiles.length === 0) {
+      alert("Please select valid image files.");
+      return;
+    }
+  
+    // Generate previews for the selected files
+    const filePreviews = validFiles.map((file) => URL.createObjectURL(file));
+  
+    // Update state with new files and previews
+    setNewSecondaryImage((prev) => [...prev, ...validFiles]);
     setSecondaryImagePreviews((prev) => [...prev, ...filePreviews]);
   };
+  
 
   const handleDeleteImage = (type, index = null) => {
     if (type === "mainImage") {
@@ -100,7 +112,6 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
         updatedPreviews.splice(index, 1);
         return updatedPreviews;
       });
-      setDeletedImages('thisimagename')
     } else if (type === "Image") {
       setFormData((prev) => ({ ...prev, image: "" }));
       setImagePre(null);
@@ -109,8 +120,6 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
 
   const prepareFormData = () => {
     const data = new FormData();
-    
-    // Append simple fields
     data.append("service_name", formData.service_name);
     data.append("Image", formData.Image);
     data.append("aboutText", formData.aboutText);
@@ -118,37 +127,38 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     data.append("category", formData.category);
     data.append("featuresList", formData.featuresList);
     data.append("modernTitle", formData.modernTitle);
-  
-    // Append mainImage if provided
+
     if (formData.mainImage) {
       data.append("mainImage", formData.mainImage);
     }
-  
-    // Append secondaryImages under the same field name
-    formData.secondaryImages.forEach((file) => {
-      data.append("secondaryImages", file); // Use the same key for all files
+
+    formData.secondaryImages.forEach((file, index) => {
+      data.append(`secondaryImages[${index}]`, file);
     });
-  
+
     return data;
   };
-  
 
   const handleSave = async () => {
+    const res=uploadToCloudinary(newSecondaryImage)
+    if(res.status===200){
     const data = prepareFormData();
-    try {
-      const response = await api.put(`/product/${productId}`, data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      if(response.status===200){
-        queryClient.invalidateQueries(['allProduct']);
-        console.log("Product updated successfully:", response.data);
-        onCancel();
-      }
-    } catch (error) {
-      console.error("Failed to update product:", error);
-    }
+    console.log(data,'data')
+    // try {
+    //   const response = await api.put(`/product/${productId}`, data, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    //     },
+    //   });
+    //   if(response.status===200){
+    //     queryClient.invalidateQueries(['allProduct']);
+    //     console.log("Product updated successfully:", response.data);
+    //     onCancel();
+    //   }
+    // } catch (error) {
+    //   console.error("Failed to update product:", error);
+    // }
+  }
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -284,6 +294,7 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
             type="file"
             name="secondaryImages"
             multiple
+            accept="image/*"
             onChange={handleAddSecondaryImages}
           />
         </label>

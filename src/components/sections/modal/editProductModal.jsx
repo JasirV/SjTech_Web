@@ -3,7 +3,7 @@ import { useProductById } from "../../../hooks/useapiHoooks";
 import api from "../../../api/axiosInstance";
 import { FaTrashAlt } from "react-icons/fa";
 import { useQueryClient } from "@tanstack/react-query";
-import { uploadToCloudinary } from "../../../utils/imageUpload";
+import axios from "axios";
 
 const EditProductModal = ({ productId, productName, onCancel }) => {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
   const [imagePre, setImagePre] = useState(null);
   const [mainImagePre, setMainImagePre] = useState(null);
   const [secondaryImagePreviews, setSecondaryImagePreviews] = useState([]);
-  const[newSecondaryImage,setNewSecondaryImage]=useState([])
+  const [newSecondaryImage, setNewSecondaryImage] = useState([]);
 
   const [formData, setFormData] = useState({
     service_name: "",
@@ -25,7 +25,6 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     mainImage: null,
     secondaryImages: [],
     existingMainImage: "",
-    deletedImages:[],
   });
 
   useEffect(() => {
@@ -39,7 +38,7 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
         featuresList: productData.featuresList || "",
         modernTitle: productData.modernTitle || "",
         existingMainImage: productData.mainImage || "",
-        secondaryImages: [],
+        secondaryImages: productData.secondaryImages || [],
       });
       setImagePre(productData.Image);
       setMainImagePre(productData.mainImage);
@@ -49,7 +48,7 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
 
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target;
-  
+
     if (type === "file" && files.length > 0) {
       const file = files[0];
       setFormData((prev) => ({ ...prev, [name]: file }));
@@ -60,7 +59,6 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
-  
 
   const handleMainImageChange = (e) => {
     const file = e.target.files[0];
@@ -70,50 +68,43 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     }
   };
 
-  const handleAddSecondaryImages = (e) => {
-    const files = Array.from(e.target.files);
-  
-    // Ensure that only valid files are processed (optional)
-    const validFiles = files.filter((file) => file.type.startsWith("image/"));
-  
-    if (validFiles.length === 0) {
-      alert("Please select valid image files.");
-      return;
-    }
-  
-    // Generate previews for the selected files
-    const filePreviews = validFiles.map((file) => URL.createObjectURL(file));
-  
-    // Update state with new files and previews
-    setNewSecondaryImage((prev) => [...prev, ...validFiles]);
-    setSecondaryImagePreviews((prev) => [...prev, ...filePreviews]);
-  };
-  
-
   const handleDeleteImage = (type, index = null) => {
     if (type === "mainImage") {
       setFormData((prev) => ({ ...prev, mainImage: null }));
       setMainImagePre(null);
-    } else if (type === "secondaryImages" && index !== null) {
-      setFormData((prev) => {
-        const updatedImages = [...prev.secondaryImages];
-        const [deletedImage] = updatedImages.splice(index, 1); // Extract the removed image
-      
-        return {
-          ...prev,
-          secondaryImages: updatedImages, // Update secondary images
-          deletedImages: prev.deletedImages
-            ? [...prev.deletedImages, deletedImage] // Append if it exists
-            : [deletedImage], // Initialize if undefined
-        };
-      });          
-      setSecondaryImagePreviews((prev) => {
-        const updatedPreviews = [...prev];
-        updatedPreviews.splice(index, 1);
-        return updatedPreviews;
-      });
+    } else if (type === "secondaryImages") {
+      if (index !== null) {
+        // If the image is a new image
+        if (newSecondaryImage[index]) {
+          setNewSecondaryImage((prev) => {
+            const updatedNewImages = [...prev];
+            updatedNewImages.splice(index, 1);
+            return updatedNewImages;
+          });
+          setSecondaryImagePreviews((prev) => {
+            const updatedPreviews = [...prev];
+            updatedPreviews.splice(index, 1);
+            return updatedPreviews;
+          });
+        } else {
+          // If the image is an old image
+          setFormData((prev) => {
+            const updatedImages = [...prev.secondaryImages];
+            updatedImages.splice(index, 1); // Remove the image
+            return {
+              ...prev,
+              secondaryImages: updatedImages,
+            };
+          });
+          setSecondaryImagePreviews((prev) => {
+            const updatedPreviews = [...prev];
+            updatedPreviews.splice(index, 1);
+            return updatedPreviews;
+          });
+        }
+      }
     } else if (type === "Image") {
-      setFormData((prev) => ({ ...prev, image: "" }));
+      setFormData((prev) => ({ ...prev, Image: "" }));
       setImagePre(null);
     }
   };
@@ -139,27 +130,70 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     return data;
   };
 
-  const handleSave = async () => {
-    const res=uploadToCloudinary(newSecondaryImage)
-    if(res.status===200){
-    const data = prepareFormData();
-    console.log(data,'data')
-    // try {
-    //   const response = await api.put(`/product/${productId}`, data, {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   });
-    //   if(response.status===200){
-    //     queryClient.invalidateQueries(['allProduct']);
-    //     console.log("Product updated successfully:", response.data);
-    //     onCancel();
-    //   }
-    // } catch (error) {
-    //   console.error("Failed to update product:", error);
-    // }
-  }
+  const handleAddSecondaryImages = (e) => {
+    const files = Array.from(e.target.files);
+    const filePreviews = files.map((file) => URL.createObjectURL(file));
+
+    setNewSecondaryImage((prev) => [...prev, ...files]);
+    setSecondaryImagePreviews((prev) => [...prev, ...filePreviews]);
   };
+
+  const handleFileUpload = async (files) => {
+    try {
+      const uploadedUrls = await Promise.all(
+        files.map(async (file) => {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("upload_preset", "secondaryImages");
+
+          const response = await axios.post(
+            `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_APP_CLOUDINARY_ID}/image/upload`,
+            formData
+          );
+
+          return response.data.secure_url;
+        })
+      );
+      return uploadedUrls;
+    } catch (error) {
+      console.error("Error uploading files:", error.response ? error.response.data : error.message);
+      throw error;
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      // Upload new secondary images
+      const uploadedUrls = await handleFileUpload(newSecondaryImage);
+      
+      // Update the form data with the uploaded URLs
+      setFormData((prev) => ({
+        ...prev,
+        secondaryImages: [...prev.secondaryImages, ...uploadedUrls], // Concatenate previous and new URLs
+      }));
+      console.log(JSON.stringify(formData.secondaryImages),uploadedUrls,'this')
+  
+      // Prepare the form data for submission
+      const data = prepareFormData();
+      console.log(data);
+  
+      // Send the PUT request to update the product
+      const response = await api.put(`/product/${productId}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      if (response.status === 200) {
+        queryClient.invalidateQueries(["allProduct"]);
+        console.log("Product updated successfully:", response.data);
+        onCancel(); // Close the modal
+      }
+    } catch (error) {
+      console.error("Failed to update product:", error);
+    }
+  };
+  
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -288,20 +322,23 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
           ))}
         </div>
 
-        <label>
-          Secondary Images:
-          <input
-            type="file"
-            name="secondaryImages"
-            multiple
-            accept="image/*"
-            onChange={handleAddSecondaryImages}
-          />
-        </label>
+        <label htmlFor="secondaryImages">Secondary Images:</label>
+        <input
+          id="secondaryImages"
+          type="file"
+          name="secondaryImages"
+          multiple
+          accept="image/*"
+          onChange={handleAddSecondaryImages}
+        />
 
         <div className="modal-actions">
-          <button className="save-btn" onClick={handleSave}>Save</button>
-          <button className="cancel-btn" onClick={onCancel}>Cancel</button>
+          <button className="save-btn" onClick={handleSave}>
+            Save
+          </button>
+          <button className="cancel-btn" onClick={onCancel}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>

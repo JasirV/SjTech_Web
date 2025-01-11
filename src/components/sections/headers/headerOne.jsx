@@ -41,8 +41,8 @@ const HeaderOne = () => {
                                 <Menus />
                             </ul>
                             <div className="header_one_info d-none d-xl-flex align-items-center">
-                                <i id="openButton" className="fa-solid fa-bars" onClick={() => setIsActiveSidebar(true)}>
-                                    <FaBars />
+                                <i  id="openButton" className="fa-solid fa-bar" onClick={() => setIsActiveSidebar(true)}>
+                                    <FaBars className='icounformenu' size={35} />
                                 </i>
                                 <Link to="contact" className="btn-one">
                                     <span>Get Consultation</span> <i><FaArrowRight /></i>

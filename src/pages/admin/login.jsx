@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-
+import api from "../../api/axiosInstance";
+import { useNavigate } from "react-router";
+const sitekey = import.meta.env.VITE_SITE_KEY;
 // Utility function to sanitize input
 const sanitizeInput = (input) => {
   return input.replace(/[^a-zA-Z0-9@._-]/g, ""); // Allow only safe characters
@@ -11,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const Navigatge=useNavigate()
 
   const handleCaptchaChange = (value) => {
     if (value) {
@@ -21,7 +24,7 @@ const Login = () => {
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async(e) => {
     e.preventDefault();
 
     // Sanitize inputs
@@ -39,8 +42,15 @@ const Login = () => {
     }
 
     setErrorMessage("");
-    console.log("Sanitized Data Submitted:", { sanitizedUsername, sanitizedPassword });
-    alert("Form submitted securely!");
+    const user= await api.post('/auth/',{userName:sanitizedUsername,password:sanitizedPassword})
+    console.log(user);
+    if(user.status===200){
+      console.log(user);
+      
+      localStorage.setItem('token', user.data.token);
+      Navigatge('/home')
+    }
+    
   };
 
   return (
@@ -75,7 +85,7 @@ const Login = () => {
           </div>
           <div className="form-group">
             <ReCAPTCHA
-              sitekey="6LcISpAqAAAAAAMzuztMu7oWkum46eURNRQ_Fgae" // Replace with your Google reCAPTCHA site key
+              sitekey={sitekey} // Replace with your Google reCAPTCHA site key
               onChange={handleCaptchaChange}
             />
           </div>

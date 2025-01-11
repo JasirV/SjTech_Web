@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -9,15 +9,17 @@ import {
 import AdminHome from "./adminHome";
 import ProductList from "./productList";
 import AddProduct from "./addProduct";
-
-
-
-
-
+import { useNavigate } from "react-router";
 
  const AdminDashboard = () => {
   const [currentComponent, setCurrentComponent] = useState("AdminHome");
-
+  const navigate=useNavigate()
+  useEffect(() => {
+    const token = localStorage.getItem("token"); // Check for token in localStorage
+    if (!token) {
+      navigate('/login') // Redirect to "Not Found" page if token is not present
+    }
+  }, [navigate]);
   const renderComponent = () => {
     switch (currentComponent) {
       case "AdminHome":

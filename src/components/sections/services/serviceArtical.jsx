@@ -7,7 +7,7 @@ const { mainImage,service_name,
     featuresList, 
     modernTitle, 
     secondaryImages,
-src}=product
+Image}=product
     
     return (
         <section className="service-single section-padding">
@@ -17,7 +17,7 @@ src}=product
         <div className="left-item">
           {/* Main Image */}
           <div className="image">
-            <img className="main-image" src={src} alt={service_name} />
+            <img className="main-image" src={Image} alt={service_name} />
           </div>
 
           {/* About Section */}

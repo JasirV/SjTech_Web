@@ -25,7 +25,6 @@ const ProjectsOne = ({ data }) => {
             prevEl: ".project-arry-prev",
         },
     }
-    console.log(data,'thisdata');
     
     return (
         <section className="project section-padding">

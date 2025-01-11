@@ -20,12 +20,12 @@ const ServiceTwo = () => {
                             <div className="left-item">
                                 <div className="accordion" id="accordionExample">
                                     {
-                                        serviceTwoData.map(({ id, service_details, service_name, src }) => {
+                                        serviceTwoData.map(({ id, service_details, service_name, Image }) => {
                                             return (
                                                 <div key={id} className="accordion-item">
                                                     <h2 className={`accordion-header ${id === "one" ? "pt-0" : ""}`} id={id}>
                                                         <button className={`accordion-button ${id === "one" ? "" : "collapsed"}`} type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${id}`} aria-expanded={`${id === "one" ? "true" : "false"}`} aria-controls={`collapse${id}`}>
-                                                            <i>{src}</i> {service_name}
+                                                            <i>{Image}</i> {service_name}
                                                         </button>
                                                     </h2>
                                                     <div id={`collapse${id}`} className={`accordion-collapse collapse ${id === "one" ? "show" : ""}`} aria-labelledby={id} data-bs-parent="#accordionExample">

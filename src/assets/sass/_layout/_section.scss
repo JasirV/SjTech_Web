@@ -4440,7 +4440,6 @@
 .product-list {
 	overflow: hidden;
 	padding: 60px 0;
-  
 	.product-item {
 	  padding: 30px;
 	  border: 1px solid var(--border);
@@ -4551,7 +4550,12 @@
   
 	// Small screen styles (Mobile-first)
 	@media (max-width: 767px) {
+		padding: 0px;
 	  .product-item {
+		padding: 2px;
+		justify-content: start;
+		gap: 20px;
+		height: auto;
 		width: 100%; /* One item per row on small screens */
 	  }
 	}
@@ -4615,7 +4619,7 @@ $success-color: #27ae60;
         outline: none;
         transition: all 0.3s ease;
         background: #fefefe;
-        width: 100%; /* Ensure inputs take full width */
+        width: 100%;
 
         &:focus {
           border-color: $focus-color;
@@ -4626,6 +4630,16 @@ $success-color: #27ae60;
       textarea {
         resize: vertical;
         min-height: 120px;
+      }
+
+      .form-feedback {
+        font-size: 0.9rem;
+        color: $error-color;
+        margin-top: 5px;
+
+        &.success {
+          color: $success-color;
+        }
       }
     }
 
@@ -4650,51 +4664,105 @@ $success-color: #27ae60;
         transform: translateY(0);
       }
     }
-
-    .form-feedback {
-      font-size: 0.9rem;
-      color: $error-color;
-      margin-top: 5px;
-
-      &.success {
-        color: $success-color;
-      }
-    }
   }
+
+  .image-preview {
+	position: relative;
+	display: inline-block;
+  
+	.preview-img {
+	  width: 100px;  // Adjust as needed
+	  height: 100px; // Adjust as needed
+	}
+  
+	.delete-btn {
+	  position: absolute;
+	  transform: translate(-50%, -50%);
+	  background: rgba(255, 255, 255, 0.6); // Optional: Adds a semi-transparent background
+	  border: none;
+	  padding: 8px;
+	  border-radius: 50%;
+	  cursor: pointer;
+	  transition: background 0.3s;
+  
+	  &:hover {
+		background: rgba(255, 255, 255, 0.9); // Optional: Hover effect
+	  }
+  
+	  svg {
+		font-size: 20px;  // Adjust size of the icon
+		color: #000;  // Adjust color of the icon
+	  }
+	}
+  }
+ 
+  .preview-section {
+	display: flex;
+	overflow-x: auto; // Allows for multiple images to wrap onto new lines
+	gap: 16px;  // Adds spacing between the images
+  }
+  
+  .image-preview-item {
+	position: relative;
+	width: 150px;  // Adjust as needed
+	height: 150px; // Adjust as needed
+	display: inline-block;
+	overflow: hidden;
+	border-radius: 8px; // Optional: Rounds the corners of the images
+  
+	.preview-img {
+	  width: 100%;
+	  height: 100%;
+	  object-fit: cover;  // Ensures the image covers the container
+	}
+  
+	.delete-btn {
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  background: rgba(255, 255, 255, 0.7);
+	  border: none;
+	  padding: 8px;
+	  border-radius: 50%;
+	  cursor: pointer;
+	  transition: background 0.3s;
+  
+	  &:hover {
+		background: rgba(255, 255, 255, 0.9);
+	  }
+  
+	  svg {
+		font-size: 18px;  // Adjust size of the icon
+		color: #000;  // Adjust color of the icon
+	  }
+	}
+  }
+  
 
   // Responsive styles
   @media (max-width: 768px) {
-    padding: 0 0; /* Reduce padding for smaller screens */
-	
     .container {
-      width: 100%; /* Ensure the container takes full width */
-      border-radius: 0; /* Remove rounded corners for a cleaner mobile look */
+      width: 100%;
+      border-radius: 0;
       padding: 20px;
     }
 
-    .form {
-      gap: 18px;
-    }
-
-    .form-group {
-      input, textarea, select {
-        font-size: 0.95rem;
-        width: 100%; /* Full-width form inputs */
-      }
-    }
-
-    .btn-submit {
-      font-size: 1rem;
-      width: 100%; /* Full-width submit button */
-      text-align: center;
-    }
-  }
-
-  @media (max-width: 480px) {
     .title {
       font-size: 2rem;
     }
 
+    .form-group input, .form-group textarea {
+      font-size: 0.95rem;
+    }
+
+    .btn-submit {
+      font-size: 1rem;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
     .container {
       padding: 15px;
     }
@@ -4702,5 +4770,288 @@ $success-color: #27ae60;
     .form-group label {
       font-size: 1rem;
     }
+
+    .title {
+      font-size: 1.8rem;
+    }
   }
 }
+
+
+
+// modal 
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px; /* Limit the max width */
+    box-sizing: border-box; /* Ensures padding does not overflow */
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column; /* Stack the buttons vertically on smaller screens */
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.confirm-btn,
+.cancel-btn {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 0; /* Add space between buttons */
+    width: 100%; /* Make buttons full-width on small screens */
+}
+
+.confirm-btn {
+    background-color: #f44336; /* Red */
+}
+
+.cancel-btn {
+    background-color: #2196f3; /* Blue */
+}
+
+.confirm-btn:hover, .cancel-btn:hover {
+    opacity: 0.8;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 80%; /* Make modal take up 80% of screen width on smaller screens */
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .confirm-btn,
+    .cancel-btn {
+        width: 100%; /* Make buttons full-width */
+        padding: 12px 20px; /* Adjust button padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+		margin-left: 80px;
+        width: 70%; /* Make modal take up 90% of screen width on very small screens */
+        padding: 10px; /* Adjust padding for very small screens */
+    }
+
+    .confirm-btn,
+    .cancel-btn {
+        padding: 12px 16px; /* Adjust button padding for smaller screens */
+    }
+}
+
+
+///modal for the editmodal
+
+
+.edit-product-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+	overflow: auto; /* Allow scrolling if the modal content overflows */
+  
+	.modal-content {
+	  background: #fff;
+	  padding: 20px;
+	  border-radius: 8px;
+	  width: 90%;
+	  max-width: 500px;
+	  max-height: 90vh; /* Prevent the modal from exceeding the screen height */
+	  overflow-y: auto; /* Enable scrolling inside the modal if content is too tall */
+	  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	  animation: fadeIn 0.3s ease-in-out;
+  
+	  h2 {
+		margin-top: 0; /* Ensure the heading starts at the very top */
+		margin-bottom: 16px;
+		font-size: 20px;
+		text-align: center;
+		color: #333;
+	  }
+  
+	  label {
+		display: block;
+		margin-bottom: 12px;
+  
+		span {
+		  font-size: 14px;
+		  font-weight: bold;
+		  display: block;
+		  margin-bottom: 4px;
+		  color: #555;
+		}
+  
+		input,
+		textarea {
+		  width: 100%;
+		  padding: 10px;
+		  margin-top: 4px;
+		  border: 1px solid #ddd;
+		  border-radius: 4px;
+		  font-size: 14px;
+		  transition: border-color 0.2s;
+  
+		  &:focus {
+			border-color: #4caf50;
+			outline: none;
+		  }
+		}
+  
+		textarea {
+		  resize: vertical;
+		  height: 100px;
+		}
+	  }
+  
+	  .modal-actions {
+		display: flex;
+		justify-content: space-between;
+		gap: 12px;
+		margin-top: 20px;
+  
+		.save-btn {
+		  background-color: var(--primary-color);
+		  color: #fff;
+		  padding: 10px 16px;
+		  border: none;
+		  border-radius: 4px;
+		  font-size: 14px;
+		  font-weight: bold;
+		  cursor: pointer;
+		  transition: background-color 0.2s;
+  
+		  &:hover {
+			background-color: #45a049;
+		  }
+		}
+  
+		.cancel-btn {
+		  background-color: #e0dada;
+		  color: black;
+		  padding: 10px 16px;
+		  border: none;
+		  border-radius: 4px;
+		  font-size: 14px;
+		  font-weight: bold;
+		  cursor: pointer;
+		  transition: background-color 0.2s;
+  
+		  &:hover {
+			background-color: #e53935;
+			color: white;
+		  }
+		}
+	  }
+  
+	  .image-preview {
+		position: relative;
+		margin-bottom: 16px;
+  
+		.preview-img {
+		  width: 100%;
+		  height: auto;
+		  border-radius: 4px;
+		  border: 1px solid #ddd;
+		}
+  
+		.delete-btn {
+		  position: absolute;
+		  top: 4px;
+		  right: 4px;
+		  background: #f44336;
+		  color: #fff;
+		  border: none;
+		  border-radius: 50%;
+		  padding: 4px;
+		  cursor: pointer;
+		  font-size: 12px;
+  
+		  &:hover {
+			background: #e53935;
+		  }
+		}
+	  }
+  
+	  .preview-section {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+  
+		.image-preview-item {
+		  position: relative;
+		  width: calc(33.33% - 8px);
+		  margin-bottom: 12px;
+  
+		  .preview-img {
+			width: 100%;
+			height: auto;
+			border-radius: 4px;
+			border: 1px solid #ddd;
+		  }
+  
+		  .delete-btn {
+			position: absolute;
+			top: 4px;
+			right: 4px;
+			background: #f44336;
+			color: #fff;
+			border: none;
+			border-radius: 50%;
+			padding: 4px;
+			cursor: pointer;
+			font-size: 12px;
+  
+			&:hover {
+			  background: #e53935;
+			}
+		  }
+		}
+	  }
+	  
+	}
+  
+	@keyframes fadeIn {
+	  from {
+		opacity: 0;
+		transform: scale(0.9);
+	  }
+	  to {
+		opacity: 1;
+		transform: scale(1);
+	  }
+	}
+  }
+  

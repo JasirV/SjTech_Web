@@ -1,16 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa6'
-import { productAllData } from '../../../utils/fackData/productallData'
 import SlideUp from '../../../utils/animations/slideUp'
+import { useProduct } from '../../../hooks/useapiHoooks'
 
 const ProductAllCard = () => {
+    const {data:productAllData,isLoading}=useProduct()
     return (
         <section className="page-service section-padding">
             <div className="container">
                 <div className="row g-4">
                     {
-                        productAllData.map(({id, service_name, src}) => <Card key={id} id={id} src={src} service_name={service_name}/>)
+                        productAllData?.map(({_id, service_name, Image}) => <Card key={_id} id={_id} src={Image} service_name={service_name}/>)
                     }
                 </div>
             </div>

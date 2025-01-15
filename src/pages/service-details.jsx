@@ -6,15 +6,18 @@ import DetailsBanner from '../components/sections/detailsBanner';
 import { productAllData } from '../utils/fackData/productallData';
 import PdfViewer from '../components/sections/products/pdfView';
 import { useProductById } from '../hooks/useapiHoooks';
+import SkeletonServiceArtical from '../components/ui/skeletons/SkeletonServiceArtical';
 
 const ServiceDetails = () => {
   const { id } = useParams(); // Fetching id from URL parameters
   const numericId = parseInt(id, 10);
   const { data: product, isLoading, error } = useProductById(id);
-  if (!product) {
-    return <div>Product not found!</div>; // Handle cases where the product is not found
+  // if (!product) {
+  //   return <div>Product not found!</div>; // Handle cases where the product is not found
+  // }
+  if(isLoading){
+    return (<SkeletonServiceArtical/>)
   }
-
   return (
     <main>
       {/* Example banner component */}
@@ -24,7 +27,7 @@ const ServiceDetails = () => {
         breadcrumbTitle={product.service_name}
       /> */}
       {/* Details banner with product info */}
-      <DetailsBanner image={product.mainImage} title={product.service_name} />
+      <DetailsBanner image={product?.mainImage} title={product?.service_name} />
       {/* Article section with product details */}
       <ServiceArtical product={product} />
       {/* <PdfViewer /> */}

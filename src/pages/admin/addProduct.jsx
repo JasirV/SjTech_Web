@@ -7,8 +7,11 @@ import { useQueryClient } from "@tanstack/react-query";
 const AddProduct = () => {
   const queryClient = useQueryClient();
   const [ImagePre, setImagePre] = useState();
-  const [mainImagePre,setMainImagePre]=useState()
+  const [mainImagePre, setMainImagePre] = useState();
   const [secondaryImagePreviews, setSecondaryImagePreviews] = useState([]);
+  const [file,setFile]=useState(null)
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     service_name: "",
     Image: null,
@@ -40,7 +43,6 @@ const AddProduct = () => {
     if (!formData.aboutText) newErrors.aboutText = "About text is required.";
     if (!formData.additionalText)
       newErrors.additionalText = "Additional text is required.";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -52,7 +54,7 @@ const AddProduct = () => {
       setImagePre(URL.createObjectURL(files[0]));
     } else if (name === "mainImage") {
       setFormData((prevData) => ({ ...prevData, mainImage: files[0] }));
-      setMainImagePre(URL.createObjectURL(files[0]))
+      setMainImagePre(URL.createObjectURL(files[0]));
     } else if (name === "secondaryImages") {
       const filesArray = Array.from(files);
       setFormData((prevData) => ({
@@ -67,54 +69,95 @@ const AddProduct = () => {
     } else {
       setFormData((prevData) => ({
         ...prevData,
-        [name]: validator.escape(value.trim()),
+        [name]: validator.escape(value),
       }));
+    }
+  };
+  const handleFileChange = (e) => {
+    if (e.target.files.length > 0) {
+      setFile(e.target.files[0]);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Validate inputs before proceeding
     if (!validateInputs()) return;
+  
+    // Upload the file first
+    let uploadedPdfUrl = null;
+    if (file) {
+      const uploadFormData = new FormData();
+      uploadFormData.append("file", file);
+  
+      try {
+        setIsLoading(true);
+        const uploadResponse = await api.post("/product/upload", uploadFormData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+  
+        // Extract the uploaded PDF URL from the response
+        uploadedPdfUrl = uploadResponse.data.driveFile.webViewLink;
+      } catch (error) {
+        setIsLoading(false);
+        console.error("Error uploading PDF:", error.response?.data || error.message);
+        setMessage("Failed to upload PDF. Please try again.");
+        return;
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  
+    // Prepare the data for the product creation API
     const formDataToSend = new FormData();
     formDataToSend.append("service_name", formData.service_name);
-    formDataToSend.append("Image", formData.Image); // Change to Image
+    formDataToSend.append("Image", formData.Image);
     formDataToSend.append("aboutText", formData.aboutText);
     formDataToSend.append("additionalText", formData.additionalText);
     formDataToSend.append(
       "featuresList",
       formData.featuresList.split(",").map((item) => item.trim())
-    ); // Convert to array
+    );
     formDataToSend.append("Category", formData.Category);
     formDataToSend.append("modernTitle", formData.modernTitle);
     formDataToSend.append("mainImage", formData.mainImage);
-
+  
+    // Add secondary images
     formData.secondaryImages.forEach((image) => {
       formDataToSend.append("secondaryImages", image);
     });
+  
+    // Add the uploaded PDF URL (if available)
+    if (uploadedPdfUrl) {
+      formDataToSend.append("pdf", uploadedPdfUrl);
+    }
+  
+    // Call the product creation API
     try {
       const response = await api.post("/product/", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      if(response.status===201){
-        queryClient.invalidateQueries(['allProduct']);
+  
+      if (response.status === 201) {
+        queryClient.invalidateQueries(["allProduct"]);
+        setMessage("Product added successfully!");
         console.log("Product added successfully:", response.data);
       }
     } catch (error) {
-      console.error(
-        "Error adding product:",
-        error.response?.data || error.message
-      );
+      console.error("Error adding product:", error.response?.data || error.message);
+      setMessage("Failed to add product. Please try again.");
     }
   };
+  
   const handleDeleteImage = (type, index) => {
     if (type === "Image") {
       setFormData((prevData) => ({ ...prevData, Image: null }));
       setImagePre(null);
-    }else if(type ==="mainImage"){
-      setFormData((prevData)=>({...prevData,mainImage:null}));
-      setImagePre(null)
-    } 
-    else if (type === "secondaryImages") {
+    } else if (type === "mainImage") {
+      setFormData((prevData) => ({ ...prevData, mainImage: null }));
+      setImagePre(null);
+    } else if (type === "secondaryImages") {
       setSecondaryImagePreviews((prevPreviews) =>
         prevPreviews.filter((_, i) => i !== index)
       );
@@ -299,6 +342,16 @@ const AddProduct = () => {
             {errors.secondaryImages && (
               <div className="form-feedback">{errors.secondaryImages}</div>
             )}
+          </div>
+          <div className="form-group">
+            <input
+              type="file"
+              id="pdf"
+              name="pdf"
+              multiple
+              onChange={handleFileChange}
+              style={{ marginBottom: "10px" }}
+            />
           </div>
 
           <div className="form-group">

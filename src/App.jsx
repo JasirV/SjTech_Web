@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { RouterProvider } from 'react-router';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { router } from './route/router';
 import api from './api/axiosInstance';
 
@@ -13,6 +13,7 @@ const App = () => {
       try {
         const response = await api.get('/fake'); // Your API endpoint
       } catch (error) {
+        toast.error("Error fetching data")
         console.error("Error fetching data:", error);
       }
     };

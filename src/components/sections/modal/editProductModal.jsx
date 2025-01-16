@@ -4,6 +4,7 @@ import api from "../../../api/axiosInstance";
 import { FaTrashAlt } from "react-icons/fa";
 import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const EditProductModal = ({ productId, productName, onCancel }) => {
   const queryClient = useQueryClient();
@@ -156,6 +157,7 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
       );
       return uploadedUrls;
     } catch (error) {
+      toast.error("Error Uploading Files")
       console.error("Error uploading files:", error.response ? error.response.data : error.message);
       throw error;
     }
@@ -171,11 +173,9 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
         ...prev,
         secondaryImages: [...prev.secondaryImages, ...uploadedUrls], // Concatenate previous and new URLs
       }));
-      console.log(JSON.stringify(formData.secondaryImages),uploadedUrls,'this')
   
       // Prepare the form data for submission
       const data = prepareFormData();
-      console.log(data);
   
       // Send the PUT request to update the product
       const response = await api.put(`/product/${productId}`, data, {
@@ -186,10 +186,12 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
   
       if (response.status === 200) {
         queryClient.invalidateQueries(["allProduct"]);
+        toast.success("Product updated successfully")
         console.log("Product updated successfully:", response.data);
         onCancel(); // Close the modal
       }
     } catch (error) {
+      toast.error('Failed to update product')
       console.error("Failed to update product:", error);
     }
   };

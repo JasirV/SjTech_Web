@@ -4,6 +4,7 @@ import api from "../../api/axiosInstance";
 import { FaTrashAlt } from "react-icons/fa";
 import { useQueryClient } from "@tanstack/react-query";
 import Preloader from "../../components/ui/preloader";
+import toast from "react-hot-toast";
 
 const AddProduct = () => {
   const queryClient = useQueryClient();
@@ -112,6 +113,7 @@ const AddProduct = () => {
         uploadedPdfUrl = uploadResponse.data.driveFile.webViewLink;
       } catch (error) {
         setIsLoading(false);
+        toast.error("Error uploading PDF")
         console.error("Error uploading PDF:", error.response?.data || error.message);
         setMessage("Failed to upload PDF. Please try again.");
         return;
@@ -155,6 +157,7 @@ const AddProduct = () => {
         queryClient.invalidateQueries(["allProduct"]);
         setIsLoading(false)
         setMessage("Product added successfully!");
+        toast.success("Product added syccessfully")
         console.log("Product added successfully:", response.data);
         setFormData(defaultFormData);
       }
@@ -162,6 +165,7 @@ const AddProduct = () => {
       setIsLoading(false)
       console.error("Error adding product:", error.response?.data || error.message);
       setMessage("Failed to add product. Please try again.");
+      toast.error('Faild to add product. Please try again.')
     }
   };
   

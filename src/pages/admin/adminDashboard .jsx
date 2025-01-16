@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   CDBSidebar,
   CDBSidebarContent,
+  CDBSidebarFooter,
   CDBSidebarHeader,
   CDBSidebarMenu,
   CDBSidebarMenuItem,
@@ -15,9 +16,9 @@ import { useNavigate } from "react-router";
   const [currentComponent, setCurrentComponent] = useState("AdminHome");
   const navigate=useNavigate()
   useEffect(() => {
-    const token = localStorage.getItem("token"); // Check for token in localStorage
+    const token = localStorage.getItem("token"); 
     if (!token) {
-      navigate('/login') // Redirect to "Not Found" page if token is not present
+      navigate('/login') 
     }
   }, [navigate]);
   const renderComponent = () => {
@@ -32,6 +33,10 @@ import { useNavigate } from "react-router";
         return <AdminHome />;
     }
   };
+  const handleLogout=()=>{
+    localStorage.clear()
+    navigate('/')
+  }
 
   return (
     <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
@@ -53,9 +58,11 @@ import { useNavigate } from "react-router";
             </div>
           </CDBSidebarMenu>
         </CDBSidebarContent>
-        {/* <CDBSidebarFooter style={{ textAlign: "center" }}>
-        <CDBSidebarMenuItem icon="exit">Log Out</CDBSidebarMenuItem>
-        </CDBSidebarFooter> */}
+        <CDBSidebarFooter >
+        <div onClick={handleLogout}>
+                <CDBSidebarMenuItem icon="fa-sign-out"><p style={{ color: "white" }}>Logout</p></CDBSidebarMenuItem>
+              </div>
+        </CDBSidebarFooter>
       </CDBSidebar>
 
       {/* Dynamic Content */}

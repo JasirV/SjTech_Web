@@ -3,6 +3,7 @@ import validator from "validator";
 import api from "../../api/axiosInstance";
 import { FaTrashAlt } from "react-icons/fa";
 import { useQueryClient } from "@tanstack/react-query";
+import Preloader from "../../components/ui/preloader";
 
 const AddProduct = () => {
   const queryClient = useQueryClient();
@@ -12,6 +13,17 @@ const AddProduct = () => {
   const [file,setFile]=useState(null)
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const defaultFormData={
+    service_name: "",
+    Image: null,
+    mainImage: null,
+    aboutText: "",
+    additionalText: "",
+    featuresList: "",
+    Category: "",
+    modernTitle: "",
+    secondaryImages: [],
+  }
   const [formData, setFormData] = useState({
     service_name: "",
     Image: null,
@@ -84,7 +96,6 @@ const AddProduct = () => {
   
     // Validate inputs before proceeding
     if (!validateInputs()) return;
-  
     // Upload the file first
     let uploadedPdfUrl = null;
     if (file) {
@@ -135,16 +146,20 @@ const AddProduct = () => {
   
     // Call the product creation API
     try {
+      setIsLoading(true)
       const response = await api.post("/product/", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
   
       if (response.status === 201) {
         queryClient.invalidateQueries(["allProduct"]);
+        setIsLoading(false)
         setMessage("Product added successfully!");
         console.log("Product added successfully:", response.data);
+        setFormData(defaultFormData);
       }
     } catch (error) {
+      setIsLoading(false)
       console.error("Error adding product:", error.response?.data || error.message);
       setMessage("Failed to add product. Please try again.");
     }
@@ -167,10 +182,10 @@ const AddProduct = () => {
       }));
     }
   };
-
   return (
     <div className="add-product">
       <div className="container">
+        {isLoading&&<Preloader/>}
         <h2 className="title">Add Product</h2>
         <form onSubmit={handleSubmit} className="form">
           <div className="form-group">

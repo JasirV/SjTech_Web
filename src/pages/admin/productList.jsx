@@ -7,10 +7,13 @@ import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import DeleteConfirmationModal from '../../components/sections/modal/deleteModal';
 import EditProductModal from '../../components/sections/modal/editProductModal'; // Import the new edit modal
 import { useDeleteProduct, useProduct } from '../../hooks/useapiHoooks';
+import SkeletonServiceTradingProducts from '../../components/ui/skeletons/serviceTradingProducts';
 
 const ProductList = () => {
-    const { data: productAllData } = useProduct();
-
+    const { data: productAllData,isLoading } = useProduct();
+    if(isLoading){
+        return (<SkeletonServiceTradingProducts/>)
+    }
     return (
         <section className="product-list section-padding">
             <div className="container">
@@ -51,7 +54,7 @@ const ProductCard = ({ id, src, product_name }) => {
     };
 
     const handleEditClick = () => {
-        setShowEditModal(true); // Open the edit modal
+        setShowEditModal(true); 
     };
     return (
         <SlideUp delay={id} className="col-xl-4 col-lg-6">

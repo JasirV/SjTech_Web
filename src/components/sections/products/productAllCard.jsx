@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa6'
 import SlideUp from '../../../utils/animations/slideUp'
 import { useProduct } from '../../../hooks/useapiHoooks'
+import SkeletonServiceTradingProducts from '../../ui/skeletons/serviceTradingProducts'
 
 const ProductAllCard = () => {
     const {data:productAllData,isLoading}=useProduct()
+    if(isLoading){
+        return(<SkeletonServiceTradingProducts/>)
+    }
     return (
         <section className="page-service section-padding">
             <div className="container">

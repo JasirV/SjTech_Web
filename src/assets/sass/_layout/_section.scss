@@ -140,13 +140,61 @@
                     cursor: pointer;
 
                     &:hover {
-                        color:var(--primary-color);
+                        color: var(--primary-color);
                     }
                 }
             }
         }
     }
 
+    // Skeleton Loader Styles
+    .skeleton {
+        background-color: #f0f0f0;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+
+        .skeleton-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            animation: pulse 1.5s infinite ease-in-out;
+
+            .skeleton-dot {
+                width: 10px;
+                height: 10px;
+                background-color: #ccc;
+                border-radius: 50%;
+                animation: pulse 1.5s infinite ease-in-out;
+            }
+
+            .skeleton-text {
+                width: 100px;
+                height: 14px;
+                background-color: #ccc;
+                border-radius: 4px;
+                animation: pulse 1.5s infinite ease-in-out;
+            }
+        }
+    }
+
+    // Pulse animation for skeleton loader
+    @keyframes pulse {
+        0% {
+            background-color: #e0e0e0;
+        }
+        50% {
+            background-color: #f0f0f0;
+        }
+        100% {
+            background-color: #e0e0e0;
+        }
+    }
+
+    // Responsive design for skeleton loader
     @media (max-width: 1200px) {
         .content-item {
             flex: 1 1 calc(30% - 20px);
@@ -834,6 +882,48 @@
 .page-service {
   overflow: hidden;
   padding: 60px 0;
+  .skeleton {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    animation: skeleton-loading 1.5s infinite;
+
+    &-title {
+        width: 60%;
+        height: 20px;
+        margin: 10px 0;
+    }
+
+    &-image {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+    }
+
+    &-button {
+        width: 40%;
+        height: 20px;
+        margin-top: 10px;
+    }
+
+    &-item {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fff;
+    }
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: #e0e0e0;
+    }
+    50% {
+        background-color: #f0f0f0;
+    }
+    100% {
+        background-color: #e0e0e0;
+    }
+}
 
   .item {
     padding: 30px;
@@ -1123,7 +1213,139 @@
 		}
 	}
 }
-
+.service-single {
+	.skeleton {
+		background-color: #e0e0e0;
+		border-radius: 4px;
+		animation: skeleton-loading 1.5s infinite;
+	
+		&.skeleton-main-image {
+		  width: 100%;
+		  height: 300px;
+		  margin-bottom: 20px;
+		}
+	
+		&.skeleton-title {
+		  width: 60%;
+		  height: 20px;
+		  margin: 10px 0;
+		}
+	
+		&.skeleton-text {
+		  width: 100%;
+		  height: 16px;
+		  margin: 8px 0;
+		}
+	
+		&.skeleton-list {
+		  padding: 0;
+		  margin: 20px 0;
+	
+		  .skeleton-list-item {
+			width: 80%;
+			height: 16px;
+			margin: 8px 0;
+		  }
+		}
+	
+		&.skeleton-secondary-image {
+		  width: 100%;
+		  height: 150px;
+		}
+	
+		&.skeleton-pdf-download {
+		  width: 50px;
+		  height: 50px;
+		  margin: 20px 0;
+		}
+	
+		&.skeleton-sidebar {
+		  width: 100%;
+		  height: 300px;
+		}
+	  }
+	.left-item {
+	  .pdf-download-container {
+		display: flex;
+		justify-content: start; /* Centers the container */
+		align-items: center; /* Centers the content vertically */
+		height: auto; /* Adjusts to content height */
+		padding: 20px; /* Padding for spacing */
+	  }
+	
+	  .pdf-download-link {
+		display: inline-block;
+		text-decoration: none; /* Removes the underline from the link */
+		border: 2px solid #ccc; /* Border around the image */
+		border-radius: 8px; /* Rounded corners */
+		padding: 10px; /* Padding around the image */
+		background-color: #f9f9f9; /* Light background */
+		transition: background-color 0.3s, transform 0.3s; /* Smooth transitions for hover effect */
+	
+		&:hover {
+		  background-color: #f1f1f1; /* Change background on hover */
+		  transform: scale(1.05); /* Slight zoom effect on hover */
+		}
+	  }
+	
+	  .pdf-download-image {
+		width: 40px; /* Set a fixed width for the image */
+		height: 40px; /* Set a fixed height for the image */
+		object-fit: contain; /* Ensures the image is contained within the specified width and height */
+	  }
+	}
+	
+	// Responsive styles
+	@media (max-width: 768px) {
+	  .service-single {
+		.left-item {
+		  .pdf-download-container {
+			padding: 10px; /* Adjust padding for smaller screens */
+		  }
+  
+		  .pdf-download-link {
+			padding: 8px; /* Smaller padding on mobile */
+		  }
+  
+		  .pdf-download-image {
+			width: 60px; /* Smaller image size for mobile */
+			height: 60px; /* Smaller image size for mobile */
+		  }
+		}
+	  }
+	}
+  
+	@media (max-width: 480px) {
+	  .service-single {
+		.left-item {
+		  .pdf-download-container {
+			padding: 10px; /* Further reduce padding for small devices */
+		  }
+  
+		  .pdf-download-link {
+			padding: 6px; /* Smaller padding on very small screens */
+		  }
+  
+		  .pdf-download-image {
+			width: 50px; /* Further reduce image size for very small devices */
+			height: 50px; /* Further reduce image size for very small devices */
+		  }
+		}
+	  }
+	}
+	@keyframes skeleton-loading {
+		0% {
+		  background-color: #e0e0e0;
+		}
+		50% {
+		  background-color: #f0f0f0;
+		}
+		100% {
+		  background-color: #e0e0e0;
+		}
+		}
+  }
+  
 // Service area end here ***
 
 //servicetrading section statrt***
@@ -4612,14 +4834,16 @@ $success-color: #27ae60;
       }
 
       input, textarea, select {
-        padding: 14px;
-        font-size: 1rem;
-        border: 1px solid $border-color;
-        border-radius: 8px;
-        outline: none;
-        transition: all 0.3s ease;
-        background: #fefefe;
-        width: 100%;
+		padding: 14px;
+		font-size: 1rem;
+		border: 1px solid $border-color;
+		border-radius: 8px;
+		outline: none;
+		transition: all 0.3s ease;
+		background: #fefefe;
+		width: 100%;
+		white-space: pre-wrap; 
+		overflow-wrap: break-word; 
 
         &:focus {
           border-color: $focus-color;

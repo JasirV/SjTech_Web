@@ -4,11 +4,15 @@ import { FaArrowRight } from 'react-icons/fa6';
 import { productAllData } from '../../../utils/fackData/productallData';
 import SlideUp from '../../../utils/animations/slideUp';
 import { useCategoryProduct } from '../../../hooks/useapiHoooks';
+import SkeletonServiceTradingProducts from '../../ui/skeletons/serviceTradingProducts';
 
 const ServiceTradingProducts = () => {
     // Filter products with the "trading" category
-    const {data:tradingProducts}=useCategoryProduct('trading')
+    const {data:tradingProducts,isLoading}=useCategoryProduct('trading')
     
+    if(isLoading){
+        return (<SkeletonServiceTradingProducts/>)
+    }
 
     return (
         <section className="page-service section-padding page-tradingProdict">

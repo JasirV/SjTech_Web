@@ -12,7 +12,6 @@ const App = () => {
     const fetchData = async () => {
       try {
         const response = await api.get('/fake'); // Your API endpoint
-        console.log(response.data); // Process the response data
       } catch (error) {
         console.error("Error fetching data:", error);
       }

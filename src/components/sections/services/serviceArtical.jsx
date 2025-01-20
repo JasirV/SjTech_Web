@@ -57,6 +57,7 @@ const ServiceArtical = ({ product }) => {
                   </div>
                 ))}
               </div>
+              {pdf&&(
               <div className="pdf-download-container">
                 <a
                   href={pdf}
@@ -71,6 +72,7 @@ const ServiceArtical = ({ product }) => {
                   />
                 </a>
               </div>
+              )}
             </div>
           </div>
 

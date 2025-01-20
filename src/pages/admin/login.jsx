@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import api from "../../api/axiosInstance";
 import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 const sitekey = import.meta.env.VITE_SITE_KEY;
 // Utility function to sanitize input
 const sanitizeInput = (input) => {
@@ -43,13 +44,12 @@ const Login = () => {
 
     setErrorMessage("");
     const user= await api.post('/auth/',{userName:sanitizedUsername,password:sanitizedPassword})
-    console.log(user);
     if(user.status===200){
-      console.log(user);
-      
+      toast.success("Login successfully")
       localStorage.setItem('token', user.data.token);
       Navigatge('/home')
     }
+    toast.error(user?.message)
     
   };
 

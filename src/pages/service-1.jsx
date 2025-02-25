@@ -17,7 +17,7 @@ const ServiceOne = () => {
     ];
     return (
         <>
-        <Helmet>
+        <Helmet> 
         <title>Fabrication & Installation | SJ TECH</title>
         <meta
           name="description"

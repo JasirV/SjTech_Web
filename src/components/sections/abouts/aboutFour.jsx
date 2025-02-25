@@ -19,18 +19,18 @@ const AboutFour = () => {
   return (
     <section className="page-about section-padding">
       <div className="shape1 d-none d-lg-block float-bob-y">
-        <img src="/images/shape/shaper1.png" alt="img" />
+        <img src="/images/shape/shaper1.png" alt="about" />
       </div>
       <div className="shape2 d-none d-lg-block float-bob-y">
-        <img src="/images/shape/shapel2.png" alt="img" />
+        <img src="/images/shape/shapel2.png" alt="sjtech" />
       </div>
       <div className="container">
         <div className="row g-4">
           <div className="col-lg-6">
             <div className="image">
-              <img src="https://www.indigoqatar.com/wp-content/uploads/2022/05/event01.jpg" alt="image" />
+              <img src="https://www.indigoqatar.com/wp-content/uploads/2022/05/event01.jpg" alt="SJ Tech Trading Contracting" />
               <div className="sm-image d-none d-sm-block">
-                <img src="https://images.squarespace-cdn.com/content/v1/5728c47b59827e6e7a16aa8a/1469921997183-1XPCZHGRLGBUJQO6RVTW/image-asset.jpeg?format=1500w" alt="image" />
+                <img src="https://images.squarespace-cdn.com/content/v1/5728c47b59827e6e7a16aa8a/1469921997183-1XPCZHGRLGBUJQO6RVTW/image-asset.jpeg?format=1500w" alt="SJ Tech Trading Contracting" />
               </div>
               <div className="video-btn-wrp d-none d-sm-block"></div>
               <div className="stroke-text d-none d-sm-block">

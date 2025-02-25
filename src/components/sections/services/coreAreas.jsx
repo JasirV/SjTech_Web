@@ -3,9 +3,11 @@ import { FaCogs, FaIndustry } from 'react-icons/fa';
 import CoreAreasCarousel from '../abouts/coreAreaCasrol';
 import StyledCarousel from '../../ui/styledCarousel';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 
 const CoreAreas = () => {
+
   const coreAreas = [
     {
       title: "Trading",
@@ -26,6 +28,14 @@ const CoreAreas = () => {
   ];
 
   return (
+    <>
+    <Helmet>
+    <title>SJ TECH | Innovative Construction Solutions</title>
+    <meta name="description" content="SJ Tech Trading Contracting W.L.L. delivers top-tier products and services in Qatar's civil construction industry." />
+    <meta name="keywords" content="Stainless Steel, Mild Steel, Aluminium, Glass Work, Civil Construction, Fabrication, Installation" />
+    <meta name="author" content="SJ Tech Trading Contracting W.L.L." />
+    <link rel="icon" href="/images/logo/SJ Tech Logo-01.png" />
+  </Helmet>
     <div className="core-areas-container">
       <h2 className="core-areas-heading">Our Core Areas Of Expertise</h2>
       <div className='box-full'>
@@ -51,6 +61,7 @@ const CoreAreas = () => {
       </div>
       </div>
     </div>
+    </>
   );
 };
 

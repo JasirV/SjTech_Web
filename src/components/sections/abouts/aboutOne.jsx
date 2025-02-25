@@ -8,17 +8,32 @@ import SectionTitle from '../services/sectionTitle';
 import BounceLeft from '../../../utils/animations/bounceLeft';
 import SlideUp from '../../../utils/animations/slideUp';
 import SlideLeft from '../../../utils/animations/slideLeft';
+import { Helmet } from 'react-helmet-async';
 
 const AboutOne = () => {
     const [isOpen, setOpen] = useState(false);
 
     return (
+        <>
+        <Helmet>
+        <title>Mission & Vision | SJ TECH</title>
+        <meta
+          name="description"
+          content="Discover SJ TECH Trading Contracting W.L.L.'s mission to be the most reliable supplier in the construction industry, and our vision to become the premier destination for quality steel and glass solutions."
+        />
+        <meta
+          name="keywords"
+          content="Mission, Vision, SJ TECH, Construction Industry, Steel, Glass, Reliable Supplier, Construction Solutions"
+        />
+        <meta name="author" content="SJ Tech Trading Contracting W.L.L." />
+        <link rel="canonical" href="" />
+      </Helmet>
         <section className="about section-padding">
             <div className="shape1">
-                <img src={'/images/shape/start1.png'} alt="" />
+                <img src={'/images/shape/start1.png'} alt="SJ Tech Trading Contracting" />
             </div>
             <div className="shape2">
-                <img src={'/images/shape/start2.png'} alt="" />
+                <img src={'/images/shape/start2.png'} alt="SJ Tech Trading Contracting" />
             </div>
             <div className="about-wrp">
                 <div className="bg-image inline d-none d-lg-block" style={{ backgroundImage: `url('/images/about/shape4.png')` }}></div>
@@ -27,7 +42,7 @@ const AboutOne = () => {
                         <div className="col-lg-6">
                             <div className="left-item">
                                 <BounceLeft className="image">
-                                    <img  src={'/images/about/04.jpeg'} alt="image" />
+                                    <img  src={'/images/about/04.jpeg'} alt="SJ Tech Trading Contracting" />
                                 </BounceLeft>
                                 {/* <h2 className="d-none d-xl-block">Since 2024</h2> */}
                             </div>
@@ -64,6 +79,7 @@ const AboutOne = () => {
                 </div>
             </div>
         </section>
+</>
     );
 };
 

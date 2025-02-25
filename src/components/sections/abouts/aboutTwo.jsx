@@ -32,7 +32,7 @@ const AboutTwo = () => {
                     </div>
                     <SlideRight className="col-lg-6">
                         <div className="image">
-                            <img src={'/images/about/02.jpg'} alt="image" />
+                            <img src={'/images/about/02.jpg'} alt="SJ Tech Trading Contracting" />
                         </div>
                     </SlideRight>
                 </div>

@@ -10,10 +10,10 @@ const AboutThree = ({ className }) => {
     return (
         <section className={`experience-two section-margin mb-0 experience-three section-padding ${className}`}>
             <div className="soft-star scale-animation d-none d-lg-block">
-                <img src="/images/shape/soft-star.png" alt="" />
+                <img src="/images/shape/soft-star.png" alt="Trading" />
             </div>
             <div className="star star-rotare d-none d-lg-block">
-                <img src="/images/shape/start2.png" alt="" />
+                <img src="/images/shape/start2.png" alt="Contracting" />
             </div>
             <div className="container">
                 <div className="about-three pb-65">
@@ -41,7 +41,7 @@ const AboutThree = ({ className }) => {
                 <div className="row g-4">
                     <SlideDown className="col-lg-9">
                         <div className="image">
-                            <img src="/images/experience/03.jpg" alt="image" />
+                            <img src="/images/experience/03.jpg" alt="Tech" />
                             <div className="stroke-text">
                                 <h2>Since 1980</h2>
                             </div>
@@ -62,7 +62,7 @@ const AboutThree = ({ className }) => {
                             </div>
                         </div>
                         <div className="experience_video overlay50">
-                            <img src="/images/experience/04.jpg" alt="image" />
+                            <img src="/images/experience/04.jpg" alt="SJ" />
                             <div className="video-btn-wrp">
                                 <div className="video video-pulse">
                                     <div className="video-popup secondary-bg" onClick={() => setOpen(true)}><i className="fa-solid fa-play"><FaPlay /></i></div>

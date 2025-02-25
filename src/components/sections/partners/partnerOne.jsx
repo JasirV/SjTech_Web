@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 import { useProduct } from '../../../hooks/useapiHoooks';
 import Preloader from '../../ui/preloader';
+import { Helmet } from 'react-helmet-async';
 const PartnerOne = () => {
     const navigate=useNavigate()
     const divideItemsIntoParts = (items, parts = 4) => {
@@ -20,6 +21,20 @@ const PartnerOne = () => {
         navigate(`/service/service-details/${id}`)
     }
     return (
+        <>
+         <Helmet>
+        <title>Fabrication & Installation | SJ TECH</title>
+        <meta
+          name="description"
+          content="SJ TECH's Steel, Stainless Steel, Aluminum, and Glass Division offers expert fabrication and installation services. From bespoke handrails to large-scale stainless steel installations, we deliver quality solutions tailored to client needs."
+        />
+        <meta
+          name="keywords"
+          content="Fabrication, Installation, Stainless Steel, Aluminum, Glass Balustrades, Handrails, Cladding, Skirting, Steel Fabrication, Civil Construction"
+        />
+        <meta name="author" content="SJ Tech Trading Contracting W.L.L." />
+        <link rel="canonical" href="https://yourwebsite.com/fabrication-installation" />
+      </Helmet>
         <section className="trust section-padding">
     <h4 className="mb-65 text-center title">Our Products</h4>
     <div className="content-section">
@@ -49,7 +64,7 @@ const PartnerOne = () => {
                                 <p
                                     className="product-name"
                                     title={item?.service_name?.length > 25 ? item?.service_name : ''}
-                                >
+                                    >
                                     {item?.service_name?.length > 25
                                         ? `${item?.service_name?.slice(0, 25)}...`
                                         : item?.service_name}
@@ -62,6 +77,7 @@ const PartnerOne = () => {
         )}
     </div>
 </section>
+        </>
 
     );
 };

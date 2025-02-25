@@ -29,7 +29,7 @@ const HomeOne = () => {
         {/* <ProjectsOne data={projectsOneData}/> */}
         {/* <ExperienceOne/> */}
         {/* <ProductsSlider bg_color={"secondary-bg"} is_bg_img={true} title_sytle={"text-white"}/> */}
-        <TestimonialOne/>
+        {/* <TestimonialOne/> */}
         {/* <BlogOne/> */}
         {/* <PartnerTwo/> */}
     </main>

@@ -7,6 +7,7 @@ import ServiceThree from '../components/sections/services/serviceThree'
 import CarouselPage from '../components/sections/pageCarousel'
 import ServiceSix from '../components/sections/services/serviceSix'
 import ServiceContractingProduct from '../components/sections/services/serviceContractingProduct'
+import { Helmet } from 'react-helmet-async'
 
 const ServiceOne = () => {
     const slides = [
@@ -21,6 +22,20 @@ const ServiceOne = () => {
         { image: 'https://i.pinimg.com/originals/f2/8b/12/f28b12b6f9069684727be8c3cf744c72.jpg',heading:'ACP Cladding' },
     ];
     return (
+        <>
+        <Helmet> 
+        <title>Fabrication & Installation | SJ TECH</title>
+        <meta
+          name="description"
+          content="Explore SJ TECH Trading Contracting W.L.L.'s expertise in steel, stainless steel, aluminum, and glass fabrication and installation. From bespoke handrails and glass balustrades to large-scale stainless steel projects, we ensure efficiency and quality at every stage."
+        />
+        <meta
+          name="keywords"
+          content="Fabrication, Installation, Steel Fabrication, Stainless Steel, Aluminum, Glass, Handrails, Glass Balustrades, Cladding, Skirting, SJ TECH, Construction Solutions"
+        />
+        <meta name="author" content="SJ Tech Trading Contracting W.L.L." />
+        <link rel="canonical" href="" />
+      </Helmet>
         <main>
             {/* <PageBanner breadcrumbTitle={"Our Services"} /> */}
             <CarouselPage slides={slides} />
@@ -32,6 +47,7 @@ const ServiceOne = () => {
             {/* <HeadeingSlider bg_color={"primary-bg"} dir="to-right" /> */}
             {/* <TestimonialOne /> */}
         </main>
+        </>
     )
 }
 

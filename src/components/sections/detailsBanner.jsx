@@ -15,10 +15,10 @@ const DetailsBanner = ({ image, title }) => {
     }}
   >
       <div className="gaps-right d-none d-sm-block float-bob-x">
-      <img src="/images/shape/gaps-primary.png" alt="img" />
+      <img src="/images/shape/gaps-primary.png" alt="sjtech" />
       </div>
       <div className="gaps-left d-none d-sm-block float-bob-x">
-      <img src="/images/shape/gaps-primary.png" alt="img" />      </div>
+      <img src="/images/shape/gaps-primary.png" alt="doha" />      </div>
       <div className="container">
         <SlideUp>
           <h2>{title}</h2>

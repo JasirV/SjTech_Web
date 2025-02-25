@@ -9,7 +9,7 @@ const Choose = () => {
     return (
         <section className="choose bg-image section-padding">
             <div className="shape d-none d-xl-block float-bob-x">
-                <img src="/images/choose/shape.png" alt="shape" />
+                <img src="/images/choose/shape.png" alt="sjtech"  />
             </div>
             <div className="container">
                 <div className="row mb-5 mb-lg-0 ">

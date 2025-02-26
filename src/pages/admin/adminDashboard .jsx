@@ -11,7 +11,7 @@ import AdminHome from "./adminHome";
 import ProductList from "./productList";
 import AddProduct from "./addProduct";
 import { useNavigate } from "react-router";
-
+import { FaSignOutAlt } from 'react-icons/fa';
  const AdminDashboard = () => {
   const [currentComponent, setCurrentComponent] = useState("AdminHome");
   const navigate=useNavigate()
@@ -59,8 +59,8 @@ import { useNavigate } from "react-router";
           </CDBSidebarMenu>
         </CDBSidebarContent>
         <CDBSidebarFooter >
-        <div onClick={handleLogout}>
-                <CDBSidebarMenuItem icon="fa-sign-out"><p style={{ color: "white" }}>Logout</p></CDBSidebarMenuItem>
+        <div onClick={handleLogout} style={{display:'flex',justifyContent:"center",alignItems:"center"}}>
+        <div style={{display:'flex',gap:'10px',margin:'auto'}}><FaSignOutAlt  size={25} /><p style={{ color: "white" }}>Logout</p></div>
               </div>
         </CDBSidebarFooter>
       </CDBSidebar>

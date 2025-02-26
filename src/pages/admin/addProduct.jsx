@@ -86,11 +86,11 @@ const AddProduct = () => {
       }));
     }
   };
-  const handleFileChange = (e) => {
-    if (e.target.files.length > 0) {
-      setFile(e.target.files[0]);
-    }
-  };
+  // const handleFileChange = (e) => {
+  //   if (e.target.files.length > 0) {
+  //     setFile(e.target.files[0]);
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -362,7 +362,7 @@ const AddProduct = () => {
               <div className="form-feedback">{errors.secondaryImages}</div>
             )}
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <input
               type="file"
               id="pdf"
@@ -371,7 +371,7 @@ const AddProduct = () => {
               onChange={handleFileChange}
               style={{ marginBottom: "10px" }}
             />
-          </div>
+          </div> */}
 
           <div className="form-group">
             <button type="submit" className="btn-submit">

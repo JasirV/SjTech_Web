@@ -94,10 +94,10 @@ const Login = () => {
             />
           </div>
           <div className="form-group">
-            <ReCAPTCHA
+            {/* <ReCAPTCHA
               sitekey={sitekey} // Replace with your Google reCAPTCHA site key
               onChange={handleCaptchaChange}
-            />
+            /> */}
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button type="submit" className="btn-login" disabled={!captchaVerified}>

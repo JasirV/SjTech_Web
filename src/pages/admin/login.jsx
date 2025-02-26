@@ -14,7 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const Navigatge=useNavigate()
+  const Navigate=useNavigate()
 
   const handleCaptchaChange = (value) => {
     if (value) {
@@ -25,32 +25,42 @@ const Login = () => {
     }
   };
 
-  const handleFormSubmit = async(e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Sanitize inputs
     const sanitizedUsername = sanitizeInput(username);
     const sanitizedPassword = sanitizeInput(password);
-
+  
     if (!sanitizedUsername || !sanitizedPassword) {
       setErrorMessage("Please fill in all fields.");
       return;
     }
-
+  
     if (!captchaVerified) {
       setErrorMessage("Please complete the CAPTCHA.");
       return;
     }
-
+  
     setErrorMessage("");
-    const user= await api.post('/auth/',{userName:sanitizedUsername,password:sanitizedPassword})
-    if(user.status===200){
-      toast.success("Login successfully")
-      localStorage.setItem('token', user.data.token);
-      Navigatge('/home')
+  
+    try {
+      const user = await api.post('/auth/', {
+        userName: sanitizedUsername,
+        password: sanitizedPassword,
+      });
+  
+      if (user.status === 200) {
+        toast.success("Login successfully");
+        localStorage.setItem('token', user.data.token);
+        Navigate('/home');
+      } else {
+        toast.error(user?.data?.message || "Login failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error(error.response?.data?.message || "An error occurred during login.");
     }
-    toast.error(user?.message)
-    
   };
 
   return (

@@ -5,6 +5,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Preloader from "../../ui/preloader";
 
 const EditProductModal = ({ productId, productName, onCancel }) => {
   const queryClient = useQueryClient();
@@ -14,6 +15,7 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
   const [mainImagePre, setMainImagePre] = useState(null);
   const [secondaryImagePreviews, setSecondaryImagePreviews] = useState([]);
   const [newSecondaryImage, setNewSecondaryImage] = useState([]);
+  const [isLoadingg, setIsLoadingg] = useState(false);
 
   const [formData, setFormData] = useState({
     service_name: "",
@@ -75,7 +77,6 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
       setMainImagePre(null);
     } else if (type === "secondaryImages") {
       if (index !== null) {
-        // If the image is a new image
         if (newSecondaryImage[index]) {
           setNewSecondaryImage((prev) => {
             const updatedNewImages = [...prev];
@@ -88,10 +89,9 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
             return updatedPreviews;
           });
         } else {
-          // If the image is an old image
           setFormData((prev) => {
             const updatedImages = [...prev.secondaryImages];
-            updatedImages.splice(index, 1); // Remove the image
+            updatedImages.splice(index, 1);
             return {
               ...prev,
               secondaryImages: updatedImages,
@@ -110,27 +110,6 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     }
   };
 
-  const prepareFormData = () => {
-    const data = new FormData();
-    data.append("service_name", formData.service_name);
-    data.append("Image", formData.Image);
-    data.append("aboutText", formData.aboutText);
-    data.append("additionalText", formData.additionalText);
-    data.append("category", formData.category);
-    data.append("featuresList", formData.featuresList);
-    data.append("modernTitle", formData.modernTitle);
-
-    if (formData.mainImage) {
-      data.append("mainImage", formData.mainImage);
-    }
-
-    formData.secondaryImages.forEach((file, index) => {
-      data.append(`secondaryImages[${index}]`, file);
-    });
-
-    return data;
-  };
-
   const handleAddSecondaryImages = (e) => {
     const files = Array.from(e.target.files);
     const filePreviews = files.map((file) => URL.createObjectURL(file));
@@ -146,18 +125,16 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
           const formData = new FormData();
           formData.append("file", file);
           formData.append("upload_preset", "secondaryImages");
-
           const response = await axios.post(
             `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_APP_CLOUDINARY_ID}/image/upload`,
             formData
           );
-
           return response.data.secure_url;
         })
       );
       return uploadedUrls;
     } catch (error) {
-      toast.error("Error Uploading Files")
+      toast.error("Error Uploading Files");
       console.error("Error uploading files:", error.response ? error.response.data : error.message);
       throw error;
     }
@@ -165,43 +142,88 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
 
   const handleSave = async () => {
     try {
+      setIsLoadingg(true);
+
       // Upload new secondary images
-      const uploadedUrls = await handleFileUpload(newSecondaryImage);
-      
-      // Update the form data with the uploaded URLs
-      setFormData((prev) => ({
-        ...prev,
-        secondaryImages: [...prev.secondaryImages, ...uploadedUrls], // Concatenate previous and new URLs
-      }));
-  
+      const uploadedSecondaryUrls = await handleFileUpload(newSecondaryImage);
+
+      // Upload main image if it's a new file
+      let uploadedMainImageUrl = null;
+      if (formData.mainImage && formData.mainImage instanceof File) {
+        const mainImageResponse = await handleFileUpload([formData.mainImage]);
+        uploadedMainImageUrl = mainImageResponse[0];
+      }
+
+      // Upload product image if it's a new file
+      let uploadedProductImageUrl = null;
+      if (formData.Image && formData.Image instanceof File) {
+        const productImageResponse = await handleFileUpload([formData.Image]);
+        uploadedProductImageUrl = productImageResponse[0];
+      }
+
       // Prepare the form data for submission
-      const data = prepareFormData();
-  
+      const data = new FormData();
+
+      // Append updated fields
+      if (formData.service_name !== productData.service_name) {
+        data.append("service_name", formData.service_name);
+      }
+      if (uploadedProductImageUrl || formData.Image === "") {
+        data.append("Image", uploadedProductImageUrl || formData.Image);
+      }
+      if (formData.aboutText !== productData.aboutText) {
+        data.append("aboutText", formData.aboutText);
+      }
+      if (formData.additionalText !== productData.additionalText) {
+        data.append("additionalText", formData.additionalText);
+      }
+      if (formData.category !== productData.category) {
+        data.append("category", formData.category);
+      }
+      if (formData.featuresList !== productData.featuresList) {
+        data.append("featuresList", formData.featuresList);
+      }
+      if (formData.modernTitle !== productData.modernTitle) {
+        data.append("modernTitle", formData.modernTitle);
+      }
+      if (uploadedMainImageUrl || formData.mainImage === null) {
+        data.append("mainImage", uploadedMainImageUrl || formData.mainImage);
+      }
+
+      // Append secondary images
+      if (uploadedSecondaryUrls.length > 0) {
+        uploadedSecondaryUrls.forEach((url, index) => {
+          data.append(`secondaryImages[${index}]`, url);
+        });
+      }
+
       // Send the PUT request to update the product
       const response = await api.put(`/product/${productId}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-  
+
       if (response.status === 200) {
         queryClient.invalidateQueries(["allProduct"]);
-        toast.success("Product updated successfully")
+        toast.success("Product updated successfully");
         console.log("Product updated successfully:", response.data);
         onCancel(); // Close the modal
       }
     } catch (error) {
-      toast.error('Failed to update product')
+      toast.error("Failed to update product");
       console.error("Failed to update product:", error);
+    } finally {
+      setIsLoadingg(false);
     }
   };
-  
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className="edit-product-modal">
+      {isLoadingg && <Preloader />}
       <div className="modal-content">
         <h2>Edit Product: {productName}</h2>
 

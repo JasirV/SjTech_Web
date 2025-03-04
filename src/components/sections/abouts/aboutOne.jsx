@@ -53,8 +53,7 @@ const AboutOne = () => {
                                     <SectionTitle.Name>ABOUT SJ TECH</SectionTitle.Name>
                                     {/* <SectionTitle.Title>We take you to the next level industry solutions</SectionTitle.Title> */}
                                     <SectionTitle.Description>
-                                        Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar, specializing in delivering innovative products and services to the civil construction industry. Our primary focus is on the Stainless Steel, Mild Steel, Aluminium, Mashrabiya, Glass work and civil sectors.
-                                    </SectionTitle.Description>
+                                    Founded in 2024, SJ Tech Trading Contracting W.L.L. is a dynamic company based in Qatar. The company was founded by individuals with 15 years of experience in facades, stainless steel, and structural steel in Qatar, who have managed very high-spec and fast-track projects, specifically in FIFA stadiums and iconic buildings. As a result, the team has extensive experience providing solutions to clients and specializes in delivering innovative products and services to the civil construction industry. Our primary focus is on stainless steel, mild steel, aluminum, Mashrabiya, glasswork, and civil sectors.                                    </SectionTitle.Description>
                                 </SectionTitle>
                                 <div className="content pb-65 bor-bottom">
                                     <div className="row g-4">

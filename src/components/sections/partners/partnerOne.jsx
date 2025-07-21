@@ -59,7 +59,7 @@ const PartnerOne = () => {
                 <div key={index} className="content-item">
                     <div className="product-items">
                         {part?.map((item, itemIndex) => (
-                            <div key={itemIndex} className="product-item" onClick={() => { handleClicked(item._id); }}>
+                            <div key={itemIndex} className="product-item" onClick={() => { handleClicked(item.id); }}>
                                 <div className="product-dot"></div>
                                 <p
                                     className="product-name"

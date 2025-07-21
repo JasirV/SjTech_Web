@@ -3,6 +3,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import api from "../../api/axiosInstance";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 const sitekey = import.meta.env.VITE_SITE_KEY;
 // Utility function to sanitize input
 const sanitizeInput = (input) => {
@@ -14,7 +16,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const Navigate=useNavigate()
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleCaptchaChange = (value) => {
     if (value) {
@@ -27,39 +30,54 @@ const Login = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Sanitize inputs
     const sanitizedUsername = sanitizeInput(username);
     const sanitizedPassword = sanitizeInput(password);
-  
+
     if (!sanitizedUsername || !sanitizedPassword) {
       setErrorMessage("Please fill in all fields.");
       return;
     }
-  
+
     if (!captchaVerified) {
       setErrorMessage("Please complete the CAPTCHA.");
       return;
     }
-  
+
     setErrorMessage("");
-  
+
     try {
-      const user = await api.post('/auth/', {
-        userName: sanitizedUsername,
-        password: sanitizedPassword,
-      });
-  
-      if (user.status === 200) {
-        toast.success("Login successfully");
-        localStorage.setItem('token', user.data.token);
-        Navigate('/home');
-      } else {
-        toast.error(user?.data?.message || "Login failed. Please try again.");
-      }
+      setLoading(true);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        sanitizedUsername,
+        sanitizedPassword
+      );
+      setLoading(false);
+      // Get the token
+      const token = await userCredential.user.getIdToken();
+
+      // Optional: Save the token
+      localStorage.setItem("token", token);
+
+      toast.success("Login successfully");
+      navigate("/home");
     } catch (error) {
+      setLoading(false);
       console.error("Login error:", error);
-      toast.error(error.response?.data?.message || "An error occurred during login.");
+
+      // Firebase-specific error messages
+      let errorMessage = "Login failed. Please try again.";
+      if (error.code === "auth/user-not-found") {
+        errorMessage = "No user found with this email.";
+      } else if (error.code === "auth/wrong-password") {
+        errorMessage = "Incorrect password.";
+      } else if (error.code === "auth/invalid-email") {
+        errorMessage = "Invalid email address.";
+      }
+
+      toast.error(errorMessage);
     }
   };
 
@@ -74,11 +92,11 @@ const Login = () => {
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
-              type="text"
+              type="email"
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
+              placeholder="Enter your Email"
               required
             />
           </div>
@@ -100,8 +118,12 @@ const Login = () => {
             />
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
-          <button type="submit" className="btn-login" disabled={!captchaVerified}>
-            Continue
+          <button
+            type="submit"
+            className="btn-login"
+            disabled={!captchaVerified || loading}
+          >
+            {loading ? "Loading..." : "Continue"}
           </button>
         </form>
         <div className="login-footer">

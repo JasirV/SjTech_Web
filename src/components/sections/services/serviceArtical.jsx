@@ -13,6 +13,8 @@ const ServiceArtical = ({ product }) => {
     pdf,
   } = product;
 
+  console.log(pdf,product,'hi');
+  
   return (
     <section className="service-single section-padding">
       <div className="container">

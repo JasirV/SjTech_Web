@@ -7,25 +7,6 @@ import { router } from './route/router';
 import api from './api/axiosInstance';
 
 const App = () => {
-  // Perform the API call when the app is loaded
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get('/fake'); // Your API endpoint
-      } catch (error) {
-        toast.error("Error fetching data")
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();  // Call the function to fetch data
-
-    // Optional: Set an interval to repeat the API call every 14 seconds
-    const intervalId = setInterval(fetchData, 14000);
-
-    // Cleanup the interval on unmount
-    return () => clearInterval(intervalId);
-  }, []); // Empty dependency array ensures this runs once on mount
 
   return (
     <Provider store={store}>

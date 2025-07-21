@@ -16,7 +16,7 @@ const AboutOne = () => {
     return (
         <>
         <Helmet>
-        <title>Mission & Vision | SJ TECH</title>
+        <title>SJ TECH</title>
         <meta
           name="description"
           content="Discover SJ TECH Trading Contracting W.L.L.'s mission to be the most reliable supplier in the construction industry, and our vision to become the premier destination for quality steel and glass solutions."

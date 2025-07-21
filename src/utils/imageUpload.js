@@ -52,3 +52,75 @@ export const handleFileUpload = async (file) => {
     throw error;
   }
 };
+
+export const uploadToCloudinary = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+    const uploadPreset = 'secondaryImages';
+  formData.append("upload_preset",uploadPreset);
+
+  const cloudName = import.meta.env.VITE_APP_CLOUDINARY_ID;
+  const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    body: formData,
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error?.message || "Upload failed");
+  return data.secure_url; // Return the image URL
+};
+
+export const uploadPdfToCloudinary = async (pdfFile) => {
+  // Validate input
+  if (!pdfFile) {
+    throw new Error("No file provided");
+  }
+
+  // Check if file is PDF
+  if (pdfFile.type !== "application/pdf") {
+    throw new Error("Only PDF files are allowed");
+  }
+
+  // Check file size (e.g., 10MB limit)
+  const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+  if (pdfFile.size > MAX_SIZE) {
+    throw new Error("File size exceeds 10MB limit");
+  }
+
+  const formData = new FormData();
+  formData.append("file", pdfFile);
+  formData.append("upload_preset", "pdf_uploads");
+  formData.append("resource_type", "auto"); // 'auto' works better than 'raw' for Cloudinary
+
+  const cloudName = import.meta.env.VITE_APP_CLOUDINARY_ID;
+  if (!cloudName) {
+    throw new Error("Cloudinary cloud name is not configured");
+  }
+
+  try {
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${cloudName}/upload`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(
+        errorData.message || `Upload failed with status ${response.status}`
+      );
+    }
+
+    const data = await response.json();
+    return data.secure_url;
+  } catch (error) {
+    console.error("Cloudinary upload error:", error);
+    throw new Error(
+      error.message || "Failed to upload PDF. Please try again later."
+    );
+  }
+};

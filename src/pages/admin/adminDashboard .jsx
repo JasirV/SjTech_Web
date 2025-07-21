@@ -12,6 +12,9 @@ import ProductList from "./productList";
 import AddProduct from "./addProduct";
 import { useNavigate } from "react-router";
 import { FaSignOutAlt } from 'react-icons/fa';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase/firebase';
+
  const AdminDashboard = () => {
   const [currentComponent, setCurrentComponent] = useState("AdminHome");
   const navigate=useNavigate()
@@ -33,7 +36,8 @@ import { FaSignOutAlt } from 'react-icons/fa';
         return <AdminHome />;
     }
   };
-  const handleLogout=()=>{
+  const handleLogout=async()=>{
+    await signOut(auth);
     localStorage.clear()
     navigate('/')
   }
@@ -60,7 +64,7 @@ import { FaSignOutAlt } from 'react-icons/fa';
         </CDBSidebarContent>
         <CDBSidebarFooter >
         <div onClick={handleLogout} style={{display:'flex',justifyContent:"center",alignItems:"center"}}>
-        <div style={{display:'flex',gap:'10px',margin:'auto'}}><FaSignOutAlt  size={25} /><p style={{ color: "white" }}>Logout</p></div>
+        <div style={{display:'flex',gap:'10px',margin:'auto'}}><FaSignOutAlt  size={25} /><p style={{ color: "white" }}></p></div>
               </div>
         </CDBSidebarFooter>
       </CDBSidebar>

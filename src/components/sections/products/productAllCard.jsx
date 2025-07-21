@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa6'
 import SlideUp from '../../../utils/animations/slideUp'
-import { useProduct } from '../../../hooks/useapiHoooks'
 import SkeletonServiceTradingProducts from '../../ui/skeletons/serviceTradingProducts'
+import { useProduct } from '../../../hooks/useapiHoooks'
 
 const ProductAllCard = () => {
     const {data:productAllData,isLoading}=useProduct()
+    console.log(isLoading,'file')
     if(isLoading){
         return(<SkeletonServiceTradingProducts/>)
     }

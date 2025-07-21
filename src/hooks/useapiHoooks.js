@@ -1,32 +1,62 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api from "../api/axiosInstance";
+import { db } from "../firebase/firebase"; 
+import { useEffect, useState } from "react";
+import { getDocs,doc, collection, getDoc,deleteDoc} from "firebase/firestore";
 
-// Fetch all products
+const fetchProducts = async () => {
+  const querySnapshot = await getDocs(collection(db, 'products'));
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+};
+
 export const useProduct = () => {
   return useQuery({
     queryKey: ['allProduct'],
-    queryFn: async () => {
-      const response = await api(`/product/`);
-      return response.data.data;
-    },
+    queryFn: fetchProducts,
   });
 };
+export const getProductById = async (id) => {
+  try {
+    if (!id) throw new Error("Product ID is required");
 
+    const docRef = doc(db, "products", id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return { id: docSnap.id, ...docSnap.data() };
+    } else {
+      console.warn("No such document!");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error getting document:", error);
+    return null;
+  }
+};
 // Fetch a product by ID
 export const useProductById = (id) => {
   return useQuery({
-    queryKey: ['product', id],
+    queryKey: ["product", id],
     queryFn: async () => {
       if (!id) {
         throw new Error("Product ID is required");
       }
-      const response = await api(`/product/${id}`);
-      return response.data.data;
+
+      const docRef = doc(db, "products", id); // Firestore path: /products/{id}
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        throw new Error("Product not found");
+      }
+
+      return { id: docSnap.id, ...docSnap.data() };
     },
-    enabled: !!id, // Ensures the query runs only if `id` is provided
+    enabled: !!id,
   });
 };
-
 // Fetch products by category
 export const useCategoryProduct = (category) => {
   return useQuery({
@@ -44,20 +74,16 @@ export const useCategoryProduct = (category) => {
 
 // Custom hook for deleting a product
 export const useDeleteProduct = () => {
-  const queryClient = useQueryClient(); // Access the query client to manage cache
-  const deleteProduct = async (id) => {
-    try {
-      const response = await api.delete(`/product/${id}`);
-      console.log('Product deleted:', response);
-      queryClient.invalidateQueries('allProduct'); // Invalidate the product query to refresh data
-      return response; // You can return the response if needed
-    } catch (error) {
-      console.error('Error deleting product:', error);
-      throw error; // Optionally, throw the error for further handling
-    }
-  };
+  const queryClient = useQueryClient();
 
-  return deleteProduct;
+  return useMutation({
+    mutationFn: async (id) => {
+      const productRef = doc(db, 'products', id);
+      await deleteDoc(productRef);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(['allProduct']);
+    },
+  });
 };
-
 

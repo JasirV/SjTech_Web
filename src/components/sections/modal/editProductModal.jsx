@@ -1,22 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useProductById } from "../../../hooks/useapiHoooks";
+import { getProductById } from "../../../hooks/useapiHoooks";
 import api from "../../../api/axiosInstance";
 import { FaTrashAlt } from "react-icons/fa";
 import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Preloader from "../../ui/preloader";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { doc, updateDoc } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
+import { db, storage } from "../../../firebase/firebase";
+import { uploadPdfToCloudinary } from "../../../utils/imageUpload";
 
 const EditProductModal = ({ productId, productName, onCancel }) => {
   const queryClient = useQueryClient();
   const fileInputRef = useRef();
-  const { data: productData, isLoading, error } = useProductById(productId);
+  // const { data: productData, isLoading, error } = getProductById(productId);
   const [imagePre, setImagePre] = useState(null);
   const [mainImagePre, setMainImagePre] = useState(null);
   const [secondaryImagePreviews, setSecondaryImagePreviews] = useState([]);
   const [newSecondaryImage, setNewSecondaryImage] = useState([]);
   const [isLoadingg, setIsLoadingg] = useState(false);
-
+  const [productData, setProductData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     service_name: "",
     Image: "",
@@ -26,6 +33,7 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     featuresList: "",
     modernTitle: "",
     mainImage: null,
+    pdf: null,
     secondaryImages: [],
     existingMainImage: "",
   });
@@ -41,6 +49,7 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
         featuresList: productData.featuresList || "",
         modernTitle: productData.modernTitle || "",
         existingMainImage: productData.mainImage || "",
+        existingPdf: productData.pdf || null,
         secondaryImages: productData.secondaryImages || [],
       });
       setImagePre(productData.Image);
@@ -48,6 +57,21 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
       setSecondaryImagePreviews(productData.secondaryImages || []);
     }
   }, [productData]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getProductById(productId);
+        setProductData(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [productId]);
 
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -75,35 +99,29 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     if (type === "mainImage") {
       setFormData((prev) => ({ ...prev, mainImage: null }));
       setMainImagePre(null);
-    } else if (type === "secondaryImages") {
-      if (index !== null) {
-        if (newSecondaryImage[index]) {
-          setNewSecondaryImage((prev) => {
-            const updatedNewImages = [...prev];
-            updatedNewImages.splice(index, 1);
-            return updatedNewImages;
-          });
-          setSecondaryImagePreviews((prev) => {
-            const updatedPreviews = [...prev];
-            updatedPreviews.splice(index, 1);
-            return updatedPreviews;
-          });
-        } else {
-          setFormData((prev) => {
-            const updatedImages = [...prev.secondaryImages];
-            updatedImages.splice(index, 1);
-            return {
-              ...prev,
-              secondaryImages: updatedImages,
-            };
-          });
-          setSecondaryImagePreviews((prev) => {
-            const updatedPreviews = [...prev];
-            updatedPreviews.splice(index, 1);
-            return updatedPreviews;
-          });
-        }
+    } else if (type === "secondaryImages" && index !== null) {
+      // Handle new images
+      if (newSecondaryImage[index]) {
+        setNewSecondaryImage((prev) => {
+          const updated = [...prev];
+          updated.splice(index, 1);
+          return updated;
+        });
+      } else {
+        // Handle existing uploaded images
+        setFormData((prev) => {
+          const updated = [...prev.secondaryImages];
+          updated.splice(index, 1);
+          return { ...prev, secondaryImages: updated };
+        });
       }
+
+      // Remove preview in both cases
+      setSecondaryImagePreviews((prev) => {
+        const updated = [...prev];
+        updated.splice(index, 1);
+        return updated;
+      });
     } else if (type === "Image") {
       setFormData((prev) => ({ ...prev, Image: "" }));
       setImagePre(null);
@@ -126,7 +144,9 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
           formData.append("file", file);
           formData.append("upload_preset", "secondaryImages");
           const response = await axios.post(
-            `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_APP_CLOUDINARY_ID}/image/upload`,
+            `https://api.cloudinary.com/v1_1/${
+              import.meta.env.VITE_APP_CLOUDINARY_ID
+            }/image/upload`,
             formData
           );
           return response.data.secure_url;
@@ -135,7 +155,10 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
       return uploadedUrls;
     } catch (error) {
       toast.error("Error Uploading Files");
-      console.error("Error uploading files:", error.response ? error.response.data : error.message);
+      console.error(
+        "Error uploading files:",
+        error.response ? error.response.data : error.message
+      );
       throw error;
     }
   };
@@ -144,75 +167,80 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
     try {
       setIsLoadingg(true);
 
-      // Upload new secondary images
-      const uploadedSecondaryUrls = await handleFileUpload(newSecondaryImage);
+      // 1. Upload new secondary images (if any)
+      const uploadedSecondaryUrls = newSecondaryImage.length
+        ? await handleFileUpload(newSecondaryImage)
+        : [];
 
-      // Upload main image if it's a new file
+      // 2. Upload main image if it's a new File
       let uploadedMainImageUrl = null;
-      if (formData.mainImage && formData.mainImage instanceof File) {
-        const mainImageResponse = await handleFileUpload([formData.mainImage]);
-        uploadedMainImageUrl = mainImageResponse[0];
+      if (formData.mainImage instanceof File) {
+        const [mainImageUrl] = await handleFileUpload([formData.mainImage]);
+        uploadedMainImageUrl = mainImageUrl;
       }
 
-      // Upload product image if it's a new file
+      // 3. Upload product image if it's a new File
       let uploadedProductImageUrl = null;
-      if (formData.Image && formData.Image instanceof File) {
-        const productImageResponse = await handleFileUpload([formData.Image]);
-        uploadedProductImageUrl = productImageResponse[0];
+      if (formData.Image instanceof File) {
+        const [productImageUrl] = await handleFileUpload([formData.Image]);
+        uploadedProductImageUrl = productImageUrl;
+      }
+      const updatedFields = {};
+      let uploadedPdfUrl = null;
+      if (formData.pdf instanceof File) {
+        uploadedPdfUrl = await uploadPdfToCloudinary(formData.pdf);
+        updatedFields.pdf = uploadedPdfUrl;
+      } else if (formData.existingPdf === "") {
+        updatedFields.pdf = ""; // user removed the PDF
       }
 
-      // Prepare the form data for submission
-      const data = new FormData();
+      // 4. Combine old and new secondary images
+      const combinedSecondaryImages = [
+        ...(formData.secondaryImages || []), // keep the old ones (after delete)
+        ...uploadedSecondaryUrls, // add newly uploaded ones
+      ];
 
-      // Append updated fields
+      // 5. Prepare updated fields for Firestore
+
       if (formData.service_name !== productData.service_name) {
-        data.append("service_name", formData.service_name);
+        updatedFields.service_name = formData.service_name;
       }
       if (uploadedProductImageUrl || formData.Image === "") {
-        data.append("Image", uploadedProductImageUrl || formData.Image);
+        updatedFields.Image = uploadedProductImageUrl || formData.Image;
       }
       if (formData.aboutText !== productData.aboutText) {
-        data.append("aboutText", formData.aboutText);
+        updatedFields.aboutText = formData.aboutText;
       }
       if (formData.additionalText !== productData.additionalText) {
-        data.append("additionalText", formData.additionalText);
+        updatedFields.additionalText = formData.additionalText;
       }
       if (formData.category !== productData.category) {
-        data.append("category", formData.category);
+        updatedFields.category = formData.category;
       }
       if (formData.featuresList !== productData.featuresList) {
-        data.append("featuresList", formData.featuresList);
+        updatedFields.featuresList = formData.featuresList;
       }
       if (formData.modernTitle !== productData.modernTitle) {
-        data.append("modernTitle", formData.modernTitle);
+        updatedFields.modernTitle = formData.modernTitle;
       }
       if (uploadedMainImageUrl || formData.mainImage === null) {
-        data.append("mainImage", uploadedMainImageUrl || formData.mainImage);
+        updatedFields.mainImage = uploadedMainImageUrl || formData.mainImage;
       }
 
-      // Append secondary images
-      if (uploadedSecondaryUrls.length > 0) {
-        uploadedSecondaryUrls.forEach((url, index) => {
-          data.append(`secondaryImages[${index}]`, url);
-        });
-      }
+      // ✅ Always send combined secondary images (not just new ones!)
+      updatedFields.secondaryImages = combinedSecondaryImages;
 
-      // Send the PUT request to update the product
-      const response = await api.put(`/product/${productId}`, data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      // 6. Update Firestore document
+      const productRef = doc(db, "products", productId);
+      await updateDoc(productRef, updatedFields);
 
-      if (response.status === 200) {
-        queryClient.invalidateQueries(["allProduct"]);
-        toast.success("Product updated successfully");
-        console.log("Product updated successfully:", response.data);
-        onCancel(); // Close the modal
-      }
+      // 7. Cleanup
+      queryClient.invalidateQueries(["allProduct"]);
+      toast.success("Product updated successfully");
+      onCancel(); // close modal
     } catch (error) {
       toast.error("Failed to update product");
-      console.error("Failed to update product:", error);
+      console.error("Firebase product update error:", error);
     } finally {
       setIsLoadingg(false);
     }
@@ -354,6 +382,40 @@ const EditProductModal = ({ productId, productName, onCancel }) => {
           multiple
           accept="image/*"
           onChange={handleAddSecondaryImages}
+        />
+        <label htmlFor="pdf">PDF Document:</label>
+        {formData.existingPdf && (
+          <div className="pdf-preview">
+            <a
+              href={formData.existingPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Existing PDF
+            </a>
+            <button
+              type="button"
+              className="delete-btn"
+              onClick={() =>
+                setFormData((prev) => ({
+                  ...prev,
+                  existingPdf: "",
+                }))
+              }
+            >
+              <FaTrashAlt />
+            </button>
+          </div>
+        )}
+        <input
+          type="file"
+          accept="application/pdf"
+          onChange={(e) =>
+            setFormData((prev) => ({
+              ...prev,
+              pdf: e.target.files[0],
+            }))
+          }
         />
 
         <div className="modal-actions">

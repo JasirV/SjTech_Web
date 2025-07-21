@@ -5,16 +5,23 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useQueryClient } from "@tanstack/react-query";
 import Preloader from "../../components/ui/preloader";
 import toast from "react-hot-toast";
+import {
+  uploadPdfToCloudinary,
+  uploadToCloudinary,
+} from "../../utils/imageUpload";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
+import PDFViewer from "../../components/sections/modal/PDFViewer";
 
 const AddProduct = () => {
   const queryClient = useQueryClient();
   const [ImagePre, setImagePre] = useState();
   const [mainImagePre, setMainImagePre] = useState();
   const [secondaryImagePreviews, setSecondaryImagePreviews] = useState([]);
-  const [file,setFile]=useState(null)
-  const [message, setMessage] = useState('');
+  const [file, setFile] = useState(null);
+  const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const defaultFormData={
+  const defaultFormData = {
     service_name: "",
     Image: null,
     mainImage: null,
@@ -24,7 +31,7 @@ const AddProduct = () => {
     Category: "",
     modernTitle: "",
     secondaryImages: [],
-  }
+  };
   const [formData, setFormData] = useState({
     service_name: "",
     Image: null,
@@ -72,7 +79,7 @@ const AddProduct = () => {
       const filesArray = Array.from(files);
       setFormData((prevData) => ({
         ...prevData,
-        secondaryImages: [...files],
+        secondaryImages: [...prevData.secondaryImages, ...files],
       }));
       const newPreviews = filesArray.map((file) => URL.createObjectURL(file));
       setSecondaryImagePreviews((prevPreviews) => [
@@ -94,81 +101,62 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Validate inputs before proceeding
     if (!validateInputs()) return;
     // Upload the file first
-    let uploadedPdfUrl = null;
-    if (file) {
-      const uploadFormData = new FormData();
-      uploadFormData.append("file", file);
-  
-      try {
-        setIsLoading(true);
-        const uploadResponse = await api.post("/product/upload", uploadFormData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
-  
-        // Extract the uploaded PDF URL from the response
-        uploadedPdfUrl = uploadResponse.data.driveFile.webViewLink;
-      } catch (error) {
-        setIsLoading(false);
-        toast.error("Error uploading PDF")
-        console.error("Error uploading PDF:", error.response?.data || error.message);
-        setMessage("Failed to upload PDF. Please try again.");
-        return;
-      } finally {
-        setIsLoading(false);
-      }
-    }
-  
-    // Prepare the data for the product creation API
-    const formDataToSend = new FormData();
-    formDataToSend.append("service_name", formData.service_name);
-    formDataToSend.append("Image", formData.Image);
-    formDataToSend.append("aboutText", formData.aboutText);
-    formDataToSend.append("additionalText", formData.additionalText);
-    formDataToSend.append(
-      "featuresList",
-      formData.featuresList.split(",").map((item) => item.trim())
-    );
-    formDataToSend.append("Category", formData.Category);
-    formDataToSend.append("modernTitle", formData.modernTitle);
-    formDataToSend.append("mainImage", formData.mainImage);
-  
-    // Add secondary images
-    formData.secondaryImages.forEach((image) => {
-      formDataToSend.append("secondaryImages", image);
-    });
-  
-    // Add the uploaded PDF URL (if available)
-    if (uploadedPdfUrl) {
-      formDataToSend.append("pdf", uploadedPdfUrl);
-    }
-  
-    // Call the product creation API
     try {
-      setIsLoading(true)
-      const response = await api.post("/product/", formDataToSend, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-  
-      if (response.status === 201) {
-        queryClient.invalidateQueries(["allProduct"]);
-        setIsLoading(false)
-        setMessage("Product added successfully!");
-        toast.success("Product added syccessfully")
-        console.log("Product added successfully:", response.data);
-        setFormData(defaultFormData);
+      setIsLoading(true);
+
+      // Upload images to Cloudinary
+      const imageUrl = await uploadToCloudinary(formData.Image);
+      const mainImageUrl = await uploadToCloudinary(formData.mainImage);
+      const secondaryImageUrls = await Promise.all(
+        formData.secondaryImages.map((img) => uploadToCloudinary(img))
+      );
+      console.log(secondaryImageUrls, "lin113");
+      // Optional: upload PDF if you still need that
+      let uploadedPdfUrl = null;
+      if (file) {
+        uploadedPdfUrl = await uploadPdfToCloudinary(file); 
+        console.log("Upload successful. URL:", uploadedPdfUrl);
       }
-    } catch (error) {
-      setIsLoading(false)
-      console.error("Error adding product:", error.response?.data || error.message);
-      setMessage("Failed to add product. Please try again.");
-      toast.error('Faild to add product. Please try again.')
+
+      // Prepare final data to store in Firestore
+      const finalProductData = {
+        service_name: formData.service_name,
+        Image: imageUrl,
+        mainImage: mainImageUrl,
+        secondaryImages: secondaryImageUrls,
+        aboutText: formData.aboutText,
+        additionalText: formData.additionalText,
+        featuresList: formData.featuresList
+          .split(",")
+          .map((item) => item.trim()),
+        Category: formData.Category,
+        modernTitle: formData.modernTitle,
+        pdf: uploadedPdfUrl+"?flags=attachment" || null,
+        createdAt: new Date(),
+      };
+
+      // Save to Firestore
+      await addDoc(collection(db, "products"), finalProductData);
+
+      toast.success("Product added successfully!");
+      setMessage("Product added successfully");
+      setFormData(defaultFormData);
+      setImagePre(null);
+      setMainImagePre(null);
+      setSecondaryImagePreviews([]);
+    } catch (err) {
+      console.error("Error submitting product:", err.message);
+      toast.error("Failed to add product. Try again.");
+      setMessage("Something went wrong.");
+    } finally {
+      setIsLoading(false);
     }
   };
-  
+
   const handleDeleteImage = (type, index) => {
     if (type === "Image") {
       setFormData((prevData) => ({ ...prevData, Image: null }));
@@ -186,10 +174,15 @@ const AddProduct = () => {
       }));
     }
   };
+  const handleFileChange = (e) => {
+    if (e.target.files.length > 0) {
+      setFile(e.target.files[0]); // assuming only one PDF allowed
+    }
+  };
   return (
     <div className="add-product">
       <div className="container">
-        {isLoading&&<Preloader/>}
+        {isLoading && <Preloader />}
         <h2 className="title">Add Product</h2>
         <form onSubmit={handleSubmit} className="form">
           <div className="form-group">
@@ -362,16 +355,17 @@ const AddProduct = () => {
               <div className="form-feedback">{errors.secondaryImages}</div>
             )}
           </div>
-          {/* <div className="form-group">
+          <div className="form-group">
+            <label htmlFor="pdf">Upload PDF (optional)</label>
             <input
               type="file"
               id="pdf"
               name="pdf"
-              multiple
+              accept="application/pdf"
               onChange={handleFileChange}
               style={{ marginBottom: "10px" }}
             />
-          </div> */}
+          </div>
 
           <div className="form-group">
             <button type="submit" className="btn-submit">

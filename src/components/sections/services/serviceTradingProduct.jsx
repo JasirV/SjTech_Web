@@ -21,10 +21,10 @@ const ServiceTradingProducts = () => {
             </div>
             <div className="container">
                 <div className="row g-4">
-                    {tradingProducts?.map(({ _id, modernTitle, Image }) => (
+                    {tradingProducts?.map(({ id, modernTitle, Image }) => (
                         <Card 
-                            key={_id} 
-                            id={_id} 
+                            key={id} 
+                            id={id} 
                             ProductImage={Image} 
                             Title={modernTitle} 
                         />

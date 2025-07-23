@@ -18,8 +18,8 @@ const ServiceContractingProduct = () => {
             <div className="container">
                 <div className="row g-4">
                     {Products?.length > 0 ? (
-                        Products?.map(({ _id, service_name, Image }) => (
-                            <Card key={_id} id={_id} ProductImage={Image} Title={service_name} />
+                        Products?.map(({ id, service_name, Image }) => (
+                            <Card key={id} id={id} ProductImage={Image} Title={service_name} />
                         ))
                     ) : (
                         <p className="text-center">No products found in this category.</p>

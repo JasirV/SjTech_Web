@@ -21,7 +21,7 @@ const ServiceTradingProducts = () => {
             </div>
             <div className="container">
                 <div className="row g-4">
-                    {tradingProducts?.map(({ id, modernTitle, Image }) => (
+                    {tradingProducts?.map(({id, modernTitle, Image }) => (
                         <Card 
                             key={id} 
                             id={id} 

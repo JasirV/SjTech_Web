@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api from "../api/axiosInstance";
 import { db } from "../firebase/firebase"; 
 import { useEffect, useState } from "react";
-import { getDocs,doc, collection, getDoc,deleteDoc} from "firebase/firestore";
+import { getDocs,doc, collection, getDoc,deleteDoc,query, where,} from "firebase/firestore";
 
 const fetchProducts = async () => {
   const querySnapshot = await getDocs(collection(db, 'products'));
@@ -65,10 +65,22 @@ export const useCategoryProduct = (category) => {
       if (!category) {
         throw new Error("Product Category is required");
       }
-      const response = await api.get(`/product/service/${category}`);
-      return response.data.data;
+
+      const q = query(collection(db, 'products'), where('Category', '==', category));
+      const querySnapshot = await getDocs(q);
+
+      const products = [];
+      querySnapshot.forEach((doc) => {
+        products.push({ id: doc.id, ...doc.data() });
+      });
+
+      if (products.length === 0) {
+        throw new Error('No products found for this category!');
+      }
+
+      return products;
     },
-    enabled: !!category, // Ensures the query runs only if `category` is provided
+    enabled: !!category,
   });
 };
 
